@@ -22,6 +22,10 @@ public class Myne {
                     System.out.println("_____________________________________________");
                     alive = false;
                     break;
+                case "list":
+                    listItems();
+                    System.out.println("_____________________________________________");
+                    break;
                 default:
                     list.add(input);
                     System.out.println("I have inscribed \"" + input + "\" into your list.");
@@ -47,5 +51,17 @@ public class Myne {
         System.out.println("_____________________________________________");
         System.out.println(greetingStart + "\n" + logo + "\n" + greetingEnd);
         System.out.println("_____________________________________________");
+    }
+
+    private static void listItems() {
+        if (list.isEmpty()) {
+            System.out.println("It appears there are no entries in your list.");
+            return;
+        }
+
+        System.out.println("Certainly. Here is your list.");
+        for (String item : list) {
+            System.out.println("- " + item);
+        }
     }
 }

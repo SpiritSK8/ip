@@ -1,22 +1,32 @@
-import java.util.Locale;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Myne {
+    private static List<String> list;
+
     public static void main(String[] args) {
+        list = new ArrayList<>();
+
         greet();
 
         String exitMessage = "Farewell. May the time come when our threads of fate are woven together again.";
         Scanner sc = new Scanner(System.in);
-        while (true) {
+        boolean alive = true;
+        while (alive) {
             String input = sc.nextLine();
             System.out.println("_____________________________________________");
-            if (input.equalsIgnoreCase("bye")) {
-                System.out.println(exitMessage);
-                System.out.println("_____________________________________________");
-                break;
-            } else {
-                System.out.println(input);
-                System.out.println("_____________________________________________");
+            switch (input) {
+                case "bye":
+                    System.out.println(exitMessage);
+                    System.out.println("_____________________________________________");
+                    alive = false;
+                    break;
+                default:
+                    list.add(input);
+                    System.out.println("I have inscribed \"" + input + "\" into your list.");
+                    System.out.println("_____________________________________________");
+                    break;
             }
         }
     }

@@ -46,6 +46,14 @@ public class Myne {
         }
     }
 
+    public void mark(int taskIndex) {
+        list.get(taskIndex).mark();
+    }
+
+    public void unmark(int taskIndex) {
+        list.get(taskIndex).unmark();
+    }
+
     public void exit() {
         System.out.println("Farewell. May the time come when our threads of fate are woven together again.");
     }

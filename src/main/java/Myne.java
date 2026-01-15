@@ -1,10 +1,14 @@
 public class Myne {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        String logo = "___  ___\n"
+                    + "|  \\/  |                 \n"
+                    + "| .  . |_   _ _ __   ___\n"
+                    + "| |\\/| | | | | '_ \\ / _ \\\n"
+                    + "| |  | | |_| | | | |  __/\n"
+                    + "\\_|  |_/\\__, |_| |_|\\___|\n"
+                    + "         __/ |\n"
+                    + "        |___/";
+
+                System.out.println("Hello from\n" + logo);
     }
 }

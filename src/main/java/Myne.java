@@ -32,11 +32,13 @@ public class Myne {
         Task task = new Task(name);
         list.add(task);
         System.out.println("I have inscribed \"" + name + "\" into your list.");
+        System.out.println("_____________________________________________");
     }
 
     public void listItems() {
         if (list.isEmpty()) {
             System.out.println("It appears there are no entries in your list.");
+            System.out.println("_____________________________________________");
             return;
         }
 
@@ -44,17 +46,25 @@ public class Myne {
         for (int i = 0; i < list.size(); i++) {
             System.out.println((i + 1) + "." + list.get(i));
         }
+        System.out.println("_____________________________________________");
     }
 
     public void mark(int taskIndex) {
         list.get(taskIndex).mark();
+        System.out.println("Very good. You have done your job well.");
+        System.out.println("    " + list.get(taskIndex).toString());
+        System.out.println("_____________________________________________");
     }
 
     public void unmark(int taskIndex) {
         list.get(taskIndex).unmark();
+        System.out.println("Oh? You would like to redo your task? Very well.");
+        System.out.println("    " + list.get(taskIndex).toString());
+        System.out.println("_____________________________________________");
     }
 
     public void exit() {
         System.out.println("Farewell. May the time come when our threads of fate are woven together again.");
+        System.out.println("_____________________________________________");
     }
 }

@@ -15,12 +15,12 @@ public class TodoItem {
         this.isDone = false;
     }
 
+    private String getStatusIcon() {
+        return isDone ? "[X]" : "[ ]";
+    }
+
     @Override
     public String toString() {
-        if (isDone) {
-            return "[X] " + name;
-        } else {
-            return "[ ] " + name;
-        }
+        return getStatusIcon() + " " + name;
     }
 }

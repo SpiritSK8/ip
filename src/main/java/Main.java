@@ -10,21 +10,19 @@ public class Main {
         while (alive) {
             String input = sc.nextLine();
             System.out.println("_____________________________________________");
-            switch (input) {
-                case "bye":
-                    myne.exit();
-                    System.out.println("_____________________________________________");
-                    alive = false;
-                    break;
-                case "list":
-                    myne.listItems();
-                    System.out.println("_____________________________________________");
-                    break;
-                default:
-                    myne.addTask(input);
-                    System.out.println("_____________________________________________");
-                    break;
-            }
+            Command command = parseInput(input, myne);
+            command.execute();
         }
+    }
+
+    private static Command parseInput(String input, Myne myne) {
+        String[] parts = input.split(" ");
+        return switch (parts[0]) {
+            case "bye" -> new ExitCommand(myne);
+            case "list" -> new ListCommand(myne);
+            case "mark" -> new MarkCommand(myne, Integer.parseInt(parts[1]));
+            case "unmark" -> new UnmarkCommand(myne, Integer.parseInt(parts[1]));
+            default -> new AddTaskCommand(myne, input);
+        };
     }
 }

@@ -1,8 +1,8 @@
-public class TodoItem {
+public class Task {
     private String name;
     private boolean isDone;
 
-    public TodoItem(String name) {
+    public Task(String name) {
         this.name = name;
         this.isDone = false;
     }

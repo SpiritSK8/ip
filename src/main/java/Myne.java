@@ -35,20 +35,20 @@ public class Myne {
         list.add(task);
 
         System.out.println(DIVIDER);
-        System.out.println("I have inscribed \"" + name + "\" into your list.");
+        System.out.println("I entrust you to " + name + ". Take care.");
         System.out.println(DIVIDER);
     }
 
     public void listItems() {
         if (list.isEmpty()) {
             System.out.println(DIVIDER);
-            System.out.println("It appears there are no entries in your list.");
+            System.out.println("It appears that you have no more tasks to do. Well done.");
             System.out.println(DIVIDER);
             return;
         }
 
         System.out.println(DIVIDER);
-        System.out.println("Certainly. Here is your list.");
+        System.out.println("Here is your list of tasks.");
         for (int i = 0; i < list.size(); i++) {
             System.out.println((i + 1) + "." + list.get(i));
         }
@@ -59,7 +59,7 @@ public class Myne {
         list.get(taskIndex).mark();
 
         System.out.println(DIVIDER);
-        System.out.println("Very good. You have done your job well.");
+        System.out.println("You have carried out your task with utmost diligence. Very good.");
         System.out.println("    " + list.get(taskIndex).toString());
         System.out.println(DIVIDER);
     }

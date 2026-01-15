@@ -1,42 +1,14 @@
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Myne {
-    private static List<Task> list;
+    private List<Task> list;
 
-    public static void main(String[] args) {
-        list = new ArrayList<>();
-
-        greet();
-
-        String exitMessage = "Farewell. May the time come when our threads of fate are woven together again.";
-        Scanner sc = new Scanner(System.in);
-        boolean alive = true;
-        while (alive) {
-            String input = sc.nextLine();
-            System.out.println("_____________________________________________");
-            switch (input) {
-                case "bye":
-                    System.out.println(exitMessage);
-                    System.out.println("_____________________________________________");
-                    alive = false;
-                    break;
-                case "list":
-                    listItems();
-                    System.out.println("_____________________________________________");
-                    break;
-                default:
-                    Task todo = new Task(input);
-                    list.add(todo);
-                    System.out.println("I have inscribed \"" + input + "\" into your list.");
-                    System.out.println("_____________________________________________");
-                    break;
-            }
-        }
+    public Myne() {
+        this.list = new ArrayList<>();
     }
 
-    private static void greet() {
+    public void greet() {
         String greetingStart = "Good day to you. My name is";
         String logo = """
                 ___  ___
@@ -54,7 +26,12 @@ public class Myne {
         System.out.println("_____________________________________________");
     }
 
-    private static void listItems() {
+    public void addTask(String name) {
+        Task task = new Task(name);
+        list.add(task);
+    }
+
+    public void listItems() {
         if (list.isEmpty()) {
             System.out.println("It appears there are no entries in your list.");
             return;

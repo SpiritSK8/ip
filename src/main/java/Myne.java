@@ -9,8 +9,8 @@ public class Myne {
     }
 
     public void greet() {
-        String greetingStart = "Good day to you. My name is";
-        String logo = """
+        final String greetingStart = "Good day to you. My name is";
+        final String logo = """
                 ___  ___
                 |  \\/  |
                 | .  . |_   _ _ __   ___
@@ -19,10 +19,12 @@ public class Myne {
                 \\_|  |_/\\__, |_| |_|\\___|
                          __/ |
                         |___/""";
-        String greetingEnd = "May our meeting, ordained by the gods be blessed on this fruitful day.";
+        final String greetingEnd = "May our meeting, ordained by the gods be blessed on this fruitful day.";
+
+        final String greetingMessage = greetingStart + "\n" + logo + "\n" + greetingEnd;
 
         System.out.println("_____________________________________________");
-        System.out.println(greetingStart + "\n" + logo + "\n" + greetingEnd);
+        System.out.println(greetingMessage);
         System.out.println("_____________________________________________");
     }
 

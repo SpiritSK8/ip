@@ -2,6 +2,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Myne {
+    private static final String DIVIDER = "________________________________________";
+    
     private List<Task> list;
 
     public Myne() {
@@ -23,48 +25,57 @@ public class Myne {
 
         final String greetingMessage = greetingStart + "\n" + logo + "\n" + greetingEnd;
 
-        System.out.println("_____________________________________________");
+        System.out.println(DIVIDER);
         System.out.println(greetingMessage);
-        System.out.println("_____________________________________________");
+        System.out.println(DIVIDER);
     }
 
     public void addTask(String name) {
         Task task = new Task(name);
         list.add(task);
+
+        System.out.println(DIVIDER);
         System.out.println("I have inscribed \"" + name + "\" into your list.");
-        System.out.println("_____________________________________________");
+        System.out.println(DIVIDER);
     }
 
     public void listItems() {
         if (list.isEmpty()) {
+            System.out.println(DIVIDER);
             System.out.println("It appears there are no entries in your list.");
-            System.out.println("_____________________________________________");
+            System.out.println(DIVIDER);
             return;
         }
 
+        System.out.println(DIVIDER);
         System.out.println("Certainly. Here is your list.");
         for (int i = 0; i < list.size(); i++) {
             System.out.println((i + 1) + "." + list.get(i));
         }
-        System.out.println("_____________________________________________");
+        System.out.println(DIVIDER);
     }
 
     public void mark(int taskIndex) {
         list.get(taskIndex).mark();
+
+        System.out.println(DIVIDER);
         System.out.println("Very good. You have done your job well.");
         System.out.println("    " + list.get(taskIndex).toString());
-        System.out.println("_____________________________________________");
+        System.out.println(DIVIDER);
     }
 
     public void unmark(int taskIndex) {
         list.get(taskIndex).unmark();
+
+        System.out.println(DIVIDER);
         System.out.println("Oh? You would like to redo your task? Very well.");
         System.out.println("    " + list.get(taskIndex).toString());
-        System.out.println("_____________________________________________");
+        System.out.println(DIVIDER);
     }
 
     public void exit() {
+        System.out.println(DIVIDER);
         System.out.println("Farewell. May the time come when our threads of fate are woven together again.");
-        System.out.println("_____________________________________________");
+        System.out.println(DIVIDER);
     }
 }

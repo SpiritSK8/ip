@@ -9,7 +9,6 @@ public class Main {
         boolean alive = true;
         while (alive) {
             String input = sc.nextLine();
-            System.out.println("_____________________________________________");
             Command command = parseInput(input, myne);
             command.execute();
         }

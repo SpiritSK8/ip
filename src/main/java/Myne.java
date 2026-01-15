@@ -58,7 +58,7 @@ public class Myne {
     }
 
     public void mark(int taskIndex) {
-        list.get(taskIndex).mark();
+        list.get(taskIndex - 1).mark();
 
         System.out.println(DIVIDER);
         System.out.println("You have carried out your task with utmost diligence. Very good.");
@@ -67,7 +67,7 @@ public class Myne {
     }
 
     public void unmark(int taskIndex) {
-        list.get(taskIndex).unmark();
+        list.get(taskIndex - 1).unmark();
 
         System.out.println(DIVIDER);
         System.out.println("Oh? You would like to redo your task? Very well.");

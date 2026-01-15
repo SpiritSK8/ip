@@ -14,4 +14,13 @@ public class TodoItem {
     public void unmark() {
         this.isDone = false;
     }
+
+    @Override
+    public String toString() {
+        if (isDone) {
+            return "[X] " + name;
+        } else {
+            return "[ ] " + name;
+        }
+    }
 }

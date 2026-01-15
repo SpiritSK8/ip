@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Myne {
-    private static List<String> list;
+    private static List<TodoItem> list;
 
     public static void main(String[] args) {
         list = new ArrayList<>();
@@ -27,7 +27,8 @@ public class Myne {
                     System.out.println("_____________________________________________");
                     break;
                 default:
-                    list.add(input);
+                    TodoItem todo = new TodoItem(input);
+                    list.add(todo);
                     System.out.println("I have inscribed \"" + input + "\" into your list.");
                     System.out.println("_____________________________________________");
                     break;
@@ -60,7 +61,7 @@ public class Myne {
         }
 
         System.out.println("Certainly. Here is your list.");
-        for (String item : list) {
+        for (TodoItem item : list) {
             System.out.println("- " + item);
         }
     }

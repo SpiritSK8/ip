@@ -44,4 +44,8 @@ public class Myne {
             System.out.println((i + 1) + "." + list.get(i));
         }
     }
+
+    public void exit() {
+        System.out.println("Farewell. May the time come when our threads of fate are woven together again.");
+    }
 }

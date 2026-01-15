@@ -61,8 +61,8 @@ public class Myne {
         }
 
         System.out.println("Certainly. Here is your list.");
-        for (TodoItem item : list) {
-            System.out.println("- " + item);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println((i + 1) + "." + list.get(i));
         }
     }
 }

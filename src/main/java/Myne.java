@@ -23,14 +23,15 @@ public class Myne {
 
     private static void greet() {
         String greetingStart = "Good day to you. My name is";
-        String logo = "___  ___\n"
-                + "|  \\/  |                 \n"
-                + "| .  . |_   _ _ __   ___\n"
-                + "| |\\/| | | | | '_ \\ / _ \\\n"
-                + "| |  | | |_| | | | |  __/\n"
-                + "\\_|  |_/\\__, |_| |_|\\___|\n"
-                + "         __/ |\n"
-                + "        |___/";
+        String logo = """
+                ___  ___
+                |  \\/  |
+                | .  . |_   _ _ __   ___
+                | |\\/| | | | | '_ \\ / _ \\
+                | |  | | |_| | | | |  __/
+                \\_|  |_/\\__, |_| |_|\\___|
+                         __/ |
+                        |___/""";
         String greetingEnd = "May our meeting, ordained by the gods be blessed on this fruitful day.";
 
         System.out.println("_____________________________________________");

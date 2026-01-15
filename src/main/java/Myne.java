@@ -31,6 +31,7 @@ public class Myne {
     public void addTask(String name) {
         Task task = new Task(name);
         list.add(task);
+        System.out.println("I have inscribed \"" + name + "\" into your list.");
     }
 
     public void listItems() {

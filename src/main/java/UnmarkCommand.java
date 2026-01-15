@@ -4,6 +4,7 @@ public class UnmarkCommand implements Command {
 
     public UnmarkCommand(Myne myne, int taskIndex) {
         this.myne = myne;
+        this.taskIndex = taskIndex;
     }
 
     @Override

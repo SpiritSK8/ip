@@ -4,6 +4,7 @@ public class MarkCommand implements Command {
 
     public MarkCommand(Myne myne, int taskIndex) {
         this.myne = myne;
+        this.taskIndex = taskIndex;
     }
 
     @Override

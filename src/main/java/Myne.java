@@ -5,9 +5,11 @@ public class Myne {
     private static final String DIVIDER = "________________________________________";
     
     private List<Task> list;
+    private boolean isAlive;
 
     public Myne() {
         this.list = new ArrayList<>();
+        this.isAlive = true;
     }
 
     public void greet() {
@@ -77,5 +79,10 @@ public class Myne {
         System.out.println(DIVIDER);
         System.out.println("Farewell. May the time come when our threads of fate are woven together again.");
         System.out.println(DIVIDER);
+        this.isAlive = false;
+    }
+
+    public boolean isAlive() {
+        return this.isAlive;
     }
 }

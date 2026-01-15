@@ -6,8 +6,7 @@ public class Main {
         myne.greet();
 
         Scanner sc = new Scanner(System.in);
-        boolean alive = true;
-        while (alive) {
+        while (myne.isAlive()) {
             String input = sc.nextLine();
             Command command = parseInput(input, myne);
             command.execute();

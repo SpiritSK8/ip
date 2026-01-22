@@ -32,12 +32,11 @@ public class Myne {
         System.out.println(DIVIDER);
     }
 
-    public void addTask(String name) {
-        Task task = new Task(name);
+    public void addTask(Task task) {
         list.add(task);
 
         System.out.println(DIVIDER);
-        System.out.println("I entrust you to " + name + ". Take care.");
+        System.out.println("I entrust you to " + task.toString() + ". Take care.");
         System.out.println(DIVIDER);
     }
 

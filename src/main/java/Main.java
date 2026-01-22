@@ -20,7 +20,8 @@ public class Main {
             case "list" -> new ListCommand(myne);
             case "mark" -> new MarkCommand(myne, Integer.parseInt(parts[1]));
             case "unmark" -> new UnmarkCommand(myne, Integer.parseInt(parts[1]));
-            default -> new AddTaskCommand(myne, input);
+            case "todo" -> new AddTodoCommand(myne, input.substring(parts[0].length() + 1)); // discards the first word to extract the rest of the command (the to do).
+            default -> new AddTodoCommand(myne, input);
         };
     }
 }

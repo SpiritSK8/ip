@@ -1,14 +1,14 @@
 public class AddTodoCommand implements Command {
     private Myne myne;
-    private String taskName;
+    private Todo todo;
 
     public AddTodoCommand(Myne myne, String taskName) {
         this.myne = myne;
-        this.taskName = taskName;
+        this.todo = new Todo(taskName);
     }
 
     @Override
     public void execute() {
-        myne.addTask(taskName);
+        myne.addTask(todo);
     }
 }

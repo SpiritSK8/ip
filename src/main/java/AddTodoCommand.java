@@ -1,8 +1,8 @@
-public class AddTaskCommand implements Command {
+public class AddTodoCommand implements Command {
     private Myne myne;
     private String taskName;
 
-    public AddTaskCommand(Myne myne, String taskName) {
+    public AddTodoCommand(Myne myne, String taskName) {
         this.myne = myne;
         this.taskName = taskName;
     }

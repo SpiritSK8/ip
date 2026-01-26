@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        final String DIVIDER = "________________________________________";
+
         Myne myne = new Myne();
         myne.greet();
 
@@ -12,7 +14,9 @@ public class Main {
                 Command command = getCommand(input, myne);
                 command.execute();
             } catch (RuntimeException e) {
+                System.out.println(DIVIDER);
                 System.out.println(e.getMessage());
+                System.out.println(DIVIDER);
             }
         }
     }

@@ -1,14 +1,19 @@
 public class AddTodoCommand implements Command {
     private Myne myne;
-    private Todo todo;
+    private String taskName;
 
     public AddTodoCommand(Myne myne, String taskName) {
         this.myne = myne;
-        this.todo = new Todo(taskName);
+        this.taskName = taskName.trim();
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InvalidCommandException {
+        if (taskName.isEmpty()) {
+            throw new InvalidCommandException("Todo description cannot be empty.");
+        }
+
+        Todo todo = new Todo(taskName);
         myne.addTask(todo);
     }
 }

@@ -9,7 +9,11 @@ public class Main {
         while (myne.isAlive()) {
             String input = sc.nextLine();
             Command command = getCommand(input, myne);
-            command.execute();
+            try {
+                command.execute();
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

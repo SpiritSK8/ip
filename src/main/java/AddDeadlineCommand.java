@@ -1,19 +1,39 @@
 public class AddDeadlineCommand implements Command {
     private Myne myne;
-    private Deadline deadline;
+    private String parameters;
 
     public AddDeadlineCommand(Myne myne, String parameters) {
         this.myne = myne;
-        this.deadline = parseCommand(parameters);
+        this.parameters = parameters;
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InvalidCommandException {
+        Deadline deadline = parseCommand(parameters);
         myne.addTask(deadline);
     }
 
-    private Deadline parseCommand(String parameters) {
+    private Deadline parseCommand(String parameters) throws InvalidCommandException {
+        if (parameters.isEmpty()) {
+            throw new InvalidCommandException("Deadline description cannot be empty.");
+        }
+        if (!parameters.contains("/by")) {
+            throw new InvalidCommandException("Deadlines must have a /by.");
+        }
+
         String[] parts = parameters.split("/by");
-        return new Deadline(parts[0].trim(), parts[1].trim());
+
+        if (parts.length < 2) {
+            throw new InvalidCommandException("Missing description or due date.");
+        }
+
+        String name = parts[0].trim();
+        String dueDate = parts[1].trim();
+
+        if (name.isEmpty() || dueDate.isEmpty()) {
+            throw new InvalidCommandException("Missing description or due date.");
+        }
+
+        return new Deadline(name, dueDate);
     }
 }

@@ -14,6 +14,6 @@ public class Event extends Task{
 
     @Override
     public String toString() {
-        return getTypeIcon() + super.toString() + "(from: " + startDate + " to: " + endDate + ")";
+        return getTypeIcon() + super.toString() + " (from: " + startDate + " to: " + endDate + ")";
     }
 }

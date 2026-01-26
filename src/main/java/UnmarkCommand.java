@@ -1,14 +1,19 @@
 public class UnmarkCommand implements Command {
     private Myne myne;
-    private int taskIndex;
+    private String parameters;
 
-    public UnmarkCommand(Myne myne, String taskIndex) {
+    public UnmarkCommand(Myne myne, String parameters) {
         this.myne = myne;
-        this.taskIndex = Integer.parseInt(taskIndex);
+        this.parameters = parameters;
     }
 
     @Override
-    public void execute() {
-        myne.unmark(taskIndex);
+    public void execute() throws InvalidCommandException {
+        try {
+            int index = Integer.parseInt(parameters);
+            myne.unmark(index);
+        } catch (NumberFormatException e) {
+            throw new InvalidCommandException(parameters + " is not a valid task number.");
+        }
     }
 }

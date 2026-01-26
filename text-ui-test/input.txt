@@ -18,6 +18,7 @@ mark 0.3
 unmark 0.3
 mark asdf
 unmark asdf
+delete 1
 todo
 deadline
 deadline /by

@@ -24,6 +24,7 @@ public class Main {
             case "unmark" -> new UnmarkCommand(myne, parameters);
             case "todo" -> new AddTodoCommand(myne, parameters);
             case "deadline" -> new AddDeadlineCommand(myne, parameters);
+            case "event" -> new AddEventCommand(myne, parameters);
             default -> new AddTodoCommand(myne, input);
         };
     }

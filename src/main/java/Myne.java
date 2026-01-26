@@ -37,7 +37,7 @@ public class Myne {
 
         System.out.println(DIVIDER);
         System.out.println("I entrust you with this task.");
-        System.out.println("    ");
+        System.out.println("    " + task.toString());
         System.out.println(DIVIDER);
     }
 

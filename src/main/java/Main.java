@@ -16,7 +16,7 @@ public class Main {
     private static Command getCommand(String input, Myne myne) {
         String[] parts = input.split(" ");
         String command = parts[0]; // The command word.
-        String parameters = parts.length > 1 ? parts[1] : ""; // The rest of the input.
+        String parameters = parts.length > 1 ? input.substring(parts[0].length() + 1) : ""; // The rest of the input.
         return switch (command) {
             case "bye" -> new ExitCommand(myne);
             case "list" -> new ListCommand(myne);

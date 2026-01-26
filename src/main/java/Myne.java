@@ -58,7 +58,14 @@ public class Myne {
     }
 
     public void mark(int taskIndex) {
-        list.get(taskIndex - 1).mark();
+        try {
+            list.get(taskIndex - 1).mark();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(DIVIDER);
+            System.out.println("Oh my! It seems that you only have " + list.size() + " tasks at present.");
+            System.out.println(DIVIDER);
+            return;
+        }
 
         System.out.println(DIVIDER);
         System.out.println("You have carried out your task with utmost diligence. Very good.");
@@ -67,10 +74,17 @@ public class Myne {
     }
 
     public void unmark(int taskIndex) {
-        list.get(taskIndex - 1).unmark();
+        try {
+            list.get(taskIndex - 1).unmark();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(DIVIDER);
+            System.out.println("Oh my! It seems that you only have " + list.size() + " tasks at present.");
+            System.out.println(DIVIDER);
+            return;
+        }
 
         System.out.println(DIVIDER);
-        System.out.println("Oh? You would like to redo it? Very well.");
+        System.out.println("Ah, you would like to redo it? Very well.");
         System.out.println("  " + list.get(taskIndex - 1).toString());
         System.out.println(DIVIDER);
     }

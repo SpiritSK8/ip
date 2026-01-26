@@ -44,15 +44,15 @@ public class Myne {
     public void listItems() {
         if (list.isEmpty()) {
             System.out.println(DIVIDER);
-            System.out.println("Hm... It appears you are underworked. Shall we remedy that?");
+            System.out.println("Hm... It appears you are under-worked. Shall we remedy that?");
             System.out.println(DIVIDER);
             return;
         }
 
         System.out.println(DIVIDER);
-        System.out.println("Behold.");
+        System.out.println("Behold, your tasks!");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println((i + 1) + "." + list.get(i));
+            System.out.println("  " + (i + 1) + "." + list.get(i));
         }
         System.out.println(DIVIDER);
     }

@@ -23,6 +23,7 @@ public class Main {
             case "mark" -> new MarkCommand(myne, parameters);
             case "unmark" -> new UnmarkCommand(myne, parameters);
             case "todo" -> new AddTodoCommand(myne, parameters);
+            case "deadline" -> new AddDeadlineCommand(myne, parameters);
             default -> new AddTodoCommand(myne, input);
         };
     }

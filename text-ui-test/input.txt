@@ -10,6 +10,14 @@ unmark 1
 list
 mark 4
 unmark 4
+mark 0
+unmark 0
+mark -1
+unmark -1
+mark 0.3
+unmark 0.3
+mark asdf
+unmark asdf
 todo
 deadline
 deadline /by

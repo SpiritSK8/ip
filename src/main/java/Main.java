@@ -8,19 +8,21 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         while (myne.isAlive()) {
             String input = sc.nextLine();
-            Command command = parseInput(input, myne);
+            Command command = getCommand(input, myne);
             command.execute();
         }
     }
 
-    private static Command parseInput(String input, Myne myne) {
+    private static Command getCommand(String input, Myne myne) {
         String[] parts = input.split(" ");
-        return switch (parts[0]) {
+        String command = parts[0]; // The command word.
+        String parameters = parts.length > 1 ? parts[1] : ""; // The rest of the input.
+        return switch (command) {
             case "bye" -> new ExitCommand(myne);
             case "list" -> new ListCommand(myne);
-            case "mark" -> new MarkCommand(myne, Integer.parseInt(parts[1]));
-            case "unmark" -> new UnmarkCommand(myne, Integer.parseInt(parts[1]));
-            case "todo" -> new AddTodoCommand(myne, input.substring(parts[0].length() + 1)); // discards the first word to extract the rest of the command (the to do).
+            case "mark" -> new MarkCommand(myne, parameters);
+            case "unmark" -> new UnmarkCommand(myne, parameters);
+            case "todo" -> new AddTodoCommand(myne, parameters);
             default -> new AddTodoCommand(myne, input);
         };
     }

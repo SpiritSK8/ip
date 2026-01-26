@@ -8,4 +8,23 @@ list
 mark 2
 unmark 1
 list
+mark 4
+unmark 4
+todo
+deadline
+deadline /by
+deadline   /by
+deadline a /by
+deadline  /by b
+event
+event  /from
+event  /to
+event  /from  /to
+event  /from  /to
+event a /from  /to
+event a /from b /to
+event a /from  /to c
+event  /from b /to
+event  /from b /to c
+event  /from  /to c
 bye

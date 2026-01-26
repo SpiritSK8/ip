@@ -46,7 +46,7 @@ You have carried out your task with utmost diligence. Very good.
   [D][X] Send letters to Plantin Company (by: fourth bell)
 ________________________________________
 ________________________________________
-Oh? You would like to redo it? Very well.
+Ah, you would like to redo it? Very well.
   [T][ ] Mana compression
 ________________________________________
 ________________________________________
@@ -55,6 +55,29 @@ Behold, your tasks!
   2.[D][X] Send letters to Plantin Company (by: fourth bell)
   3.[E][ ] Tea party with Charlotte (from: fourth bell to: fifth bell)
 ________________________________________
+________________________________________
+Oh my! It seems that you only have 3 tasks at present.
+________________________________________
+________________________________________
+Oh my! It seems that you only have 3 tasks at present.
+________________________________________
+Todo description cannot be empty.
+Deadline description cannot be empty.
+Missing description or due date.
+Missing description or due date.
+Missing description or due date.
+Missing description or due date.
+Event description cannot be empty.
+Events must have a /from and /to.
+Events must have a /from and /to.
+Missing description, start time, or end time.
+Missing description, start time, or end time.
+Missing description, start time, or end time.
+Missing description, start time, or end time.
+Missing description, start time, or end time.
+Missing description, start time, or end time.
+Missing description, start time, or end time.
+Missing description, start time, or end time.
 ________________________________________
 Farewell. May the time come when our threads of fate are woven together again.
 ________________________________________

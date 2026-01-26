@@ -90,6 +90,20 @@ Let me take that back.
   [T][ ] Mana compression
 ________________________________________
 ________________________________________
+Behold, your tasks!
+  1.[D][X] Send letters to Plantin Company (by: fourth bell)
+  2.[E][ ] Tea party with Charlotte (from: fourth bell to: fifth bell)
+________________________________________
+________________________________________
+Oh my! It seems that you only have 2 tasks at present.
+________________________________________
+________________________________________
+ is not a valid task number.
+________________________________________
+________________________________________
+asd is not a valid task number.
+________________________________________
+________________________________________
 Todo description cannot be empty.
 ________________________________________
 ________________________________________

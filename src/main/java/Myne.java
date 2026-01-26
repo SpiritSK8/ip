@@ -37,7 +37,7 @@ public class Myne {
 
         System.out.println(DIVIDER);
         System.out.println("I entrust you with this task.");
-        System.out.println("    " + task.toString());
+        System.out.println("  " + task.toString());
         System.out.println(DIVIDER);
     }
 
@@ -62,7 +62,7 @@ public class Myne {
 
         System.out.println(DIVIDER);
         System.out.println("You have carried out your task with utmost diligence. Very good.");
-        System.out.println("    " + list.get(taskIndex - 1).toString());
+        System.out.println("  " + list.get(taskIndex - 1).toString());
         System.out.println(DIVIDER);
     }
 
@@ -71,7 +71,7 @@ public class Myne {
 
         System.out.println(DIVIDER);
         System.out.println("Oh? You would like to redo it? Very well.");
-        System.out.println("    " + list.get(taskIndex - 1).toString());
+        System.out.println("  " + list.get(taskIndex - 1).toString());
         System.out.println(DIVIDER);
     }
 

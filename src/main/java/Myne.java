@@ -89,6 +89,22 @@ public class Myne {
         }
     }
 
+    public void delete(int taskIndex) {
+        try {
+            Task removedTask = list.remove(taskIndex - 1);
+
+            System.out.println(DIVIDER);
+            System.out.println("Let me take that back.");
+            System.out.println("  " + list.get(taskIndex - 1).toString());
+            System.out.println(DIVIDER);
+
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(DIVIDER);
+            System.out.println("Oh my! It seems that you only have " + list.size() + " tasks at present.");
+            System.out.println(DIVIDER);
+        }
+    }
+
     public void exit() {
         System.out.println(DIVIDER);
         System.out.println("Farewell. May the time come when our threads of fate are woven together again.");

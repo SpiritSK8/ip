@@ -8,8 +8,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         while (myne.isAlive()) {
             String input = sc.nextLine();
-            Command command = getCommand(input, myne);
             try {
+                Command command = getCommand(input, myne);
                 command.execute();
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
@@ -17,7 +17,7 @@ public class Main {
         }
     }
 
-    private static Command getCommand(String input, Myne myne) {
+    private static Command getCommand(String input, Myne myne) throws InvalidCommandException {
         String[] parts = input.split(" ");
         String command = parts[0]; // The command word.
         String parameters = parts.length > 1 ? input.substring(parts[0].length() + 1) : ""; // The rest of the input.
@@ -29,7 +29,8 @@ public class Main {
             case "todo" -> new AddTodoCommand(myne, parameters);
             case "deadline" -> new AddDeadlineCommand(myne, parameters);
             case "event" -> new AddEventCommand(myne, parameters);
-            default -> new AddTodoCommand(myne, input);
+            case "delete" -> new DeleteCommand(myne, parameters);
+            default -> throw new InvalidCommandException("Come again?");
         };
     }
 }

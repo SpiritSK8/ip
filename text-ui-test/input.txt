@@ -1,0 +1,11 @@
+list
+todo Mana compression
+deadline Send letters to Plantin Company /by fourth bell
+event Tea party with Charlotte /from fourth bell /to fifth bell
+list
+mark 1
+list
+mark 2
+unmark 1
+list
+bye

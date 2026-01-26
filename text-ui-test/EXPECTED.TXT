@@ -1,7 +1,60 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+________________________________________
+Good day to you. My name is
+___  ___
+|  \/  |
+| .  . |_   _ _ __   ___
+| |\/| | | | | '_ \ / _ \
+| |  | | |_| | | | |  __/
+\_|  |_/\__, |_| |_|\___|
+         __/ |
+        |___/
+May our meeting, ordained by the gods be blessed on this fruitful day.
+________________________________________
+________________________________________
+Hm... It appears you are under-worked. Shall we remedy that?
+________________________________________
+________________________________________
+I entrust you with this task.
+  [T][ ] Mana compression
+________________________________________
+________________________________________
+I entrust you with this task.
+  [D][ ] Send letters to Plantin Company (by: fourth bell)
+________________________________________
+________________________________________
+I entrust you with this task.
+  [E][ ] Tea party with Charlotte (from: fourth bell to: fifth bell)
+________________________________________
+________________________________________
+Behold, your tasks!
+  1.[T][ ] Mana compression
+  2.[D][ ] Send letters to Plantin Company (by: fourth bell)
+  3.[E][ ] Tea party with Charlotte (from: fourth bell to: fifth bell)
+________________________________________
+________________________________________
+You have carried out your task with utmost diligence. Very good.
+  [T][X] Mana compression
+________________________________________
+________________________________________
+Behold, your tasks!
+  1.[T][X] Mana compression
+  2.[D][ ] Send letters to Plantin Company (by: fourth bell)
+  3.[E][ ] Tea party with Charlotte (from: fourth bell to: fifth bell)
+________________________________________
+________________________________________
+You have carried out your task with utmost diligence. Very good.
+  [D][X] Send letters to Plantin Company (by: fourth bell)
+________________________________________
+________________________________________
+Oh? You would like to redo it? Very well.
+  [T][ ] Mana compression
+________________________________________
+________________________________________
+Behold, your tasks!
+  1.[T][ ] Mana compression
+  2.[D][X] Send letters to Plantin Company (by: fourth bell)
+  3.[E][ ] Tea party with Charlotte (from: fourth bell to: fifth bell)
+________________________________________
+________________________________________
+Farewell. May the time come when our threads of fate are woven together again.
+________________________________________

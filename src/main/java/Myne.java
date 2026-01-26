@@ -95,7 +95,7 @@ public class Myne {
 
             System.out.println(DIVIDER);
             System.out.println("Let me take that back.");
-            System.out.println("  " + list.get(taskIndex - 1).toString());
+            System.out.println("  " + removedTask);
             System.out.println(DIVIDER);
 
         } catch (IndexOutOfBoundsException e) {

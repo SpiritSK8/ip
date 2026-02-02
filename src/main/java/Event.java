@@ -20,6 +20,6 @@ public class Event extends Task {
     @Override
     public String serialize() {
         int isDone = this.isDone() ? 1 : 0;
-        return String.format("T|%d|%s|%s|%s", isDone, this.getName(), this.startDate, this.endDate);
+        return String.format("E|%d|%s|%s|%s", isDone, this.getName(), this.startDate, this.endDate);
     }
 }

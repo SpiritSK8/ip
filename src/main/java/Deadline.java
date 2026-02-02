@@ -18,6 +18,6 @@ public class Deadline extends Task {
     @Override
     public String serialize() {
         int isDone = this.isDone() ? 1 : 0;
-        return String.format("T|%d|%s|%s", isDone, this.getName(), this.date);
+        return String.format("D|%d|%s|%s", isDone, this.getName(), this.date);
     }
 }

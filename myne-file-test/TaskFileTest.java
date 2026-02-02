@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class TaskFileTest {
     @Test
     public void fetchTasksTest() {
-        File taskFile = TaskFile.fetchTasks();
+        File taskFile = TaskFile.fetchTaskFile();
         assertEquals(new File("./data/myne.txt"), taskFile);
     }
 }

@@ -8,7 +8,7 @@ public class TaskFile {
      *
      * @return A <code>File</code> wrapper for ./data/myne.txt.
      */
-    public static File fetchTasks() {
+    public static File fetchTaskFile() {
         createDataDirectory();
         return createTaskFile();
     }

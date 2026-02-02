@@ -15,22 +15,14 @@ public class TaskFile {
 
     private static void createDataDirectory() {
         File dataDirectory = new File("./data");
-        if (dataDirectory.mkdirs()) {
-            System.out.println("File created: " + dataDirectory.getName());
-        } else {
-            System.out.println("File already exists.");
-        }
+        dataDirectory.mkdirs();
     }
 
     private static File createTaskFile() {
         File taskFile = new File("./data/myne.txt");
 
         try {
-            if (taskFile.createNewFile()) {
-                System.out.println("File created: " + taskFile.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
+            taskFile.createNewFile();
         } catch (IOException e) {
             System.out.println("An I/O error occurred.");
         }

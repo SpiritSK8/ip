@@ -17,7 +17,14 @@ public class Deadline extends Task {
 
     @Override
     public String serialize() {
-        int isDone = this.isDone() ? 1 : 0;
-        return String.format("D|%d|%s|%s", isDone, this.getName(), this.date);
+        StringBuilder sb = new StringBuilder("D");
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(isDone() ? 1 : 0);
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(getName());
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(date);
+
+        return sb.toString();
     }
 }

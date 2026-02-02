@@ -19,7 +19,16 @@ public class Event extends Task {
 
     @Override
     public String serialize() {
-        int isDone = this.isDone() ? 1 : 0;
-        return String.format("E|%d|%s|%s|%s", isDone, this.getName(), this.startDate, this.endDate);
+        StringBuilder sb = new StringBuilder("E");
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(isDone() ? 1 : 0);
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(getName());
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(startDate);
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(endDate);
+
+        return sb.toString();
     }
 }

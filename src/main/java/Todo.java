@@ -14,7 +14,12 @@ public class Todo extends Task {
 
     @Override
     public String serialize() {
-        int isDone = this.isDone() ? 1 : 0;
-        return String.format("T|%d|%s", isDone, this.getName());
+        StringBuilder sb = new StringBuilder("T");
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(isDone() ? 1 : 0);
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(getName());
+
+        return sb.toString();
     }
 }

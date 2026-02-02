@@ -4,11 +4,11 @@ import java.util.ArrayList;
 public class Myne {
     private static final String DIVIDER = "________________________________________";
     
-    private List<Task> list;
+    private List<Task> taskList;
     private boolean isAlive;
 
     public Myne() {
-        this.list = new ArrayList<>();
+        this.taskList = TaskParser.parseTaskFile(TaskFile.fetchTaskFile());
         this.isAlive = true;
     }
 
@@ -33,7 +33,8 @@ public class Myne {
     }
 
     public void addTask(Task task) {
-        list.add(task);
+        taskList.add(task);
+        TaskFile.saveTasks(taskList);
 
         System.out.println(DIVIDER);
         System.out.println("I entrust you with this task.");
@@ -42,7 +43,7 @@ public class Myne {
     }
 
     public void listItems() {
-        if (list.isEmpty()) {
+        if (taskList.isEmpty()) {
             System.out.println(DIVIDER);
             System.out.println("Hm... It appears you are under-worked. Shall we remedy that?");
             System.out.println(DIVIDER);
@@ -51,47 +52,51 @@ public class Myne {
 
         System.out.println(DIVIDER);
         System.out.println("Behold, your tasks!");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("  " + (i + 1) + "." + list.get(i));
+        for (int i = 0; i < taskList.size(); i++) {
+            System.out.println("  " + (i + 1) + "." + taskList.get(i));
         }
         System.out.println(DIVIDER);
     }
 
     public void mark(int taskIndex) {
         try {
-            list.get(taskIndex - 1).mark();
+            taskList.get(taskIndex - 1).mark();
 
             System.out.println(DIVIDER);
             System.out.println("You have carried out your task with utmost diligence. Very good.");
-            System.out.println("  " + list.get(taskIndex - 1).toString());
+            System.out.println("  " + taskList.get(taskIndex - 1).toString());
             System.out.println(DIVIDER);
 
         } catch (IndexOutOfBoundsException e) {
             System.out.println(DIVIDER);
-            System.out.println("Oh my! It seems that you only have " + list.size() + " tasks at present.");
+            System.out.println("Oh my! It seems that you only have " + taskList.size() + " tasks at present.");
             System.out.println(DIVIDER);
         }
+
+        TaskFile.saveTasks(taskList);
     }
 
     public void unmark(int taskIndex) {
         try {
-            list.get(taskIndex - 1).unmark();
+            taskList.get(taskIndex - 1).unmark();
 
             System.out.println(DIVIDER);
             System.out.println("Ah, you would like to redo it? Very well.");
-            System.out.println("  " + list.get(taskIndex - 1).toString());
+            System.out.println("  " + taskList.get(taskIndex - 1).toString());
             System.out.println(DIVIDER);
 
         } catch (IndexOutOfBoundsException e) {
             System.out.println(DIVIDER);
-            System.out.println("Oh my! It seems that you only have " + list.size() + " tasks at present.");
+            System.out.println("Oh my! It seems that you only have " + taskList.size() + " tasks at present.");
             System.out.println(DIVIDER);
         }
+
+        TaskFile.saveTasks(taskList);
     }
 
     public void delete(int taskIndex) {
         try {
-            Task removedTask = list.remove(taskIndex - 1);
+            Task removedTask = taskList.remove(taskIndex - 1);
 
             System.out.println(DIVIDER);
             System.out.println("Let me take that back.");
@@ -100,9 +105,11 @@ public class Myne {
 
         } catch (IndexOutOfBoundsException e) {
             System.out.println(DIVIDER);
-            System.out.println("Oh my! It seems that you only have " + list.size() + " tasks at present.");
+            System.out.println("Oh my! It seems that you only have " + taskList.size() + " tasks at present.");
             System.out.println(DIVIDER);
         }
+
+        TaskFile.saveTasks(taskList);
     }
 
     public void exit() {

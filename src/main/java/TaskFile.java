@@ -1,5 +1,7 @@
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class TaskFile {
     /**
@@ -11,6 +13,15 @@ public class TaskFile {
     public static File fetchTaskFile() {
         createDataDirectory();
         return createTaskFile();
+    }
+
+    public static void saveTasks(List<Task> taskList) {
+        String serializedTasks = TaskParser.serializeTasks(taskList);
+        try (FileWriter fileWriter = new FileWriter("./data/myne.txt")) {
+            fileWriter.write(serializedTasks);
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+        }
     }
 
     private static void createDataDirectory() {

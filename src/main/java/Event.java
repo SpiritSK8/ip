@@ -16,4 +16,19 @@ public class Event extends Task {
     public String toString() {
         return getTypeIcon() + super.toString() + " (from: " + startDate + " to: " + endDate + ")";
     }
+
+    @Override
+    public String serialize() {
+        StringBuilder sb = new StringBuilder("E");
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(isDone() ? 1 : 0);
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(getName());
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(startDate);
+        sb.append(TaskParser.SEPARATOR);
+        sb.append(endDate);
+
+        return sb.toString();
+    }
 }

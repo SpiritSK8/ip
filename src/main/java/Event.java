@@ -16,4 +16,10 @@ public class Event extends Task {
     public String toString() {
         return getTypeIcon() + super.toString() + " (from: " + startDate + " to: " + endDate + ")";
     }
+
+    @Override
+    public String serialize() {
+        int isDone = this.isDone() ? 1 : 0;
+        return String.format("T|%d|%s|%s|%s", isDone, this.getName(), this.startDate, this.endDate);
+    }
 }

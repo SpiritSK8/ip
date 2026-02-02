@@ -11,4 +11,10 @@ public class Todo extends Task {
     public String toString() {
         return getTypeIcon() + super.toString();
     }
+
+    @Override
+    public String serialize() {
+        int isDone = this.isDone() ? 1 : 0;
+        return String.format("T|%d|%s", isDone, this.getName());
+    }
 }

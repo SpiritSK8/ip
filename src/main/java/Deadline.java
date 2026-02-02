@@ -14,4 +14,10 @@ public class Deadline extends Task {
     public String toString() {
         return getTypeIcon() + super.toString() + " (by: " + date + ")";
     }
+
+    @Override
+    public String serialize() {
+        int isDone = this.isDone() ? 1 : 0;
+        return String.format("T|%d|%s|%s", isDone, this.getName(), this.date);
+    }
 }

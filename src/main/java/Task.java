@@ -7,6 +7,14 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public boolean isDone() {
+        return this.isDone;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
     public void mark() {
         this.isDone = true;
     }
@@ -23,4 +31,6 @@ public abstract class Task {
     public String toString() {
         return getStatusIcon() + " " + name;
     }
+
+    public abstract String serialize();
 }

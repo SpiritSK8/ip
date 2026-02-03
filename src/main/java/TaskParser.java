@@ -50,10 +50,11 @@ public class TaskParser {
         return task;
     }
 
-    public static String serializeTasks(List<Task> taskList) {
+    public static String serializeTasks(TaskList taskList) {
         StringBuilder sb = new StringBuilder();
 
-        for (Task task : taskList) {
+        for (int i = 0; i < taskList.size(); i++) {
+            Task task = taskList.get(i);
             sb.append(task.serialize());
             sb.append("\n");
         }

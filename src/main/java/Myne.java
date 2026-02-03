@@ -1,14 +1,9 @@
-import java.util.List;
-import java.util.Scanner;
-
 public class Myne {
     private static final String DIVIDER = "________________________________________";
 
-    private String filePath;
-
-    private MyneUi ui;
-    private TaskStorage storage;
-    private TaskList taskList;
+    private final MyneUi ui;
+    private final TaskStorage storage;
+    private final TaskList taskList;
     private boolean isAlive;
 
     public Myne(String filePath) {

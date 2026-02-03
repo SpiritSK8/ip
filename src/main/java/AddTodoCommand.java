@@ -1,9 +1,13 @@
 public class AddTodoCommand implements Command {
-    private Myne myne;
+    private MyneUi ui;
+    private TaskList taskList;
+    private TaskStorage storage;
     private String taskName;
 
     public AddTodoCommand(Myne myne, String taskName) {
-        this.myne = myne;
+        this.ui = myne.getUi();
+        this.taskList = myne.getTaskList();
+        this.storage = myne.getStorage();
         this.taskName = taskName.trim();
     }
 
@@ -13,7 +17,15 @@ public class AddTodoCommand implements Command {
             throw new InvalidCommandException("Todo description cannot be empty.");
         }
 
+        // Add task and save.
         Todo todo = new Todo(taskName);
-        myne.addTask(todo);
+        taskList.add(todo);
+        storage.saveTasks(taskList);
+
+        // Show message.
+        ui.showDivider();
+        System.out.println("I entrust you with this task.");
+        System.out.println("  " + todo.toString());
+        ui.showDivider();
     }
 }

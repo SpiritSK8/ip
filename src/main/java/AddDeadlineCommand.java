@@ -1,16 +1,28 @@
 public class AddDeadlineCommand implements Command {
-    private Myne myne;
+    private MyneUi ui;
+    private TaskList taskList;
+    private TaskStorage storage;
     private String parameters;
 
     public AddDeadlineCommand(Myne myne, String parameters) {
-        this.myne = myne;
+        this.ui = myne.getUi();
+        this.taskList = myne.getTaskList();
+        this.storage = myne.getStorage();
         this.parameters = parameters;
     }
 
     @Override
     public void execute() throws InvalidCommandException {
+        // Add task and save.
         Deadline deadline = parseCommand(parameters);
-        myne.addTask(deadline);
+        taskList.add(deadline);
+        storage.saveTasks(taskList);
+
+        // Show message.
+        ui.showDivider();
+        System.out.println("I entrust you with this task.");
+        System.out.println("  " + deadline.toString());
+        ui.showDivider();
     }
 
     private Deadline parseCommand(String parameters) throws InvalidCommandException {

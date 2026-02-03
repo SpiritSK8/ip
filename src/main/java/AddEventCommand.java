@@ -1,16 +1,28 @@
 public class AddEventCommand implements Command {
-    private Myne myne;
+    private MyneUi ui;
+    private TaskList taskList;
+    private TaskStorage storage;
     private String parameters;
 
     public AddEventCommand(Myne myne, String parameters) {
-        this.myne = myne;
+        this.ui = myne.getUi();
+        this.taskList = myne.getTaskList();
+        this.storage = myne.getStorage();
         this.parameters = parameters;
     }
 
     @Override
     public void execute() throws InvalidCommandException {
+        // Add task and save.
         Event event = parseCommand(parameters);
-        myne.addTask(event);
+        taskList.add(event);
+        storage.saveTasks(taskList);
+
+        // Show message.
+        ui.showDivider();
+        System.out.println("I entrust you with this task.");
+        System.out.println("  " + event.toString());
+        ui.showDivider();
     }
 
     private Event parseCommand(String parameters) throws InvalidCommandException {

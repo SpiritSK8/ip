@@ -3,8 +3,12 @@ import java.util.Scanner;
 public class MyneUi {
     private final Scanner sc = new Scanner(System.in);
 
-    public String readCommand() {
-        return sc.nextLine();
+    public String readCommand() throws InvalidCommandException {
+        String input = sc.nextLine();
+        if (input.contains(TaskParser.SEPARATOR)) {
+            throw new InvalidCommandException("Commands cannot contain " + TaskParser.SEPARATOR);
+        }
+        return input;
     }
 
     /**

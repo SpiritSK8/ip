@@ -17,8 +17,8 @@ public class Myne {
         ui.showGreeting();
 
         while (isAlive()) {
-            String input = ui.readCommand();
             try {
+                String input = ui.readCommand();
                 Command command = CommandParser.parse(input, this);
                 command.execute();
             } catch (RuntimeException e) {

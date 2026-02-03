@@ -3,7 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class TaskFile {
+public class TaskStorage {
     /**
      * Fetches ./data/myne.txt file that contains the saved tasks. This method
      * will create the data directory and myne.txt file if they do not exist.

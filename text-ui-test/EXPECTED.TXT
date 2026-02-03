@@ -104,13 +104,10 @@ ________________________________________
 asd is not a valid task number.
 ________________________________________
 ________________________________________
-Todo description cannot be empty.
+myne.task.Todo description cannot be empty.
 ________________________________________
 ________________________________________
-Deadline description cannot be empty.
-________________________________________
-________________________________________
-Missing description or due date.
+myne.task.Deadline description cannot be empty.
 ________________________________________
 ________________________________________
 Missing description or due date.
@@ -122,7 +119,10 @@ ________________________________________
 Missing description or due date.
 ________________________________________
 ________________________________________
-Event description cannot be empty.
+Missing description or due date.
+________________________________________
+________________________________________
+myne.task.Event description cannot be empty.
 ________________________________________
 ________________________________________
 Events must have a /from and /to.

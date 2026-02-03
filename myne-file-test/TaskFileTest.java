@@ -1,14 +1,14 @@
-import org.junit.Test;
+import myne.TaskStorage;
 
 import java.io.File;
-import java.util.ArrayList;
 
+import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class TaskFileTest {
     @Test
     public void fetchTaskFileTest() {
-        File taskFile = TaskFile.fetchTaskFile();
+        File taskFile = new TaskStorage("./data/myne.txt").fetchTaskFile();
         assertEquals(new File("./data/myne.txt"), taskFile);
     }
 }

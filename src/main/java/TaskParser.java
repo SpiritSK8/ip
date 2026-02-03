@@ -27,7 +27,6 @@ public class TaskParser {
 
     private static Task parseTaskString(String serializedTask) {
         String[] parts = serializedTask.split(SEPARATOR);
-        Arrays.stream(parts).forEach(System.out::println);
 
         // Determine the task type.
         Task task = switch (parts[0]) {

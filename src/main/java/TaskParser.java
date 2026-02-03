@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TaskParser {
-    public static String SEPARATOR = "~";
+    public final static String SEPARATOR = "~";
 
     public static ArrayList<Task> parseTaskFile(File taskFile) {
         ArrayList<Task> taskList = new ArrayList<>();

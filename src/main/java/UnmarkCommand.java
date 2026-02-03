@@ -1,8 +1,8 @@
 public class UnmarkCommand implements Command {
-    private MyneUi ui;
-    private TaskList taskList;
-    private TaskStorage storage;
-    private String parameters;
+    private final MyneUi ui;
+    private final TaskList taskList;
+    private final TaskStorage storage;
+    private final String parameters;
 
     public UnmarkCommand(Myne myne, String parameters) {
         this.ui = myne.getUi();

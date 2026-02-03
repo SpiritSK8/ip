@@ -1,8 +1,8 @@
 public class AddTodoCommand implements Command {
-    private MyneUi ui;
-    private TaskList taskList;
-    private TaskStorage storage;
-    private String taskName;
+    private final MyneUi ui;
+    private final TaskList taskList;
+    private final TaskStorage storage;
+    private final String taskName;
 
     public AddTodoCommand(Myne myne, String taskName) {
         this.ui = myne.getUi();

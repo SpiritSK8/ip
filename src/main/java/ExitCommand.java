@@ -1,5 +1,5 @@
 public class ExitCommand implements Command {
-    private Myne myne;
+    private final Myne myne;
 
     public ExitCommand(Myne myne) {
         this.myne = myne;

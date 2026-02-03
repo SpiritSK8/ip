@@ -3,7 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class TaskStorage {
-    private String filePath;
+    private final String filePath;
 
     public TaskStorage(String filePath) {
         this.filePath = filePath;

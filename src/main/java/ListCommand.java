@@ -1,6 +1,6 @@
 public class ListCommand implements Command {
-    private MyneUi ui;
-    private TaskList taskList;
+    private final MyneUi ui;
+    private final TaskList taskList;
 
     public ListCommand(Myne myne) {
         this.ui = myne.getUi();

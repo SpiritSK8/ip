@@ -25,7 +25,7 @@ public class TaskStorage {
         }
     }
 
-    public void saveTasks(List<Task> taskList) {
+    public void saveTasks(TaskList taskList) {
         String serializedTasks = TaskParser.serializeTasks(taskList);
         try (FileWriter fileWriter = new FileWriter(filePath)) {
             fileWriter.write(serializedTasks);

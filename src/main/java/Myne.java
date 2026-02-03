@@ -1,77 +1,52 @@
 import java.util.List;
+import java.util.Scanner;
 
 public class Myne {
     private static final String DIVIDER = "________________________________________";
 
+    private String filePath;
+
     private MyneUi ui;
     private TaskStorage storage;
-    private List<Task> taskList;
+    private TaskList taskList;
     private boolean isAlive;
 
-    public Myne() {
+    public Myne(String filePath) {
         this.ui = new MyneUi();
-        this.storage = new TaskStorage("./data/myne.txt");
-        this.taskList = TaskParser.parseTaskFile(storage.fetchTaskFile());
+        this.storage = new TaskStorage(filePath);
+        this.taskList = new TaskList(TaskParser.parseTaskFile(storage.fetchTaskFile()));
         this.isAlive = true;
     }
 
-    public void greet() {
+    public void run() {
         ui.showGreeting();
-    }
 
-    public void addTask(Task task) {
-        taskList.add(task);
-        storage.saveTasks(taskList);
-
-        ui.showAddTask(task);
-    }
-
-    public void listItems() {
-        if (taskList.isEmpty()) {
-            ui.showEmptyList();
-        } else {
-            ui.showList(taskList);
-        }
-    }
-
-    public void mark(int taskIndex) {
-        try {
-            Task task = taskList.get(taskIndex - 1);
-            task.mark();
-            storage.saveTasks(taskList);
-
-            ui.showMark(task);
-        } catch (IndexOutOfBoundsException e) {
-            ui.showError("Oh my! It seems that you only have " + taskList.size() + " tasks at present.");
-        }
-    }
-
-    public void unmark(int taskIndex) {
-        try {
-            Task task = taskList.get(taskIndex - 1);
-            task.unmark();
-            storage.saveTasks(taskList);
-
-            ui.showUnmark(task);
-        } catch (IndexOutOfBoundsException e) {
-            ui.showError("Oh my! It seems that you only have " + taskList.size() + " tasks at present.");
-        }
-    }
-
-    public void delete(int taskIndex) {
-        try {
-            Task removedTask = taskList.remove(taskIndex - 1);
-            storage.saveTasks(taskList);
-
-            ui.showDelete(removedTask);
-        } catch (IndexOutOfBoundsException e) {
-            ui.showError("Oh my! It seems that you only have " + taskList.size() + " tasks at present.");
+        while (isAlive()) {
+            String input = ui.readCommand();
+            try {
+                Command command = CommandParser.parse(input, this);
+                command.execute();
+            } catch (RuntimeException e) {
+                ui.showError(e.getMessage());
+            }
         }
     }
 
     public void exit() {
         ui.showExit();
         this.isAlive = false;
+    }
+
+    public MyneUi getUi() {
+        return this.ui;
+    }
+
+    public TaskStorage getStorage() {
+        return this.storage;
+    }
+
+    public TaskList getTaskList() {
+        return this.taskList;
     }
 
     public boolean isAlive() {

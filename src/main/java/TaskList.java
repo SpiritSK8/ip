@@ -17,17 +17,17 @@ public class TaskList {
     }
 
     public void mark(int taskIndex) throws IndexOutOfBoundsException {
-        Task task = list.get(taskIndex - 1);
+        Task task = list.get(taskIndex);
         task.mark();
     }
 
     public void unmark(int taskIndex) throws IndexOutOfBoundsException {
-        Task task = list.get(taskIndex - 1);
+        Task task = list.get(taskIndex);
         task.unmark();
     }
 
     public Task delete(int taskIndex) throws IndexOutOfBoundsException {
-        return list.remove(taskIndex - 1);
+        return list.remove(taskIndex);
     }
 
     public Task get(int index) throws IndexOutOfBoundsException {

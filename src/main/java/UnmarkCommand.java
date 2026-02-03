@@ -15,7 +15,7 @@ public class UnmarkCommand implements Command {
     public void execute() throws InvalidCommandException {
         try {
             // Unmark task and save.
-            int index = Integer.parseInt(parameters);
+            int index = Integer.parseInt(parameters) - 1;
             taskList.unmark(index);
             storage.saveTasks(taskList);
 

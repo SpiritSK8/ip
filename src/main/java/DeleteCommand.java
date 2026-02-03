@@ -15,7 +15,7 @@ public class DeleteCommand implements Command {
     public void execute() throws InvalidCommandException {
         try {
             // Delete task and save.
-            int index = Integer.parseInt(parameters);
+            int index = Integer.parseInt(parameters) - 1;
             Task removedTask = taskList.delete(index);
             storage.saveTasks(taskList);
 

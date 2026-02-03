@@ -15,7 +15,7 @@ public class MarkCommand implements Command {
     public void execute() throws InvalidCommandException {
         try {
             // Mark task and save.
-            int index = Integer.parseInt(parameters);
+            int index = Integer.parseInt(parameters) - 1;
             taskList.mark(index);
             storage.saveTasks(taskList);
 

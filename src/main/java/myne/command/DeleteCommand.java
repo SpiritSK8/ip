@@ -33,7 +33,7 @@ public class DeleteCommand implements Command {
         } catch (NumberFormatException e) {
             throw new InvalidCommandException(parameters + " is not a valid task number.");
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidCommandException("Oh my! It seems that you only have " + taskList.size() + " tasks at present.");
+            throw new IndexOutOfBoundsException("Oh my! It seems that you only have " + taskList.size() + " tasks at present.");
         }
     }
 }

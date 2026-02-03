@@ -1,3 +1,14 @@
+package myne.command;
+
+import myne.Myne;
+import myne.MyneUi;
+import myne.TaskList;
+import myne.TaskStorage;
+
+import myne.InvalidCommandException;
+
+import myne.task.Deadline;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -29,7 +40,7 @@ public class AddDeadlineCommand implements Command {
 
     private Deadline parseCommand(String parameters) throws InvalidCommandException {
         if (parameters.isEmpty()) {
-            throw new InvalidCommandException("Deadline description cannot be empty.");
+            throw new InvalidCommandException("myne.task.Deadline description cannot be empty.");
         }
         if (!parameters.contains("/by")) {
             throw new InvalidCommandException("Deadlines must have a /by.");

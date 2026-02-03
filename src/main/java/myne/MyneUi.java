@@ -1,3 +1,5 @@
+package myne;
+
 import java.util.Scanner;
 
 public class MyneUi {
@@ -19,7 +21,7 @@ public class MyneUi {
     }
 
     /**
-     * Shows the greeting for when Myne is started.
+     * Shows the greeting for when myne.Myne is started.
      */
     public void showGreeting() {
         final String greeting =

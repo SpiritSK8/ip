@@ -1,3 +1,14 @@
+package myne.command;
+
+import myne.Myne;
+import myne.MyneUi;
+import myne.TaskList;
+import myne.TaskStorage;
+
+import myne.InvalidCommandException;
+
+import myne.task.Event;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -29,7 +40,7 @@ public class AddEventCommand implements Command {
 
     private Event parseCommand(String parameters) throws InvalidCommandException {
         if (parameters.isEmpty()) {
-            throw new InvalidCommandException("Event description cannot be empty.");
+            throw new InvalidCommandException("myne.task.Event description cannot be empty.");
         }
         if (!parameters.contains("/from") || !parameters.contains("/to")) {
             throw new InvalidCommandException("Events must have a /from and /to.");

@@ -1,3 +1,7 @@
+package myne.task;
+
+import static myne.TaskParser.SEPARATOR;
+
 public class Todo extends Task {
     public Todo(String name) {
         super(name);
@@ -14,9 +18,8 @@ public class Todo extends Task {
 
     @Override
     public String serialize() {
-        return "T" + TaskParser.SEPARATOR +
-                (isDone() ? 1 : 0) +
-                TaskParser.SEPARATOR +
+        return "T" + SEPARATOR +
+                (isDone() ? 1 : 0) + SEPARATOR +
                 getName();
     }
 }

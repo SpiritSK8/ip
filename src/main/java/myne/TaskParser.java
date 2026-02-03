@@ -1,3 +1,10 @@
+package myne;
+
+import myne.task.Deadline;
+import myne.task.Event;
+import myne.task.Task;
+import myne.task.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -26,7 +33,7 @@ public class TaskParser {
                 i++;
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Error: Task file not found.");
+            System.out.println("Error: myne.task.Task file not found.");
         }
 
         return taskList;

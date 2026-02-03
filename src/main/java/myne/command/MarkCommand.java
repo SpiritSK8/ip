@@ -1,10 +1,19 @@
-public class DeleteCommand implements Command {
+package myne.command;
+
+import myne.Myne;
+import myne.MyneUi;
+import myne.TaskList;
+import myne.TaskStorage;
+
+import myne.InvalidCommandException;
+
+public class MarkCommand implements Command {
     private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
 
-    public DeleteCommand(Myne myne, String parameters) {
+    public MarkCommand(Myne myne, String parameters) {
         this.ui = myne.getUi();
         this.taskList = myne.getTaskList();
         this.storage = myne.getStorage();
@@ -14,13 +23,12 @@ public class DeleteCommand implements Command {
     @Override
     public void execute() throws InvalidCommandException {
         try {
-            // Delete task and save.
+            // Mark task and save.
             int index = Integer.parseInt(parameters) - 1;
-            Task removedTask = taskList.delete(index);
+            taskList.mark(index);
             storage.saveTasks(taskList);
 
-            // Show message.
-            ui.showMessage("Let me take that back.\n  " + removedTask);
+            ui.showMessage("You have carried out your task with utmost diligence. Very good.\n  " + taskList.get(index).toString());
         } catch (NumberFormatException e) {
             throw new InvalidCommandException(parameters + " is not a valid task number.");
         } catch (IndexOutOfBoundsException e) {

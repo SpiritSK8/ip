@@ -1,3 +1,7 @@
+package myne.task;
+
+import static myne.TaskParser.SEPARATOR;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -23,13 +27,10 @@ public class Event extends Task {
 
     @Override
     public String serialize() {
-        return "E" + TaskParser.SEPARATOR +
-                (isDone() ? 1 : 0) +
-                TaskParser.SEPARATOR +
-                getName() +
-                TaskParser.SEPARATOR +
-                startDate +
-                TaskParser.SEPARATOR +
+        return "E" + SEPARATOR +
+                (isDone() ? 1 : 0) + SEPARATOR +
+                getName() + SEPARATOR +
+                startDate + SEPARATOR +
                 endDate;
     }
 }

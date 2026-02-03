@@ -1,3 +1,8 @@
+package myne.command;
+
+import myne.InvalidCommandException;
+import myne.Myne;
+
 public class CommandParser {
     public static Command parse(String input, Myne myne) throws InvalidCommandException {
         String[] parts = input.split(" ");

@@ -1,10 +1,19 @@
-public class MarkCommand implements Command {
+package myne.command;
+
+import myne.Myne;
+import myne.MyneUi;
+import myne.TaskList;
+import myne.TaskStorage;
+
+import myne.InvalidCommandException;
+
+public class UnmarkCommand implements Command {
     private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
 
-    public MarkCommand(Myne myne, String parameters) {
+    public UnmarkCommand(Myne myne, String parameters) {
         this.ui = myne.getUi();
         this.taskList = myne.getTaskList();
         this.storage = myne.getStorage();
@@ -14,12 +23,13 @@ public class MarkCommand implements Command {
     @Override
     public void execute() throws InvalidCommandException {
         try {
-            // Mark task and save.
+            // Unmark task and save.
             int index = Integer.parseInt(parameters) - 1;
-            taskList.mark(index);
+            taskList.unmark(index);
             storage.saveTasks(taskList);
 
-            ui.showMessage("You have carried out your task with utmost diligence. Very good.\n  " + taskList.get(index).toString());
+            // Show message.
+            ui.showMessage("Ah, you would like to redo it? Very well.\n  " + taskList.get(index).toString());
         } catch (NumberFormatException e) {
             throw new InvalidCommandException(parameters + " is not a valid task number.");
         } catch (IndexOutOfBoundsException e) {

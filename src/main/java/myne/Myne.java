@@ -1,3 +1,8 @@
+package myne;
+
+import myne.command.Command;
+import myne.command.CommandParser;
+
 public class Myne {
     private static final String DIVIDER = "________________________________________";
 

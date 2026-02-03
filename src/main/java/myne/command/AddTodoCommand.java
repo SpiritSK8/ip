@@ -1,3 +1,14 @@
+package myne.command;
+
+import myne.Myne;
+import myne.MyneUi;
+import myne.TaskList;
+import myne.TaskStorage;
+
+import myne.InvalidCommandException;
+
+import myne.task.Todo;
+
 public class AddTodoCommand implements Command {
     private final MyneUi ui;
     private final TaskList taskList;
@@ -14,7 +25,7 @@ public class AddTodoCommand implements Command {
     @Override
     public void execute() throws InvalidCommandException {
         if (taskName.isEmpty()) {
-            throw new InvalidCommandException("Todo description cannot be empty.");
+            throw new InvalidCommandException("myne.task.Todo description cannot be empty.");
         }
 
         // Add task and save.

@@ -1,11 +1,12 @@
-import myne.TaskStorage;
+package myne;
 
 import java.io.File;
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-public class TaskFileTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class TaskStorageTest {
     @Test
     public void fetchTaskFileTest() {
         File taskFile = new TaskStorage("./data/myne.txt").fetchTaskFile();

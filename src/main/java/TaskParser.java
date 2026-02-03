@@ -21,6 +21,7 @@ public class TaskParser {
                     taskList.add(task);
                 } catch (RuntimeException e) {
                     System.out.println("Error loading task " + i);
+                    System.out.println(e.getMessage());
                 }
                 i++;
             }

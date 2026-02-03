@@ -14,12 +14,9 @@ public class Todo extends Task {
 
     @Override
     public String serialize() {
-        StringBuilder sb = new StringBuilder("T");
-        sb.append(TaskParser.SEPARATOR);
-        sb.append(isDone() ? 1 : 0);
-        sb.append(TaskParser.SEPARATOR);
-        sb.append(getName());
-
-        return sb.toString();
+        return "T" + TaskParser.SEPARATOR +
+                (isDone() ? 1 : 0) +
+                TaskParser.SEPARATOR +
+                getName();
     }
 }

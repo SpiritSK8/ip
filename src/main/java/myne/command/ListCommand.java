@@ -17,6 +17,7 @@ public class ListCommand implements Command {
     public void execute() {
         if (taskList.isEmpty()) {
             ui.showMessage("Hm... It appears you are under-worked. Shall we remedy that?");
+            return;
         }
 
         StringBuilder sb = new StringBuilder("Behold, your tasks!\n");

@@ -12,11 +12,17 @@ public class TaskParser {
     public static ArrayList<Task> parseTaskFile(File taskFile) {
         ArrayList<Task> taskList = new ArrayList<>();
 
+        int i = 1;
         try (Scanner sc = new Scanner(taskFile)) {
             while (sc.hasNextLine()) {
                 String data = sc.nextLine();
-                Task task = parseTaskString(data);
-                taskList.add(task);
+                try {
+                    Task task = parseTaskString(data);
+                    taskList.add(task);
+                } catch (RuntimeException e) {
+                    System.out.println("Error loading task " + i);
+                }
+                i++;
             }
         } catch (FileNotFoundException e) {
             System.out.println("Error: Task file not found.");

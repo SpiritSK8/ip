@@ -5,8 +5,6 @@ import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
 
-import myne.InvalidCommandException;
-
 public class UnmarkCommand implements Command {
     private final MyneUi ui;
     private final TaskList taskList;

@@ -5,8 +5,6 @@ import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
 
-import myne.InvalidCommandException;
-
 import myne.task.Task;
 
 public class DeleteCommand implements Command {

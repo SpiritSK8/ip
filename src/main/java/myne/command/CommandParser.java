@@ -1,6 +1,5 @@
 package myne.command;
 
-import myne.InvalidCommandException;
 import myne.Myne;
 
 public class CommandParser {

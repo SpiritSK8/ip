@@ -1,6 +1,6 @@
 package myne.task;
 
-import static myne.TaskParser.SEPARATOR;
+import static myne.task.TaskParser.SEPARATOR;
 
 public class Todo extends Task {
     public Todo(String name) {

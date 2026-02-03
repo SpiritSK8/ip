@@ -2,6 +2,7 @@ package myne;
 
 import myne.command.Command;
 import myne.command.CommandParser;
+import myne.task.TaskParser;
 
 public class Myne {
     private static final String DIVIDER = "________________________________________";

@@ -1,9 +1,6 @@
-package myne;
+package myne.task;
 
-import myne.task.Deadline;
-import myne.task.Event;
-import myne.task.Task;
-import myne.task.Todo;
+import myne.TaskList;
 
 import java.io.File;
 import java.io.FileNotFoundException;

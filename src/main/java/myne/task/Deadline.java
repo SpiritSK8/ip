@@ -1,6 +1,6 @@
 package myne.task;
 
-import static myne.TaskParser.SEPARATOR;
+import static myne.task.TaskParser.SEPARATOR;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

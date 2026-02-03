@@ -13,7 +13,7 @@ src/main/resources/docs/
 *.iml
 bin/
 
-# Task data
+# myne.task.Task data
 /data
 
 # Test files

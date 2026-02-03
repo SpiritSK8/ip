@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
     private final LocalDate date;
@@ -8,12 +7,6 @@ public class Deadline extends Task {
     public Deadline(String name, LocalDate date) {
         super(name);
         this.date = date;
-    }
-
-    public Deadline(String name, String date) throws DateTimeParseException {
-        super(name);
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[yyyy-M[M]-d[d]][d MMM yyyy]");
-        this.date = LocalDate.parse(date, formatter);
     }
 
     private String getTypeIcon() {

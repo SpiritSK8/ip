@@ -1,8 +1,13 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class AddEventCommand implements Command {
     private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
+
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
 
     public AddEventCommand(Myne myne, String parameters) {
         this.ui = myne.getUi();
@@ -44,12 +49,15 @@ public class AddEventCommand implements Command {
             throw new InvalidCommandException("Missing description, start time, or end time.");
         }
 
-        String from = parts[0].trim();
-        String to = parts[1].trim();
+        String fromText = parts[0].trim();
+        String toText = parts[1].trim();
 
-        if (name.isEmpty() || from.isEmpty() || to.isEmpty()) {
+        if (name.isEmpty() || fromText.isEmpty() || toText.isEmpty()) {
             throw new InvalidCommandException("Missing description, start time, or end time.");
         }
+
+        LocalDate from = LocalDate.parse(fromText, formatter);
+        LocalDate to = LocalDate.parse(toText, formatter);
 
         return new Event(name, from, to);
     }

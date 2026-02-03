@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
     private final LocalDate startDate;
@@ -10,13 +9,6 @@ public class Event extends Task {
         super(name);
         this.startDate = startDate;
         this.endDate = endDate;
-    }
-
-    public Event(String name, String startDate, String endDate) throws DateTimeParseException {
-        super(name);
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[yyyy-M[M]-d[d]][d MMM yyyy]");
-        this.startDate = LocalDate.parse(startDate, formatter);
-        this.endDate = LocalDate.parse(endDate, formatter);
     }
 
     private String getTypeIcon() {

@@ -1,8 +1,13 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class AddDeadlineCommand implements Command {
     private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
+
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
 
     public AddDeadlineCommand(Myne myne, String parameters) {
         this.ui = myne.getUi();
@@ -37,11 +42,13 @@ public class AddDeadlineCommand implements Command {
         }
 
         String name = parts[0].trim();
-        String dueDate = parts[1].trim();
+        String dueDateText = parts[1].trim();
 
-        if (name.isEmpty() || dueDate.isEmpty()) {
+        if (name.isEmpty() || dueDateText.isEmpty()) {
             throw new InvalidCommandException("Missing description or due date.");
         }
+
+        LocalDate dueDate = LocalDate.parse(dueDateText, formatter);
 
         return new Deadline(name, dueDate);
     }

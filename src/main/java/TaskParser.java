@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -35,8 +37,8 @@ public class TaskParser {
 
         // Determine the task type.
         Task task = switch (parts[0]) {
-            case "D" -> new Deadline(parts[2], parts[3]);
-            case "E" -> new Event(parts[2], parts[3], parts[4]);
+            case "D" -> new Deadline(parts[2], LocalDate.parse(parts[3]));
+            case "E" -> new Event(parts[2], LocalDate.parse(parts[3]), LocalDate.parse(parts[4]));
             default -> new Todo(parts[2]);
         };
 

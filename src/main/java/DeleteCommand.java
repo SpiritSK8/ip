@@ -20,12 +20,11 @@ public class DeleteCommand implements Command {
             storage.saveTasks(taskList);
 
             // Show message.
-            ui.showDivider();
-            System.out.println("Let me take that back.");
-            System.out.println("  " + removedTask);
-            ui.showDivider();
+            ui.showMessage("Let me take that back.\n  " + removedTask);
         } catch (NumberFormatException e) {
             throw new InvalidCommandException(parameters + " is not a valid task number.");
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidCommandException("Oh my! It seems that you only have " + taskList.size() + " tasks at present.");
         }
     }
 }

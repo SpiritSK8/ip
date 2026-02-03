@@ -20,12 +20,11 @@ public class UnmarkCommand implements Command {
             storage.saveTasks(taskList);
 
             // Show message.
-            ui.showDivider();
-            System.out.println("Ah, you would like to redo it? Very well.");
-            System.out.println("  " + taskList.get(index).toString());
-            ui.showDivider();
+            ui.showMessage("Ah, you would like to redo it? Very well.\n  " + taskList.get(index).toString());
         } catch (NumberFormatException e) {
             throw new InvalidCommandException(parameters + " is not a valid task number.");
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidCommandException("Oh my! It seems that you only have " + taskList.size() + " tasks at present.");
         }
     }
 }

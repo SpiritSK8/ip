@@ -19,10 +19,7 @@ public class AddEventCommand implements Command {
         storage.saveTasks(taskList);
 
         // Show message.
-        ui.showDivider();
-        System.out.println("I entrust you with this task.");
-        System.out.println("  " + event.toString());
-        ui.showDivider();
+        ui.showMessage("I entrust you with this task.\n  " + event.toString());
     }
 
     private Event parseCommand(String parameters) throws InvalidCommandException {

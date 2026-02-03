@@ -19,13 +19,11 @@ public class MarkCommand implements Command {
             taskList.mark(index);
             storage.saveTasks(taskList);
 
-            // Show message.
-            ui.showDivider();
-            System.out.println("You have carried out your task with utmost diligence. Very good.");
-            System.out.println("  " + taskList.get(index).toString());
-            ui.showDivider();
+            ui.showMessage("You have carried out your task with utmost diligence. Very good.\n  " + taskList.get(index).toString());
         } catch (NumberFormatException e) {
             throw new InvalidCommandException(parameters + " is not a valid task number.");
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidCommandException("Oh my! It seems that you only have " + taskList.size() + " tasks at present.");
         }
     }
 }

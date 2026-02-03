@@ -36,6 +36,16 @@ public class MyneUi {
     }
 
     /**
+     * Shows a message sandwiched between 2 divider lines (-----).
+     * @param message The message to be shown.
+     */
+    public void showMessage(String message) {
+        showDivider();
+        System.out.println(message);
+        showDivider();
+    }
+
+    /**
      * Shows an error message.
      * @param message The error message.
      */
@@ -46,7 +56,7 @@ public class MyneUi {
     }
 
     /**
-     * Shows an exit message.
+     * Shows the exit message.
      */
     public void showExit() {
         showDivider();

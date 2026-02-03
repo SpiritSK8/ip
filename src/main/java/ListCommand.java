@@ -10,16 +10,15 @@ public class ListCommand implements Command {
     @Override
     public void execute() {
         if (taskList.isEmpty()) {
-            ui.showDivider();
-            System.out.println("Hm... It appears you are under-worked. Shall we remedy that?");
-            ui.showDivider();
+            ui.showMessage("Hm... It appears you are under-worked. Shall we remedy that?");
         }
 
-        ui.showDivider();
-        System.out.println("Behold, your tasks!");
-        for (int i = 0; i < taskList.size(); i++) {
-            System.out.println("  " + (i + 1) + "." + taskList.get(i));
+        StringBuilder sb = new StringBuilder("Behold, your tasks!\n");
+        for (int i = 0; i < taskList.size() - 1; i++) {
+            sb.append("  ").append(i + 1).append(".").append(taskList.get(i)).append("\n");
         }
-        ui.showDivider();
+        sb.append("  ").append(taskList.size()).append(".").append(taskList.get(taskList.size() - 1)); // Last line doesn't need line break.
+
+        ui.showMessage(sb.toString());
     }
 }

@@ -19,10 +19,7 @@ public class AddDeadlineCommand implements Command {
         storage.saveTasks(taskList);
 
         // Show message.
-        ui.showDivider();
-        System.out.println("I entrust you with this task.");
-        System.out.println("  " + deadline.toString());
-        ui.showDivider();
+        ui.showMessage("I entrust you with this task.\n  " + deadline.toString());
     }
 
     private Deadline parseCommand(String parameters) throws InvalidCommandException {

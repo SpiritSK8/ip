@@ -19,7 +19,8 @@ public class AddDeadlineCommand implements Command {
     private final TaskStorage storage;
     private final String parameters;
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+            "[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
 
     /**
      * Creates a command that, when calling <code>execute()</code>, will add a <code>Deadline</code> task to the specified Myne instance.
@@ -51,7 +52,7 @@ public class AddDeadlineCommand implements Command {
 
     private Deadline parseCommand(String parameters) throws InvalidCommandException {
         if (parameters.isEmpty()) {
-            throw new InvalidCommandException("myne.task.Deadline description cannot be empty.");
+            throw new InvalidCommandException("Deadline description cannot be empty.");
         }
         if (!parameters.contains("/by")) {
             throw new InvalidCommandException("Deadlines must have a /by.");

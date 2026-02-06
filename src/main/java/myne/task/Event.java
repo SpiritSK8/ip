@@ -22,7 +22,10 @@ public class Event extends Task {
     @Override
     public String toString() {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
-        return getTypeIcon() + super.toString() + " (from: " + startDate.format(formatter) + " to: " + endDate.format(formatter) + ")";
+        return getTypeIcon()
+                + super.toString()
+                + " (from: " + startDate.format(formatter)
+                + " to: " + endDate.format(formatter) + ")";
     }
 
     /**
@@ -32,10 +35,10 @@ public class Event extends Task {
     @Override
     public String serialize() {
         return "E" + SEPARATOR +
-                (isDone() ? 1 : 0) + SEPARATOR +
-                getName() + SEPARATOR +
-                startDate + SEPARATOR +
-                endDate;
+                (isDone() ? 1 : 0) + SEPARATOR
+                + getName() + SEPARATOR
+                + startDate + SEPARATOR
+                + endDate;
     }
 
     /**

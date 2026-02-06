@@ -37,10 +37,10 @@ public class Deadline extends Task {
      */
     @Override
     public String serialize() {
-        return "D" + SEPARATOR +
-                (isDone() ? 1 : 0) + SEPARATOR +
-                getName() + SEPARATOR +
-                dueDate;
+        return "D" + SEPARATOR
+                + (isDone() ? 1 : 0) + SEPARATOR
+                + getName() + SEPARATOR
+                + dueDate;
     }
 
     /**

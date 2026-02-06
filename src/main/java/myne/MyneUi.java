@@ -72,4 +72,19 @@ public class MyneUi {
         System.out.println("Farewell. May the time come when our threads of fate are woven together again.");
         showDivider();
     }
+
+    public void showTaskList(TaskList taskList, String initialMessage) {
+        if (taskList.isEmpty()) {
+            showMessage(initialMessage);
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder(initialMessage).append("\n");
+        for (int i = 0; i < taskList.size() - 1; i++) {
+            sb.append("  ").append(i + 1).append(".").append(taskList.get(i)).append("\n");
+        }
+        sb.append("  ").append(taskList.size()).append(".").append(taskList.get(taskList.size() - 1)); // Last line doesn't need line break.
+
+        showMessage(sb.toString());
+    }
 }

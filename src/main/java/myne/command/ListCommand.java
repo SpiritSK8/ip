@@ -20,12 +20,6 @@ public class ListCommand implements Command {
             return;
         }
 
-        StringBuilder sb = new StringBuilder("Behold, your tasks!\n");
-        for (int i = 0; i < taskList.size() - 1; i++) {
-            sb.append("  ").append(i + 1).append(".").append(taskList.get(i)).append("\n");
-        }
-        sb.append("  ").append(taskList.size()).append(".").append(taskList.get(taskList.size() - 1)); // Last line doesn't need line break.
-
-        ui.showMessage(sb.toString());
+        ui.showTaskList(taskList, "Behold, your tasks!");
     }
 }

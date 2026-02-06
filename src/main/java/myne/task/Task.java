@@ -34,5 +34,28 @@ public abstract class Task {
         return getStatusIcon() + " " + name;
     }
 
+    /**
+     * Two tasks are equal if their types are the same and they have the same name and mark (is/is not done).
+     * @param obj The other object to check equality with.
+     * @return <code>true</code> if this task is equal with the other object, <code>false</code> otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Task other = (Task) obj;
+        return (this.name.equals(other.name)) && (this.isDone == other.isDone);
+    }
+
+    /**
+     * Returns a plaintext representation of this task that can be saved in the file.
+     * @return The plaintext representation of this task.
+     */
     public abstract String serialize();
 }

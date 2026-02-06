@@ -45,4 +45,16 @@ public class TaskList {
     public boolean isEmpty() {
         return list.isEmpty();
     }
+
+    public TaskList find(String textToFind) {
+        TaskList tasksFound = new TaskList();
+
+        for (Task task : list) {
+            if (task.getName().matches(".*" + textToFind + ".*")) { // Matches the text with any prefix/suffix.
+                tasksFound.add(task);
+            }
+        }
+
+        return tasksFound;
+    }
 }

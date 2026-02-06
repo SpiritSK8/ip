@@ -28,6 +28,12 @@ public class FindCommand implements Command {
         }
 
         TaskList tasksFound = taskList.find(parameters);
+
+        if (tasksFound.isEmpty()) {
+            ui.showMessage("I could not find anything of the sort.");
+            return;
+        }
+
         ui.showTaskList(tasksFound, "Here are what I found from the archive.");
     }
 }

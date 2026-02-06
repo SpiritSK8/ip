@@ -1,7 +1,5 @@
 package myne.task;
 
-import static myne.task.TaskParser.SEPARATOR;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -37,9 +35,9 @@ public class Deadline extends Task {
      */
     @Override
     public String serialize() {
-        return "D" + SEPARATOR
-                + (isDone() ? 1 : 0) + SEPARATOR
-                + getName() + SEPARATOR
+        return "D" + TaskParser.separator()
+                + (isDone() ? 1 : 0) + TaskParser.separator()
+                + getName() + TaskParser.separator()
                 + dueDate;
     }
 

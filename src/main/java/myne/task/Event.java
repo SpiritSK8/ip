@@ -1,14 +1,21 @@
 package myne.task;
 
-import static myne.task.TaskParser.SEPARATOR;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A <code>Task</code> type with a start and end date.
+ */
 public class Event extends Task {
     private final LocalDate startDate;
     private final LocalDate endDate;
 
+    /**
+     * Creates a task with a start and end date.
+     * @param name The name of the task.
+     * @param startDate The start date of the task.
+     * @param endDate The end date of the task.
+     */
     public Event(String name, LocalDate startDate, LocalDate endDate) {
         super(name);
         this.startDate = startDate;
@@ -34,10 +41,10 @@ public class Event extends Task {
      */
     @Override
     public String serialize() {
-        return "E" + SEPARATOR +
-                (isDone() ? 1 : 0) + SEPARATOR
-                + getName() + SEPARATOR
-                + startDate + SEPARATOR
+        return "E" + TaskParser.separator()
+                + (isDone() ? 1 : 0) + TaskParser.separator()
+                + getName() + TaskParser.separator()
+                + startDate + TaskParser.separator()
                 + endDate;
     }
 

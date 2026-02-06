@@ -1,17 +1,17 @@
 package myne.command;
 
-import myne.Myne;
-
-import myne.task.Task;
-import myne.task.Todo;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import myne.Myne;
+import myne.task.Task;
+import myne.task.Todo;
 
 public class MarkCommandTest {
     @Test

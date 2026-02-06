@@ -1,14 +1,12 @@
 package myne.task;
 
-import myne.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
-
 import java.time.LocalDate;
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import myne.TaskList;
 
 /**
  * A utility class to read tasks from a file and encode tasks as plaintext.
@@ -17,12 +15,21 @@ public class TaskParser {
     /**
      * The separator/delimiter for saving tasks as plaintext. Task data cannot contain this character.
      */
-    public final static String SEPARATOR = "~";
+    private static final String SEPARATOR = "~";
+
+    /**
+     * Returns the separator used when serializing tasks into plaintext.
+     * @return The separator.
+     */
+    public static String separator() {
+        return SEPARATOR;
+    }
 
     /**
      * Reads the given file and parses the tasks inside. Tasks with incorrect format are skipped.
      * @param taskFile The file containing the task data.
-     * @return An <code>ArrayList&lt;Task&gt;</code> containing the tasks read from the file, or empty if the file is not found.
+     * @return An <code>ArrayList&lt;Task&gt;</code> containing the tasks read from the file,
+     *         or empty if the file is not found.
      */
     public static ArrayList<Task> parseTaskFile(File taskFile) {
         ArrayList<Task> taskList = new ArrayList<>();

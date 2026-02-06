@@ -1,9 +1,9 @@
 package myne;
 
+import java.util.Scanner;
+
 import myne.command.InvalidCommandException;
 import myne.task.TaskParser;
-
-import java.util.Scanner;
 
 /**
  * A class to encapsulate input/output interaction between Myne and the user.
@@ -18,8 +18,8 @@ public class MyneUi {
      */
     public String readInput() throws InvalidCommandException {
         String input = sc.nextLine();
-        if (input.contains(TaskParser.SEPARATOR)) {
-            throw new InvalidCommandException("Commands cannot contain " + TaskParser.SEPARATOR);
+        if (input.contains(TaskParser.separator())) {
+            throw new InvalidCommandException("Commands cannot contain " + TaskParser.separator());
         }
         return input;
     }
@@ -96,7 +96,10 @@ public class MyneUi {
         for (int i = 0; i < taskList.size() - 1; i++) {
             sb.append("  ").append(i + 1).append(".").append(taskList.get(i)).append("\n");
         }
-        sb.append("  ").append(taskList.size()).append(".").append(taskList.get(taskList.size() - 1)); // Last line doesn't need line break.
+        sb.append("  ")
+                .append(taskList.size())
+                .append(".")
+                .append(taskList.get(taskList.size() - 1)); // Last line doesn't need line break.
 
         showMessage(sb.toString());
     }

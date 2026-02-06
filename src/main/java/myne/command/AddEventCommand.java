@@ -1,34 +1,35 @@
 package myne.command;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import myne.Myne;
 import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
-
-import myne.task.Deadline;
 import myne.task.Event;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * A class to encapsulate the logic for adding an <code>Event</code> and parsing the command for doing so.
  */
 public class AddEventCommand implements Command {
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+            "[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
+
     private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-            "[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
-
     /**
-     * Creates a command that, when calling <code>execute()</code>, will add an <code>Event</code> task to the specified Myne instance.
+     * Creates a command that, when calling <code>execute()</code>,
+     * will add an <code>Event</code> task to the specified Myne instance.
      * @param myne Instance of Myne.
-     * @param parameters Command parameters in the format of <code>&lt;name&gt; /from &lt;date in DD-MM-YYYY format&gt;
-     *                   /to &lt;date in DD-MM-YYYY format&gt;</code>. For example, "Tour de France /from 15-3-2026 /to 21-3-2026".
+     * @param parameters Command parameters in the format of <code>&lt;name&gt;
+     *                   /from &lt;date in DD-MM-YYYY format&gt;
+     *                   /to &lt;date in DD-MM-YYYY format&gt;</code>.
+     *                   For example, "Tour de France /from 15-3-2026 /to 21-3-2026".
      *
      */
     public AddEventCommand(Myne myne, String parameters) {

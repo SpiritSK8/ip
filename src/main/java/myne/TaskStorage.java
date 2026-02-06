@@ -1,10 +1,10 @@
 package myne;
 
-import myne.task.TaskParser;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import myne.task.TaskParser;
 
 /**
  * A class to handle file reading and saving for Myne's tasks.

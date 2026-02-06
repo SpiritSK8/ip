@@ -17,7 +17,8 @@ public class MarkCommand implements Command {
     /**
      * Creates a command that, when calling <code>execute()</code>, will mark the specified task from the Myne instance.
      * @param myne Instance of Myne.
-     * @param parameters The index of the task, 1-indexed, as a string. For example, "1" will mark the first task, not the second.
+     * @param parameters The index of the task, 1-indexed, as a string.
+     *                   For example, "1" will mark the first task, not the second.
      */
     public MarkCommand(Myne myne, String parameters) {
         this.ui = myne.getUi();

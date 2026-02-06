@@ -4,7 +4,6 @@ import myne.Myne;
 import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
-
 import myne.task.Todo;
 
 /**
@@ -17,7 +16,8 @@ public class AddTodoCommand implements Command {
     private final String taskName;
 
     /**
-     * Creates a command that, when calling <code>execute()</code>, will add a <code>Todo</code> task to the specified Myne instance.
+     * Creates a command that, when calling <code>execute()</code>,
+     * will add a <code>Todo</code> task to the specified Myne instance.
      * @param myne Instance of Myne.
      * @param taskName The description of the task.
      */

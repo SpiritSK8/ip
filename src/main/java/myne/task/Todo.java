@@ -1,7 +1,8 @@
 package myne.task;
 
-import static myne.task.TaskParser.SEPARATOR;
-
+/**
+ * A simple <code>Task</code> type with only a name.
+ */
 public class Todo extends Task {
     public Todo(String name) {
         super(name);
@@ -22,8 +23,8 @@ public class Todo extends Task {
      */
     @Override
     public String serialize() {
-        return "T" + SEPARATOR
-                + (isDone() ? 1 : 0) + SEPARATOR
+        return "T" + TaskParser.separator()
+                + (isDone() ? 1 : 0) + TaskParser.separator()
                 + getName();
     }
 

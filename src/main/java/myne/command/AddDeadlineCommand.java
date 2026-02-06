@@ -1,32 +1,33 @@
 package myne.command;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import myne.Myne;
 import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
-
 import myne.task.Deadline;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * A class to encapsulate the logic for adding a <code>Deadline</code> and parsing the command for doing so.
  */
 public class AddDeadlineCommand implements Command {
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+            "[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
+
     private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-            "[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
-
     /**
-     * Creates a command that, when calling <code>execute()</code>, will add a <code>Deadline</code> task to the specified Myne instance.
+     * Creates a command that, when calling <code>execute()</code>,
+     * will add a <code>Deadline</code> task to the specified Myne instance.
      * @param myne Instance of Myne.
-     * @param parameters Command parameters in the format of <code>&lt;name&gt; /by &lt;date in DD-MM-YYYY format&gt;</code>.
+     * @param parameters Command parameters in the format of <code>&lt;name&gt;
+     *                   /by &lt;date in DD-MM-YYYY format&gt;</code>.
      *                   For example, "do homework /by 15-3-2026".
      */
     public AddDeadlineCommand(Myne myne, String parameters) {

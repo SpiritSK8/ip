@@ -1,9 +1,16 @@
 package myne.task;
 
+/**
+ * An abstract class that encapsulates the properties of a task.
+ */
 public abstract class Task {
     private final String name;
     private boolean isDone;
 
+    /**
+     * Base constructor for tasks. All tasks have a name and status (is/is not done).
+     * @param name The name of the task.
+     */
     public Task(String name) {
         this.name = name;
         this.isDone = false;

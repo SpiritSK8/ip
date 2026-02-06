@@ -1,10 +1,10 @@
 package myne;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.File;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskStorageTest {
     @Test

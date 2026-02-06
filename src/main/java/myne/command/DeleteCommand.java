@@ -4,7 +4,6 @@ import myne.Myne;
 import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
-
 import myne.task.Task;
 
 /**
@@ -17,9 +16,11 @@ public class DeleteCommand implements Command {
     private final String parameters;
 
     /**
-     * Creates a command that, when calling <code>execute()</code>, will delete the specified task from the Myne instance.
+     * Creates a command that, when calling <code>execute()</code>,
+     * will delete the specified task from the Myne instance.
      * @param myne Instance of Myne.
-     * @param parameters The index of the task, 1-indexed, as a string. For example, "1" will delete the first task, not the second.
+     * @param parameters The index of the task, 1-indexed, as a string.
+     *                   For example, "1" will delete the first task, not the second.
      */
     public DeleteCommand(Myne myne, String parameters) {
         this.ui = myne.getUi();

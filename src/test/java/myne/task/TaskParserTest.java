@@ -1,10 +1,8 @@
 package myne.task;
 
-import myne.TaskStorage;
-
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import myne.TaskStorage;
 
 public class TaskParserTest {
     @Test

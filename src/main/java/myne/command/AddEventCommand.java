@@ -5,10 +5,12 @@ import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
 
+import myne.task.Deadline;
 import myne.task.Event;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class AddEventCommand implements Command {
     private final MyneUi ui;
@@ -65,9 +67,13 @@ public class AddEventCommand implements Command {
             throw new InvalidCommandException("Missing description, start time, or end time.");
         }
 
-        LocalDate from = LocalDate.parse(fromText, formatter);
-        LocalDate to = LocalDate.parse(toText, formatter);
+        try {
+            LocalDate from = LocalDate.parse(fromText, formatter);
+            LocalDate to = LocalDate.parse(toText, formatter);
 
-        return new Event(name, from, to);
+            return new Event(name, from, to);
+        } catch (DateTimeParseException e) {
+            throw new InvalidCommandException("Please enter the date in the prescribed format: DD-MM-YYYY");
+        }
     }
 }

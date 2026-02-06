@@ -9,6 +9,7 @@ import myne.task.Deadline;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * A class to encapsulate the logic for adding a <code>Deadline</code> and parsing the command for doing so.
@@ -71,8 +72,12 @@ public class AddDeadlineCommand implements Command {
             throw new InvalidCommandException("Missing description or due date.");
         }
 
-        LocalDate dueDate = LocalDate.parse(dueDateText, formatter);
+        try {
+            LocalDate dueDate = LocalDate.parse(dueDateText, formatter);
 
-        return new Deadline(name, dueDate);
+            return new Deadline(name, dueDate);
+        } catch (DateTimeParseException e) {
+            throw new InvalidCommandException("Please enter the date in the prescribed format: DD-MM-YYYY");
+        }
     }
 }

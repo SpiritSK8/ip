@@ -93,7 +93,8 @@ public class TaskList {
         TaskList tasksFound = new TaskList();
 
         for (Task task : list) {
-            if (task.getName().matches(".*" + textToFind + ".*")) { // Matches the text with any prefix/suffix.
+            // Matches the text with any prefix/suffix, ignoring case.
+            if (task.getName().toLowerCase().matches("(?i).*" + textToFind + ".*")) {
                 tasksFound.add(task);
             }
         }

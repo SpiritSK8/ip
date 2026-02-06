@@ -5,10 +5,18 @@ import myne.task.TaskParser;
 
 import java.util.Scanner;
 
+/**
+ * A class to encapsulate input/output interaction between Myne and the user.
+ */
 public class MyneUi {
     private final Scanner sc = new Scanner(System.in);
 
-    public String readCommand() throws InvalidCommandException {
+    /**
+     * Reads user input from <code>System.in</code>.
+     * @return The text that the user inputs.
+     * @throws InvalidCommandException If the input contains the task plaintext separator.
+     */
+    public String readInput() throws InvalidCommandException {
         String input = sc.nextLine();
         if (input.contains(TaskParser.SEPARATOR)) {
             throw new InvalidCommandException("Commands cannot contain " + TaskParser.SEPARATOR);
@@ -24,7 +32,7 @@ public class MyneUi {
     }
 
     /**
-     * Shows the greeting for when myne.Myne is started.
+     * Shows the greeting for when Myne starts.
      */
     public void showGreeting() {
         final String greeting =

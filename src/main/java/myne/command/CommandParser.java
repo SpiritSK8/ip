@@ -16,6 +16,7 @@ public class CommandParser {
             case "deadline" -> new AddDeadlineCommand(myne, parameters);
             case "event" -> new AddEventCommand(myne, parameters);
             case "delete" -> new DeleteCommand(myne, parameters);
+            case "find" -> new FindCommand(myne, parameters);
             default -> throw new InvalidCommandException("Come again?");
         };
     }

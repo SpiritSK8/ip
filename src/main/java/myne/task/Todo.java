@@ -18,8 +18,8 @@ public class Todo extends Task {
 
     @Override
     public String serialize() {
-        return "T" + SEPARATOR +
-                (isDone() ? 1 : 0) + SEPARATOR +
-                getName();
+        return "T" + SEPARATOR
+                + (isDone() ? 1 : 0) + SEPARATOR
+                + getName();
     }
 }

@@ -16,7 +16,8 @@ public class AddEventCommand implements Command {
     private final TaskStorage storage;
     private final String parameters;
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+            "[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
 
     public AddEventCommand(Myne myne, String parameters) {
         this.ui = myne.getUi();
@@ -38,7 +39,7 @@ public class AddEventCommand implements Command {
 
     private Event parseCommand(String parameters) throws InvalidCommandException {
         if (parameters.isEmpty()) {
-            throw new InvalidCommandException("myne.task.Event description cannot be empty.");
+            throw new InvalidCommandException("Event description cannot be empty.");
         }
         if (!parameters.contains("/from") || !parameters.contains("/to")) {
             throw new InvalidCommandException("Events must have a /from and /to.");

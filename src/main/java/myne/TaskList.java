@@ -89,6 +89,11 @@ public class TaskList {
         return list.isEmpty();
     }
 
+    /**
+     * Finds all tasks that contains the specified text. Search is case-insensitive.
+     * @param textToFind The text to find.
+     * @return A new <code>TaskList</code> containing the tasks found.
+     */
     public TaskList find(String textToFind) {
         TaskList tasksFound = new TaskList();
 

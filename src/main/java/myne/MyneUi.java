@@ -81,6 +81,11 @@ public class MyneUi {
         showDivider();
     }
 
+    /**
+     * Shows the provided task list, along with an initial message.
+     * @param taskList The task list to display.
+     * @param initialMessage The message prepended before the list.
+     */
     public void showTaskList(TaskList taskList, String initialMessage) {
         if (taskList.isEmpty()) {
             showMessage(initialMessage);

@@ -15,12 +15,22 @@ public class FindCommand implements Command {
     private final TaskList taskList;
     private final String parameters;
 
+    /**
+     * Creates a command that, when calling <code>execute()</code>, will find the tasks containing the specified text
+     * from the Myne instance.
+     * @param myne Instance of Myne.
+     * @param parameters The text to find.
+     */
     public FindCommand(Myne myne, String parameters) {
         this.ui = myne.getUi();
         this.taskList = myne.getTaskList();
         this.parameters = parameters;
     }
 
+    /**
+     * Finds the tasks that contain the specified text.
+     * @throws InvalidCommandException If <code>parameters</code> is empty.
+     */
     @Override
     public void execute() throws InvalidCommandException {
         if (parameters.isEmpty()) {

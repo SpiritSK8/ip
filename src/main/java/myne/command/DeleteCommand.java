@@ -7,12 +7,20 @@ import myne.TaskStorage;
 
 import myne.task.Task;
 
+/**
+ * A class to encapsulate the logic for deleting tasks and parsing the command for doing so.
+ */
 public class DeleteCommand implements Command {
     private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
 
+    /**
+     * Creates a command that, when calling <code>execute()</code>, will delete the specified task from the Myne instance.
+     * @param myne Instance of Myne.
+     * @param parameters The index of the task, 1-indexed, as a string. For example, "1" will delete the first task, not the second.
+     */
     public DeleteCommand(Myne myne, String parameters) {
         this.ui = myne.getUi();
         this.taskList = myne.getTaskList();
@@ -20,8 +28,13 @@ public class DeleteCommand implements Command {
         this.parameters = parameters;
     }
 
+    /**
+     * Deletes the task from Myne's task list and updates the file.
+     * @throws InvalidCommandException If the index provided is not an integer.
+     * @throws IndexOutOfBoundsException If the index provided is less than 1 or more than the task list size.
+     */
     @Override
-    public void execute() throws InvalidCommandException {
+    public void execute() throws InvalidCommandException, IndexOutOfBoundsException {
         try {
             // Delete task and save.
             int index = Integer.parseInt(parameters) - 1;

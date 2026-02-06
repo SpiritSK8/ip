@@ -7,12 +7,20 @@ import myne.TaskStorage;
 
 import myne.task.Todo;
 
+/**
+ * A class to encapsulate the logic for adding a <code>Todo</code> and parsing the command for doing so.
+ */
 public class AddTodoCommand implements Command {
     private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String taskName;
 
+    /**
+     * Creates a command that, when calling <code>execute()</code>, will add a <code>Todo</code> task to the specified Myne instance.
+     * @param myne Instance of Myne.
+     * @param taskName The description of the task.
+     */
     public AddTodoCommand(Myne myne, String taskName) {
         this.ui = myne.getUi();
         this.taskList = myne.getTaskList();
@@ -20,6 +28,10 @@ public class AddTodoCommand implements Command {
         this.taskName = taskName.trim();
     }
 
+    /**
+     * Adds the <code>Todo</code> to Myne's task list and saves it to the file.
+     * @throws InvalidCommandException If <code>this.taskName</code> is empty.
+     */
     @Override
     public void execute() throws InvalidCommandException {
         if (taskName.isEmpty()) {

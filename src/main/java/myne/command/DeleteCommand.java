@@ -22,6 +22,10 @@ public class DeleteCommand implements Command {
 
     @Override
     public void execute() throws InvalidCommandException {
+        if (parameters.trim().isEmpty()) {
+            throw new InvalidCommandException("I cannot delete something that does not exist.");
+        }
+
         try {
             // Delete task and save.
             int index = Integer.parseInt(parameters) - 1;

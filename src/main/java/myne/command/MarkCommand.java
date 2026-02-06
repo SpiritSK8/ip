@@ -20,6 +20,10 @@ public class MarkCommand implements Command {
 
     @Override
     public void execute() throws InvalidCommandException {
+        if (parameters.trim().isEmpty()) {
+            throw new InvalidCommandException("I cannot mark something that does not exist.");
+        }
+
         try {
             // Mark task and save.
             int index = Integer.parseInt(parameters) - 1;

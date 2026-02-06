@@ -20,6 +20,10 @@ public class UnmarkCommand implements Command {
 
     @Override
     public void execute() throws InvalidCommandException {
+        if (parameters.trim().isEmpty()) {
+            throw new InvalidCommandException("I cannot unmark something that does not exist.");
+        }
+
         try {
             // Unmark task and save.
             int index = Integer.parseInt(parameters) - 1;

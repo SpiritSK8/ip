@@ -6,11 +6,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    private final LocalDate date;
+    private final LocalDate dueDate;
 
-    public Deadline(String name, LocalDate date) {
+    public Deadline(String name, LocalDate dueDate) {
         super(name);
-        this.date = date;
+        this.dueDate = dueDate;
     }
 
     private String getTypeIcon() {
@@ -20,7 +20,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
-        return getTypeIcon() + super.toString() + " (by: " + date.format(formatter) + ")";
+        return getTypeIcon() + super.toString() + " (by: " + dueDate.format(formatter) + ")";
     }
 
     @Override
@@ -28,6 +28,20 @@ public class Deadline extends Task {
         return "D" + SEPARATOR +
                 (isDone() ? 1 : 0) + SEPARATOR +
                 getName() + SEPARATOR +
-                date;
+                dueDate;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Deadline other)) {
+            return false;
+        }
+
+        // Check if names are equal.
+        if (!super.equals(obj)) {
+            return false;
+        }
+
+        return this.dueDate.equals(other.dueDate);
     }
 }

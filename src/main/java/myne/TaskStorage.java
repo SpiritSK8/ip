@@ -6,9 +6,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * A class to handle file reading and saving for Myne's tasks.
+ */
 public class TaskStorage {
     private final String filePath;
 
+    /**
+     * Initializes a <code>TaskStorage</code> with the specified <code>filePath</code>.
+     * Tasks are stored in text (.txt) files.
+     * @param filePath The file path.
+     */
     public TaskStorage(String filePath) {
         this.filePath = filePath;
     }
@@ -28,6 +36,10 @@ public class TaskStorage {
         }
     }
 
+    /**
+     * Saves the provided tasks into the file path.
+     * @param taskList The list of tasks.
+     */
     public void saveTasks(TaskList taskList) {
         String serializedTasks = TaskParser.serializeTasks(taskList);
         try (FileWriter fileWriter = new FileWriter(filePath)) {
@@ -37,6 +49,10 @@ public class TaskStorage {
         }
     }
 
+    /**
+     * Creates the task file and the specified parent directories if they do not exist yet.
+     * @return The file created by this operation.
+     */
     private File createTaskFile() {
         File taskFile = new File(filePath);
 

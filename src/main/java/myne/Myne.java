@@ -2,6 +2,7 @@ package myne;
 
 import myne.command.Command;
 import myne.command.CommandParser;
+import myne.command.Response;
 import myne.task.TaskParser;
 
 /**
@@ -34,27 +35,9 @@ public class Myne {
     }
 
     /**
-     * Brings Myne to life. May this meeting be blessed.
-     */
-    public void run() {
-        ui.showGreeting();
-
-        while (isAlive()) {
-            try {
-                String input = ui.readInput();
-                Command command = CommandParser.parse(input, this);
-                command.execute();
-            } catch (RuntimeException e) {
-                ui.showError(e.getMessage());
-            }
-        }
-    }
-
-    /**
      * Stops Myne.
      */
     public void exit() {
-        ui.showExit();
         this.isAlive = false;
     }
 

@@ -9,7 +9,6 @@ import myne.TaskStorage;
  * A class to encapsulate the logic for unmarking a task and parsing the command for doing so.
  */
 public class UnmarkCommand implements Command {
-    private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
@@ -22,7 +21,6 @@ public class UnmarkCommand implements Command {
      *                   For example, "1" will unmark the first task, not the second.
      */
     public UnmarkCommand(Myne myne, String parameters) {
-        this.ui = myne.getUi();
         this.taskList = myne.getTaskList();
         this.storage = myne.getStorage();
         this.parameters = parameters;
@@ -34,7 +32,7 @@ public class UnmarkCommand implements Command {
      * @throws IndexOutOfBoundsException If the index provided is less than 1 or more than the task list size.
      */
     @Override
-    public void execute() throws InvalidCommandException, IndexOutOfBoundsException {
+    public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
         if (parameters.trim().isEmpty()) {
             throw new InvalidCommandException("I cannot unmark something that does not exist.");
         }
@@ -46,7 +44,8 @@ public class UnmarkCommand implements Command {
             storage.saveTasks(taskList);
 
             // Show message.
-            ui.showMessage("Ah, you would like to redo it? Very well.\n  " + taskList.get(index).toString());
+            return new Response("Ah, you would like to redo it? Very well.\n  " + taskList.get(index).toString(),
+                    Status.SUCCESS);
         } catch (NumberFormatException e) {
             throw new InvalidCommandException(parameters + " is not a valid task number.");
         } catch (IndexOutOfBoundsException e) {

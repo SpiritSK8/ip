@@ -9,7 +9,6 @@ import myne.TaskStorage;
  * A class to encapsulate the logic for marking a task and parsing the command for doing so.
  */
 public class MarkCommand implements Command {
-    private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
@@ -21,7 +20,6 @@ public class MarkCommand implements Command {
      *                   For example, "1" will mark the first task, not the second.
      */
     public MarkCommand(Myne myne, String parameters) {
-        this.ui = myne.getUi();
         this.taskList = myne.getTaskList();
         this.storage = myne.getStorage();
         this.parameters = parameters;
@@ -33,7 +31,7 @@ public class MarkCommand implements Command {
      * @throws IndexOutOfBoundsException If the index provided is less than 1 or more than the task list size.
      */
     @Override
-    public void execute() throws InvalidCommandException, IndexOutOfBoundsException {
+    public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
         if (parameters.trim().isEmpty()) {
             throw new InvalidCommandException("I cannot mark something that does not exist.");
         }
@@ -44,8 +42,9 @@ public class MarkCommand implements Command {
             taskList.mark(index);
             storage.saveTasks(taskList);
 
-            ui.showMessage("You have carried out your task with utmost diligence. Very good.\n  "
-                    + taskList.get(index).toString());
+            return new Response("You have carried out your task with utmost diligence. Very good.\n  "
+                    + taskList.get(index).toString(),
+                    Status.SUCCESS);
         } catch (NumberFormatException e) {
             throw new InvalidCommandException(parameters + " is not a valid task number.");
         } catch (IndexOutOfBoundsException e) {

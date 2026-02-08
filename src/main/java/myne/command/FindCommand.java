@@ -29,7 +29,7 @@ public class FindCommand implements Command {
      * @throws InvalidCommandException If <code>parameters</code> is empty.
      */
     @Override
-    public void execute() throws InvalidCommandException {
+    public Response execute() throws InvalidCommandException {
         if (parameters.isEmpty()) {
             // Cannot find empty string.
             throw new InvalidCommandException("A search cannot be performed without any text.");
@@ -38,10 +38,10 @@ public class FindCommand implements Command {
         TaskList tasksFound = taskList.find(parameters);
 
         if (tasksFound.isEmpty()) {
-            ui.showMessage("I could not find anything of the sort.");
-            return;
+            return new Response("I could not find anything of the sort.", Status.SUCCESS);
         }
 
-        ui.showTaskList(tasksFound, "Here are what I found from the archive.");
+        String text = ui.getTaskListText(tasksFound, "Here are what I found from the archive.");
+        return new Response(text, Status.SUCCESS);
     }
 }

@@ -1,7 +1,6 @@
 package myne.command;
 
 import myne.Myne;
-import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
 import myne.task.Task;
@@ -10,7 +9,6 @@ import myne.task.Task;
  * A class to encapsulate the logic for deleting tasks and parsing the command for doing so.
  */
 public class DeleteCommand implements Command {
-    private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
@@ -23,7 +21,6 @@ public class DeleteCommand implements Command {
      *                   For example, "1" will delete the first task, not the second.
      */
     public DeleteCommand(Myne myne, String parameters) {
-        this.ui = myne.getUi();
         this.taskList = myne.getTaskList();
         this.storage = myne.getStorage();
         this.parameters = parameters;
@@ -35,7 +32,7 @@ public class DeleteCommand implements Command {
      * @throws IndexOutOfBoundsException If the index provided is less than 1 or more than the task list size.
      */
     @Override
-    public void execute() throws InvalidCommandException, IndexOutOfBoundsException {
+    public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
         if (parameters.trim().isEmpty()) {
             throw new InvalidCommandException("I cannot delete something that does not exist.");
         }
@@ -47,7 +44,7 @@ public class DeleteCommand implements Command {
             storage.saveTasks(taskList);
 
             // Show message.
-            ui.showMessage("Let me take that back.\n  " + removedTask);
+            return new Response("Let me take that back.\n  " + removedTask, Status.SUCCESS);
         } catch (NumberFormatException e) {
             throw new InvalidCommandException(parameters + " is not a valid task number.");
         } catch (IndexOutOfBoundsException e) {

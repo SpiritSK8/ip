@@ -1,7 +1,6 @@
 package myne.command;
 
 import myne.Myne;
-import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
 import myne.task.Todo;
@@ -10,7 +9,6 @@ import myne.task.Todo;
  * A class to encapsulate the logic for adding a <code>Todo</code> and parsing the command for doing so.
  */
 public class AddTodoCommand implements Command {
-    private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String taskName;
@@ -22,7 +20,6 @@ public class AddTodoCommand implements Command {
      * @param taskName The description of the task.
      */
     public AddTodoCommand(Myne myne, String taskName) {
-        this.ui = myne.getUi();
         this.taskList = myne.getTaskList();
         this.storage = myne.getStorage();
         this.taskName = taskName.trim();
@@ -33,7 +30,7 @@ public class AddTodoCommand implements Command {
      * @throws InvalidCommandException If <code>this.taskName</code> is empty.
      */
     @Override
-    public void execute() throws InvalidCommandException {
+    public Response execute() throws InvalidCommandException {
         if (taskName.isEmpty()) {
             throw new InvalidCommandException("Todo description cannot be empty.");
         }
@@ -44,6 +41,6 @@ public class AddTodoCommand implements Command {
         storage.saveTasks(taskList);
 
         // Show message.
-        ui.showMessage("I entrust you with this task.\n  " + todo.toString());
+        return new Response("I entrust you with this task.\n  " + todo.toString(), Status.SUCCESS);
     }
 }

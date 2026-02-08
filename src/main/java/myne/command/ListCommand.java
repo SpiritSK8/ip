@@ -24,12 +24,12 @@ public class ListCommand implements Command {
      * Lists all the tasks from the Myne instance.
      */
     @Override
-    public void execute() {
+    public Response execute() {
         if (taskList.isEmpty()) {
-            ui.showMessage("Hm... It appears you are under-worked. Shall we remedy that?");
-            return;
+            return new Response("Hm... It appears you are under-worked. Shall we remedy that?", Status.SUCCESS);
         }
 
-        ui.showTaskList(taskList, "Behold, your tasks!");
+        String text = ui.getTaskListText(taskList, "Behold, your tasks!");
+        return new Response(text, Status.SUCCESS);
     }
 }

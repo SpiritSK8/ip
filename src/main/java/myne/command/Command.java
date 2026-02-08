@@ -6,8 +6,8 @@ package myne.command;
  */
 public interface Command {
     /**
-     * Executes the command.
+     * Executes the command and returns a <code>Response</code>.
      * @throws InvalidCommandException If the command parameters do not follow the expected format.
      */
-    void execute() throws InvalidCommandException;
+    Response execute() throws InvalidCommandException;
 }

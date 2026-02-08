@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import myne.Myne;
-import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
 import myne.task.Event;
@@ -17,7 +16,6 @@ public class AddEventCommand implements Command {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
             "[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
 
-    private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
@@ -33,7 +31,6 @@ public class AddEventCommand implements Command {
      *
      */
     public AddEventCommand(Myne myne, String parameters) {
-        this.ui = myne.getUi();
         this.taskList = myne.getTaskList();
         this.storage = myne.getStorage();
         this.parameters = parameters;
@@ -44,14 +41,14 @@ public class AddEventCommand implements Command {
      * @throws InvalidCommandException If the parameters provided in the constructor do not match the format.
      */
     @Override
-    public void execute() throws InvalidCommandException {
+    public Response execute() throws InvalidCommandException {
         // Add task and save.
         Event event = parseCommand(parameters);
         taskList.add(event);
         storage.saveTasks(taskList);
 
         // Show message.
-        ui.showMessage("I entrust you with this task.\n  " + event.toString());
+        return new Response("I entrust you with this task.\n  " + event.toString(), Status.SUCCESS);
     }
 
     private Event parseCommand(String parameters) throws InvalidCommandException {

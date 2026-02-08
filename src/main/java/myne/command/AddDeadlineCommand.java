@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import myne.Myne;
-import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
 import myne.task.Deadline;
@@ -17,7 +16,6 @@ public class AddDeadlineCommand implements Command {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
             "[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
 
-    private final MyneUi ui;
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
@@ -31,7 +29,6 @@ public class AddDeadlineCommand implements Command {
      *                   For example, "do homework /by 15-3-2026".
      */
     public AddDeadlineCommand(Myne myne, String parameters) {
-        this.ui = myne.getUi();
         this.taskList = myne.getTaskList();
         this.storage = myne.getStorage();
         this.parameters = parameters;
@@ -42,14 +39,14 @@ public class AddDeadlineCommand implements Command {
      * @throws InvalidCommandException If the parameters provided in the constructor do not match the format.
      */
     @Override
-    public void execute() throws InvalidCommandException {
+    public Response execute() throws InvalidCommandException {
         // Add task and save.
         Deadline deadline = parseCommand(parameters);
         taskList.add(deadline);
         storage.saveTasks(taskList);
 
         // Show message.
-        ui.showMessage("I entrust you with this task.\n  " + deadline.toString());
+        return new Response("I entrust you with this task.\n  " + deadline.toString(), Status.SUCCESS);
     }
 
     private Deadline parseCommand(String parameters) throws InvalidCommandException {

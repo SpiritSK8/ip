@@ -21,7 +21,7 @@ public class HelpCommand implements Command {
             find <keyword>: Finds all the tasks containing the keyword.""";
 
     /**
-     * Creates a command that, when calling <code>execute()</code>, will stop the Myne instance.
+     * Creates a command that, when calling <code>execute()</code>, will show the list of commands for Myne.
      * @param myne Instance of Myne.
      */
     public HelpCommand(Myne myne) {

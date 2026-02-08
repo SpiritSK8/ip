@@ -23,6 +23,7 @@ public class CommandParser {
                 ? input.substring(parts[0].length() + 1) // The rest of the input.
                 : ""; // Empty if the command only consists of 1 word.
         return switch (command) {
+            case "help" -> new HelpCommand(myne);
             case "bye" -> new ExitCommand(myne);
             case "list" -> new ListCommand(myne);
             case "mark" -> new MarkCommand(myne, parameters);

@@ -44,10 +44,9 @@ public class MyneUi {
 
         StringBuilder sb = new StringBuilder(initialMessage).append("\n");
         for (int i = 0; i < taskList.size() - 1; i++) {
-            sb.append("  ").append(i + 1).append(".").append(taskList.get(i)).append("\n");
+            sb.append(i + 1).append(".").append(taskList.get(i)).append("\n");
         }
-        sb.append("  ")
-                .append(taskList.size())
+        sb.append(taskList.size())
                 .append(".")
                 .append(taskList.get(taskList.size() - 1)); // Last line doesn't need line break.
 

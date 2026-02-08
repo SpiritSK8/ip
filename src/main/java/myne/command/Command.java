@@ -8,6 +8,7 @@ public interface Command {
     /**
      * Executes the command and returns a <code>Response</code>.
      * @throws InvalidCommandException If the command parameters do not follow the expected format.
+     * @throws RuntimeException If the command fails for some reason.
      */
-    Response execute() throws InvalidCommandException;
+    Response execute() throws InvalidCommandException, RuntimeException;
 }

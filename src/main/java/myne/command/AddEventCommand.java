@@ -47,7 +47,6 @@ public class AddEventCommand implements Command {
         taskList.add(event);
         storage.saveTasks(taskList);
 
-        // Show message.
         return new Response("I entrust you with this task.\n  " + event.toString(), Status.SUCCESS);
     }
 

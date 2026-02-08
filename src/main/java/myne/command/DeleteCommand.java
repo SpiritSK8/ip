@@ -43,7 +43,6 @@ public class DeleteCommand implements Command {
             Task removedTask = taskList.delete(index);
             storage.saveTasks(taskList);
 
-            // Show message.
             return new Response("Let me take that back.\n  " + removedTask, Status.SUCCESS);
         } catch (NumberFormatException e) {
             throw new InvalidCommandException(parameters + " is not a valid task number.");

@@ -45,7 +45,6 @@ public class AddDeadlineCommand implements Command {
         taskList.add(deadline);
         storage.saveTasks(taskList);
 
-        // Show message.
         return new Response("I entrust you with this task.\n  " + deadline.toString(), Status.SUCCESS);
     }
 

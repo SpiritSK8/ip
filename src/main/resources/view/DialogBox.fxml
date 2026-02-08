@@ -14,15 +14,16 @@
          xmlns="http://javafx.com/javafx/17"
          xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <VBox spacing="5">
+        <VBox spacing="5" maxHeight="30.0">
             <children>
                 <Label fx:id="dialog"
                        text="Label"
                        wrapText="true"
+                       minHeight="-Infinity"
                        maxWidth="240.0" />
             </children>
             <padding>
-                <Insets top="5.0" right="10.0" bottom="5.0" left="10.0"/>
+                <Insets top="7.0" right="10.0" bottom="7.0" left="10.0"/>
             </padding>
             <style>
                 -fx-background-color: lightgray;

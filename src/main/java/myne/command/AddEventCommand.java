@@ -47,7 +47,7 @@ public class AddEventCommand implements Command {
         taskList.add(event);
         storage.saveTasks(taskList);
 
-        return new Response("I entrust you with this task.\n  " + event.toString(), Status.SUCCESS);
+        return new Response("I entrust you with this task.\n" + event.toString(), Status.SUCCESS);
     }
 
     private Event parseCommand(String parameters) throws InvalidCommandException {

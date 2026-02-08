@@ -40,6 +40,6 @@ public class AddTodoCommand implements Command {
         taskList.add(todo);
         storage.saveTasks(taskList);
 
-        return new Response("I entrust you with this task.\n  " + todo.toString(), Status.SUCCESS);
+        return new Response("I entrust you with this task.\n" + todo.toString(), Status.SUCCESS);
     }
 }

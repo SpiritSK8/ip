@@ -42,7 +42,7 @@ public class MarkCommand implements Command {
             taskList.mark(index);
             storage.saveTasks(taskList);
 
-            return new Response("You have carried out your task with utmost diligence. Very good.\n  "
+            return new Response("You have carried out your task with utmost diligence. Very good.\n"
                     + taskList.get(index).toString(),
                     Status.SUCCESS);
         } catch (NumberFormatException e) {

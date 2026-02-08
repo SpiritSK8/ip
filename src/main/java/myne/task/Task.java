@@ -33,7 +33,7 @@ public abstract class Task {
     }
 
     private String getStatusIcon() {
-        return isDone ? "[X]" : "[ ]";
+        return isDone ? "✔" : "";
     }
 
     @Override

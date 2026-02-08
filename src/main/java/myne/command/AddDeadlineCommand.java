@@ -45,7 +45,7 @@ public class AddDeadlineCommand implements Command {
         taskList.add(deadline);
         storage.saveTasks(taskList);
 
-        return new Response("I entrust you with this task.\n  " + deadline.toString(), Status.SUCCESS);
+        return new Response("I entrust you with this task.\n" + deadline.toString(), Status.SUCCESS);
     }
 
     private Deadline parseCommand(String parameters) throws InvalidCommandException {

@@ -8,15 +8,6 @@ public class Todo extends Task {
         super(name);
     }
 
-    private String getTypeIcon() {
-        return "[T]";
-    }
-
-    @Override
-    public String toString() {
-        return getTypeIcon() + super.toString();
-    }
-
     /**
      * Returns a plaintext representation of this task that can be saved in the file.
      * @return The plaintext representation of this task.

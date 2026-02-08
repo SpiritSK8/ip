@@ -44,7 +44,7 @@ public class UnmarkCommand implements Command {
             storage.saveTasks(taskList);
 
             // Show message.
-            return new Response("Ah, you would like to redo it? Very well.\n  " + taskList.get(index).toString(),
+            return new Response("Ah, you would like to redo it? Very well.\n" + taskList.get(index).toString(),
                     Status.SUCCESS);
         } catch (NumberFormatException e) {
             throw new InvalidCommandException(parameters + " is not a valid task number.");

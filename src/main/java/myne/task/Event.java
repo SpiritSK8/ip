@@ -29,8 +29,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
-        return getTypeIcon()
-                + super.toString()
+        return super.toString()
                 + " (from: " + startDate.format(formatter)
                 + " to: " + endDate.format(formatter) + ")";
     }

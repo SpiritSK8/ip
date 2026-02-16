@@ -97,12 +97,10 @@ public class TaskList {
     public TaskList find(String textToFind) {
         TaskList tasksFound = new TaskList();
 
-        for (Task task : list) {
-            // Matches the text with any prefix/suffix, ignoring case.
-            if (task.getName().toLowerCase().contains(textToFind.toLowerCase())) {
-                tasksFound.add(task);
-            }
-        }
+        // Matches the text with any prefix/suffix, ignoring case.
+        list.stream()
+                .filter(task -> task.getName().toLowerCase().contains(textToFind.toLowerCase()))
+                .forEach(tasksFound::add);
 
         return tasksFound;
     }

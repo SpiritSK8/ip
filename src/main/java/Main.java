@@ -6,8 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import myne.Myne;
 import gui.MainWindow;
+import myne.Myne;
 
 /**
  * A GUI for Myne using FXML.

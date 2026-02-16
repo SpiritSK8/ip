@@ -34,8 +34,10 @@ public class MainWindow extends AnchorPane {
     private Myne myne;
     private Stage stage;
 
-    private final Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
-    private final Image myneImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Myne.png")));
+    private final Image userImage =
+            new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
+    private final Image myneImage =
+            new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Myne.png")));
 
     @FXML
     public void initialize() {

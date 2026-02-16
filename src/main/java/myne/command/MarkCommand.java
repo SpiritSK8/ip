@@ -1,7 +1,6 @@
 package myne.command;
 
 import myne.Myne;
-import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
 

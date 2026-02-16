@@ -5,8 +5,13 @@ package myne.command;
  */
 public class Response {
     private final String message;
-    private Status status;
+    private final Status status;
 
+    /**
+     * Creates a new Response object.
+     * @param message The output of executing the command.
+     * @param status One of the <code>Status</code> results.
+     */
     public Response(String message, Status status) {
         this.message = message;
         this.status = status;

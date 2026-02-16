@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.Objects;
+
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,9 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import myne.Myne;
 import myne.command.Command;
 import myne.command.CommandParser;
@@ -32,8 +34,10 @@ public class MainWindow extends AnchorPane {
     private Myne myne;
     private Stage stage;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
-    private Image myneImage = new Image(this.getClass().getResourceAsStream("/images/Myne.png"));
+    private final Image userImage =
+            new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
+    private final Image myneImage =
+            new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Myne.png")));
 
     @FXML
     public void initialize() {

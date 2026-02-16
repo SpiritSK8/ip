@@ -17,13 +17,9 @@ public class CommandParser {
      * @throws InvalidCommandException If the first word of the command does not match any valid command.
      */
     public static Command parse(String input, Myne myne) throws InvalidCommandException {
-        String[] parts = input.split(" ");
-        String command = parts[0]; // The command word.
-        String parameters = parts.length > 1
-                ? input.substring(parts[0].length() + 1) // The rest of the input.
-                : ""; // Empty if the command only consists of 1 word.
+        String command = getFirstWord(input); // The command word.
+        String parameters = getAllAfterFirstWord(input);
         return switch (command) {
-            case "help" -> new HelpCommand(myne);
             case "bye" -> new ExitCommand(myne);
             case "list" -> new ListCommand(myne);
             case "mark" -> new MarkCommand(myne, parameters);
@@ -33,7 +29,22 @@ public class CommandParser {
             case "event" -> new AddEventCommand(myne, parameters);
             case "delete" -> new DeleteCommand(myne, parameters);
             case "find" -> new FindCommand(myne, parameters);
+            case "help" -> new HelpCommand();
             default -> throw new InvalidCommandException("Come again?");
         };
+    }
+
+    private static String getFirstWord(String input) {
+        String[] parts = input.split(" ", 2);
+        return parts[0];
+    }
+
+    private static String getAllAfterFirstWord(String input) {
+        String[] parts = input.split(" ", 2);
+        if (parts.length < 2) {
+            return "";
+        } else {
+            return parts[1];
+        }
     }
 }

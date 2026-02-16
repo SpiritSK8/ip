@@ -65,7 +65,12 @@ public class TaskParser {
 
         for (int i = 0; i < taskList.size(); i++) {
             Task task = taskList.get(i);
-            sb.append(task.serialize());
+            String serializedTask = task.serialize();
+
+            // The serialized task must be convertible back to the original task.
+            assert task.equals(parseTaskString(serializedTask));
+
+            sb.append(serializedTask);
             sb.append("\n");
         }
 

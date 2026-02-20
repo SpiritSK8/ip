@@ -42,6 +42,12 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        // Taken from ChatGPT: How to disable button when input text is empty.
+        // https://chatgpt.com/share/6998b63e-85a8-800d-a1e3-7d7031147a98
+        sendButton.disableProperty().bind(
+                userInput.textProperty().isEmpty()
+        );
     }
 
     /** Injects the Myne instance */

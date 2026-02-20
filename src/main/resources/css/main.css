@@ -1,6 +1,11 @@
 .root {
     main-color: #023d81;
     -fx-background-color: main-color;
+    -fx-background-image: url("../images/Background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 300px;
+    -fx-background-position: center center;
+    -fx-background-insets: 0;
 }
 
 .text-field {

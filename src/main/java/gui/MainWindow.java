@@ -54,10 +54,8 @@ public class MainWindow extends AnchorPane {
     public void setMyne(Myne myne) {
         this.myne = myne;
 
-        // Add greeting message.
-        dialogContainer.getChildren().addAll(
-                DialogBox.getMyneDialog(myne.getUi().getGreetingText(), myneImage)
-        );
+        // Show greeting message.
+        addMyneDialog(myne.getUi().getGreetingText());
     }
 
     public void setStage(Stage stage) {
@@ -75,23 +73,35 @@ public class MainWindow extends AnchorPane {
         try {
             Command command = CommandParser.parse(input, myne);
             Response response = command.execute();
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getMyneDialog(response.getMessage(), myneImage)
-            );
+            addUserDialog(input);
+            addMyneDialog(response.getMessage());
 
             if (!myne.isAlive()) {
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(event -> stage.close());
-                pause.play();
+                exitAppAfterDelay(3.0);
             }
         } catch (RuntimeException e) {
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getMyneDialog(e.getMessage(), myneImage)
-            );
+            addUserDialog(input);
+            addMyneDialog(e.getMessage());
         }
 
         userInput.clear();
+    }
+
+    private void addUserDialog(String message) {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(message, userImage)
+        );
+    }
+
+    private void addMyneDialog(String message) {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getMyneDialog(message, myneImage)
+        );
+    }
+
+    private void exitAppAfterDelay(double seconds) {
+        PauseTransition pause = new PauseTransition(Duration.seconds(seconds));
+        pause.setOnFinished(event -> stage.close());
+        pause.play();
     }
 }

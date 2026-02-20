@@ -8,21 +8,10 @@ public class MyneUi {
      * Returns the greeting for when Myne starts.
      */
     public String getGreetingText() {
-        return "Good day to you. My name is Myne.\n"
-                + "May our meeting, ordained by the gods be blessed on this fruitful day.";
-
-        // ASCII art is kept for the memories.
-        //                """
-        //                Good day to you. My name is
-        //                ___  ___
-        //                |  \\/  |
-        //                | .  . |_   _ _ __   ___
-        //                | |\\/| | | | | '_ \\ / _ \\
-        //                | |  | | |_| | | | |  __/
-        //                \\_|  |_/\\__, |_| |_|\\___|
-        //                         __/ |
-        //                        |___/
-        //                May our meeting, ordained by the gods be blessed on this fruitful day.""";
+        return """
+                Good day to you. My name is Myne.
+                
+                May our meeting, ordained by the gods be blessed on this fruitful day.""";
     }
 
     /**

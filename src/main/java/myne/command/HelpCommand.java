@@ -39,11 +39,25 @@ public class HelpCommand implements Command {
 
     private String getHelpFor(String commandType) {
         return switch (commandType) {
+            case "bye" -> getByeHelp();
             case "todo" -> getTodoHelp();
             case "deadline" -> getDeadlineHelp();
             case "event" -> getEventHelp();
+            case "list" -> getListHelp();
+            case "mark" -> getMarkHelp();
+            case "unmark" -> getUnmarkHelp();
+            case "delete" -> getDeleteHelp();
+            case "find" -> getFindHelp();
             default -> HELP;
         };
+    }
+
+    private String getByeHelp() {
+        return """
+                For when you wish to depart.
+                
+                Usage:
+                bye""";
     }
 
     private String getTodoHelp() {
@@ -78,5 +92,57 @@ public class HelpCommand implements Command {
                 
                 Example usage:
                 event read books /from 14-3-2026 /to 15 mar 2026""";
+    }
+
+    private String getListHelp() {
+        return """
+                Lists all of the tasks that you have.
+                
+                Usage:
+                list""";
+    }
+
+    private String getMarkHelp() {
+        return """
+                Marks the specified task as done.
+                
+                Usage:
+                mark <task_number>
+                
+                Example usage:
+                mark 1""";
+    }
+
+    private String getUnmarkHelp() {
+        return """
+                Marks the specified task as not done.
+                
+                Usage:
+                unmark <task_number>
+                
+                Example usage:
+                unmark 1""";
+    }
+
+    private String getDeleteHelp() {
+        return """
+                Deletes the specified task.
+                
+                Usage:
+                delete <task_number>
+                
+                Example usage:
+                delete 1""";
+    }
+
+    private String getFindHelp() {
+        return """
+                Finds all the tasks that match the keyword.
+                
+                Usage:
+                find <keyword>
+                
+                Example usage:
+                find book""";
     }
 }

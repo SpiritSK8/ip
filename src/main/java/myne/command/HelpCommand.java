@@ -1,30 +1,82 @@
 package myne.command;
 
-import myne.Myne;
-
 /**
  * Command to show Myne help.
  */
 public class HelpCommand implements Command {
     private static final String HELP = """
-            These are the commands that you may enter. Please ensure that each is used correctly.
+            These are the commands that you may enter.
             
-            help: Shows this help message.
-            bye: Farewell.
-            list: Shows all tasks.
-            mark <taskNumber>: Marks the specified task as done.
-            unmark <taskNumber>: Marks the specified task as done.
-            todo <taskName>: Creates a new task without deadline.
-            deadline <taskName> /by <dueDate>: Creates a task with a deadline (dd-MM-yyyy).
-            event <taskName> /from <startDate> /to <endDate>: Creates an event with start and end dates (dd-MM-yyyy).
-            delete <taskNumber>: Deletes the specified task.
-            find <keyword>: Finds all the tasks containing the keyword.""";
+            help
+            bye
+            todo
+            deadline
+            event
+            list
+            mark
+            unmark
+            delete
+            find
+            
+            Please type "help <command_name>" to learn more about a command.""";
+
+    private final String parameters;
+
+    public HelpCommand(String parameters) {
+        this.parameters = parameters;
+    }
 
     /**
      * Gives a list of commands for Myne.
      */
     @Override
     public Response execute() {
-        return new Response(HELP, Status.SUCCESS);
+        String commandType = parameters.trim();
+        String helpMessage = getHelpFor(commandType);
+
+        return new Response(helpMessage, Status.SUCCESS);
+    }
+
+    private String getHelpFor(String commandType) {
+        return switch (commandType) {
+            case "todo" -> getTodoHelp();
+            case "deadline" -> getDeadlineHelp();
+            case "event" -> getEventHelp();
+            default -> HELP;
+        };
+    }
+
+    private String getTodoHelp() {
+        return """
+                Adds a new task with the specified task_name.
+                
+                Usage:
+                todo <task_name>
+                
+                Example usage:
+                todo read books""";
+    }
+
+    private String getDeadlineHelp() {
+        return """
+                Adds a new task with a deadline.
+                
+                Usage:
+                deadline <task_name> /by <due_date>
+                
+                Example usage:
+                deadline buy books /by 14-3-2026
+                deadline read books /by 5 may 2026""";
+    }
+
+    private String getEventHelp() {
+        return """
+                Adds a new task with a start and end date.
+                
+                Usage:
+                event <task_name> /from <start_date> /to <end_date>
+                
+                Example usage:
+                event read books /from 14-3-2026 /to 15 mar 2026""";
     }
 }

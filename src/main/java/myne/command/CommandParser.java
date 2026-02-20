@@ -29,7 +29,7 @@ public class CommandParser {
             case "event" -> new AddEventCommand(myne, parameters);
             case "delete" -> new DeleteCommand(myne, parameters);
             case "find" -> new FindCommand(myne, parameters);
-            case "help" -> new HelpCommand();
+            case "help" -> new HelpCommand(parameters);
             default -> throw new InvalidCommandException("Come again?");
         };
     }

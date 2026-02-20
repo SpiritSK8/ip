@@ -70,6 +70,10 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
 
+        if (input.isBlank()) {
+            return;
+        }
+
         try {
             Command command = CommandParser.parse(input, myne);
             Response response = command.execute();

@@ -9,7 +9,8 @@ import emu.EmuException;
 import emu.Parser;
 
 public class ParserTest {
-    @ Test
+
+    @Test
     void testHandleDeadline() throws EmuException {
         // valid case
         String[] result = Parser.parseDeadline("finish homework /by tomorrow");
@@ -19,40 +20,33 @@ public class ParserTest {
         // missing /by
         try {
             Parser.parseDeadline("finish homework tomorrow");
-            fail("Expected DukeException");
+            fail("Expected EmuException");
         } catch (EmuException e) {
-            assertEquals("You forgot to put /by in your deadline task!",
-                    e.realMessage());
+            assertEquals("You forgot to include /by in your deadline task!", e.realMessage());
         }
 
         // empty description
         try {
             Parser.parseDeadline("/by tomorrow");
-            fail("Expected DukeException");
+            fail("Expected EmuException");
         } catch (EmuException e) {
-            assertEquals(
-                    "You can't make a deadline without a description and a date silly!",
-                    e.realMessage());
+            assertEquals("You can't make a deadline without a description and a by date silly!!", e.realMessage());
         }
 
         // empty /by
         try {
             Parser.parseDeadline("finish /by ");
-            fail("Expected DukeException");
+            fail("Expected EmuException");
         } catch (EmuException e) {
-            assertEquals(
-                    "You can't make a deadline without a description and a date silly!",
-                    e.realMessage());
+            assertEquals("You can't make a deadline without a description and a by date silly!!", e.realMessage());
         }
 
         // empty
         try {
             Parser.parseDeadline("  ");
-            fail("Expected DukeException");
+            fail("Expected EmuException");
         } catch (EmuException e) {
-            assertEquals(
-                    "You forgot to put /by in your deadline task!",
-                    e.realMessage());
+            assertEquals("You forgot to include /by in your deadline task!", e.realMessage());
         }
     }
 
@@ -67,51 +61,41 @@ public class ParserTest {
         // /to and /from swapped
         try {
             Parser.parseEvent("meeting /to Tue /from Mon");
-            fail("Expected DukeException");
+            fail("Expected EmuException");
         } catch (EmuException e) {
-            assertEquals(
-                    "You put in the wrong format! Use event (desc) /from (from) /to (to) instead!",
-                    e.realMessage());
+            assertEquals("Incorrect format! Use: event (desc) /from (start) /to (end)", e.realMessage());
         }
 
         // missing /to
         try {
             Parser.parseEvent("meeting /from Mon");
-            fail("Expected DukeException");
+            fail("Expected EmuException");
         } catch (EmuException e) {
-            assertEquals(
-                    "You put in the wrong format! Use event (desc) /from (from) /to (to) instead!",
-                    e.realMessage());
+            assertEquals("Incorrect format! Use: event (desc) /from (start) /to (end)", e.realMessage());
         }
 
         // missing /from
         try {
-            Parser.parseEvent("meeting Mon /to Tues");
-            fail("Expected DukeException");
+            Parser.parseEvent("meeting Mon /to Tue");
+            fail("Expected EmuException");
         } catch (EmuException e) {
-            assertEquals(
-                    "You put in the wrong format! Use event (desc) /from (from) /to (to) instead!",
-                    e.realMessage());
+            assertEquals("Incorrect format! Use: event (desc) /from (start) /to (end)", e.realMessage());
         }
 
         // empty fields
         try {
             Parser.parseEvent(" /from  /to ");
-            fail("Expected DukeException");
+            fail("Expected EmuException");
         } catch (EmuException e) {
-            assertEquals(
-                    "You can't make an event without a description, from date and to date silly!",
-                    e.realMessage());
+            assertEquals("You can't make an event without a description, a from date, and a to date silly!!", e.realMessage());
         }
 
         // empty
         try {
             Parser.parseEvent("  ");
-            fail("Expected DukeException");
+            fail("Expected EmuException");
         } catch (EmuException e) {
-            assertEquals(
-                    "You put in the wrong format! Use event (desc) /from (from) /to (to) instead!",
-                    e.realMessage());
+            assertEquals("Incorrect format! Use: event (desc) /from (start) /to (end)", e.realMessage());
         }
     }
 }

@@ -57,7 +57,7 @@ public class StorageTest {
 
             TaskList sample = new TaskList(correctTasks);
 
-            assertEquals(sample.list(), tasks.list());
+            assertEquals(sample.listTasks(), tasks.listTasks());
         } catch (IOException | EmuException e) {
             fail(); // the test should not reach this line
         }

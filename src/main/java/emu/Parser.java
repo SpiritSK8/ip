@@ -69,7 +69,7 @@ public class Parser {
         String by = response.substring(slash + 3).trim();
 
         if (desc.isEmpty() || by.isEmpty()) {
-            throw new EmuException("Deadline must have both a description and a date!");
+            throw new EmuException("You can't make a deadline without a description and a by date silly!!");
         }
 
         return new String[] { desc, by };
@@ -97,7 +97,7 @@ public class Parser {
         String to = response.substring(slashTo + 3).trim();
 
         if (desc.isEmpty() || from.isEmpty() || to.isEmpty()) {
-            throw new EmuException("Event must have description, start, and end dates!");
+            throw new EmuException("You can't make an event without a description, a from date, and a to date silly!!");
         }
 
         return new String[] { desc, from, to };

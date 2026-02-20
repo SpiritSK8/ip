@@ -3,11 +3,11 @@ package emu;
 /**
  * Handles formatting of messages shown to the user
  */
-public class UI {
+public class Ui {
     private static final String DIVIDER_LINE =
-            "_______________________________________________________\n";
+            "___________________________\n";
     private static final String STANDARD_GREETING =
-            " Hello, I'm Emu!\n What can I do for you?\n";
+            "KONICHIWONDERHOY!! I'm Emu! What can I do for you today?";
     private static final String STORAGE_FAILURE =
             "UWA!!! I can't seem to find your past tasks!";
 
@@ -36,6 +36,6 @@ public class UI {
         assert response != null : "response should not be null";
         assert !response.isEmpty() : "response should not be empty";
 
-        return DIVIDER_LINE + response + DIVIDER_LINE;
+        return DIVIDER_LINE + response + "\n" + DIVIDER_LINE;
     }
 }

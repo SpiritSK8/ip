@@ -23,7 +23,7 @@ public class EmuException extends Exception {
      */
     @Override
     public String getMessage() {
-        return " UWA!!! " + super.getMessage() + "\n";
+        return "UWA!!! " + super.getMessage();
     }
 
     /**

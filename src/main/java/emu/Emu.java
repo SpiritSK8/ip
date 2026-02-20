@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Emu {
     private Storage storage;
     private TaskList tasks;
-    private UI ui;
+    private Ui ui;
     private boolean isExit; // Indicates whether the chatbot should exit
     private boolean hasStorageFailed; // Tracks if storage failed to initialise
 
@@ -18,7 +18,7 @@ public class Emu {
      * If storage cannot be created, sets hasStorageFailed to true and continues
      */
     public Emu() {
-        this.ui = new UI();
+        this.ui = new Ui();
         this.tasks = new TaskList(new ArrayList<Task>());
         this.isExit = false;
 
@@ -87,7 +87,7 @@ public class Emu {
                 storage.resetFile(tasks);
             }
             isExit = true;
-            yield "Bye. Hope to see you again soon!\n";
+            yield "Bye!! Have a WONDERHOY day!\n";
         }
         case "list" -> tasks.listTasks();
         case "find" -> tasks.findTasks(other);

@@ -26,14 +26,15 @@ public class TaskList {
      *
      * @param position The position of the task in the list
      * @return The requested task
+     * @throws EmuException if the position is invalid
      */
     public Task getTask(int position) throws EmuException {
-        if (position <= tasks.size() && position >= TASKLIST_STARTING_POINT) {
+        if (position < tasks.size() && position >= TASKLIST_STARTING_POINT) {
             Task task = tasks.get(position);
             assert task != null : "task should not be null";
             return task;
         } else {
-            throw new EmuException("That's not a valid task!");
+            throw new EmuException("Umm… I don’t think that task is real!");
         }
     }
 
@@ -48,14 +49,14 @@ public class TaskList {
      * Returns a string representation of all tasks in the list
      */
     public String listTasks() {
-        String temp = "Here are the tasks in your list:\n";
-
+        String temp = "Okay, here’s your tasks!";
         for (int i = 1; i <= tasks.size(); i++) {
             Task task = tasks.get(i - 1);
-            assert task != null : "task should not be null";
-            temp += i + ". " + task.toString() + "\n";
+            temp += "\n" + i + ". " + task.toString();
         }
-
+        if (tasks.isEmpty()) {
+            temp = "Hmm… it looks like you don’t have any tasks yet!";
+        }
         return temp;
     }
 
@@ -70,12 +71,15 @@ public class TaskList {
         assert search != null : "search must not be null";
 
         int counter = 0;
-        String temp = "Here are the matching tasks in your list:\n";
+        String temp = "Let me see… these kinda match:";
         for (Task task : tasks) {
             if (task.getDescription().contains(search)) {
                 counter++;
-                temp += counter + ". " + task.toString() + "\n";
+                temp += "\n" + counter + ". " + task.toString();
             }
+        }
+        if (counter == 0) {
+            temp = "Uh… I didn’t find anything matching that.";
         }
         return temp;
     }
@@ -86,16 +90,17 @@ public class TaskList {
      *
      * @param position The position of the task
      * @return Response string after marking the task
+     * @throws EmuException if the task is already marked
      */
     public String markTask(int position) throws EmuException {
         Task task = getTask(position - 1);
         if (task.getStatusIcon().equals(" ")) {
             task.markComplete();
             history.add("mark " + position);
-            return "  Nice! I've marked this task as done:\n"
-                    + "    " + task.toString() + "\n";
+            return "Ta‑da! I marked it as done:\n"
+                    + "    " + task.toString();
         } else {
-            throw new EmuException("The task is already marked!");
+            throw new EmuException("Oh! It’s already marked, silly!");
         }
     }
 
@@ -105,16 +110,18 @@ public class TaskList {
      *
      * @param position The position of the task
      * @return Response string after unmarking the task
+     * @throws EmuException if the task is already unmarked
      */
     public String unmarkTask(int position) throws EmuException {
         Task task = getTask(position - 1);
         if (task.getStatusIcon().equals("X")) {
             task.markIncomplete();
             history.add("unmark " + position);
-            return "  OK, I've marked this task as not done yet:\n"
-                    + "    " + task.toString() + "\n";
+            return "Right then! I unmarked it:\n"
+                    + "    " + task.toString() + "\n"
+                    + "Hehe, there you go!";
         } else {
-            throw new EmuException("The task is already unmarked!");
+            throw new EmuException("Eh? It’s already unmarked, I think!");
         }
     }
 
@@ -126,15 +133,14 @@ public class TaskList {
      * @return Response string after adding the task
      */
     public String addToDoTask(String desc) {
-        assert desc != null : "desc cannot be null";
-        assert !desc.isEmpty() : "desc cannot be empty";
+        assert desc != null && !desc.isEmpty() : "desc cannot be null or empty";
 
         ToDo task = new ToDo(desc);
         tasks.add(task);
         history.add("add");
-        return "  Got it. I've added this task:\n"
+        return "Oh! I added this To‑Do thing:\n"
                 + "    " + task.toString() + "\n"
-                + "  Now you have " + tasks.size() + " tasks.\n";
+                + "Isn’t that cool?";
     }
 
     /**
@@ -146,18 +152,15 @@ public class TaskList {
      * @return Response string after adding the task
      */
     public String addDeadlineTask(String desc, String by) {
-        assert desc != null : "desc cannot be null";
-        assert !desc.isEmpty() : "desc cannot be empty";
-
-        assert by != null : "by cannot be null";
-        assert !by.isEmpty() : "by cannot be empty";
+        assert desc != null && !desc.isEmpty() : "desc cannot be null or empty";
+        assert by != null && !by.isEmpty() : "by cannot be null or empty";
 
         Deadline task = new Deadline(desc, by);
         tasks.add(task);
         history.add("add");
-        return "  Got it. I've added this task:\n"
+        return "Okay! This Deadline is in:\n"
                 + "    " + task.toString() + "\n"
-                + "  Now you have " + tasks.size() + " tasks.\n";
+                + "Hmm… hope that’s right!";
     }
 
     /**
@@ -170,21 +173,16 @@ public class TaskList {
      * @return Response string after adding the task
      */
     public String addEventTask(String desc, String from, String to) {
-        assert desc != null : "desc cannot be null";
-        assert !desc.isEmpty() : "desc cannot be empty";
-
-        assert from != null : "from cannot be null";
-        assert !from.isEmpty() : "from cannot be empty";
-
-        assert to != null : "to cannot be null";
-        assert !to.isEmpty() : "to cannot be empty";
+        assert desc != null && !desc.isEmpty() : "desc cannot be null or empty";
+        assert from != null && !from.isEmpty() : "from cannot be null or empty";
+        assert to != null && !to.isEmpty() : "to cannot be null or empty";
 
         Event task = new Event(desc, from, to);
         tasks.add(task);
         history.add("add");
-        return "  Got it. I've added this task:\n"
+        return "Ooh! I put in this Event:\n"
                 + "    " + task.toString() + "\n"
-                + "  Now you have " + tasks.size() + " tasks.\n";
+                + "Hehe, nice!";
     }
 
     /**
@@ -193,14 +191,15 @@ public class TaskList {
      *
      * @param position The position of the task
      * @return Response string after deleting the task
+     * @throws EmuException if the position is invalid
      */
     public String deleteTask(int position) throws EmuException {
         Task task = getTask(position - 1);
         tasks.remove(position - 1);
         history.add("delete " + task.toStorageString());
-        return "  Got it. I've removed this task:\n"
+        return "Eek! I took this one away:\n"
                 + "    " + task.toString() + "\n"
-                + "  Now you have " + tasks.size() + " tasks.\n";
+                + "It’s gone now!";
     }
 
     /**
@@ -208,10 +207,11 @@ public class TaskList {
      * and returns a string showing the undone task
      *
      * @return Response string representing the undone task
+     * @throws EmuException if there’s nothing to undo
      */
     public String undoLastCommand() throws EmuException {
         if (history.isEmpty()) {
-            throw new EmuException("There's nothing to undo!");
+            throw new EmuException("Hmm… I can’t undo anything right now!");
         }
 
         String lastCommand = history.get(history.size() - 1);
@@ -221,34 +221,33 @@ public class TaskList {
         String command = parts[0];
         String other = parts.length > 1 ? parts[1] : "";
 
-        String response = "Ok! I've undone the task as specified below!\n";
+        String response = "Oh! Let’s undo that then…";
 
-        if (command.equals("add")) {
+        switch (command) {
+        case "add" -> {
             Task task = tasks.get(tasks.size() - 1);
             tasks.remove(tasks.size() - 1);
-            response += "Last added task has been removed: " + task.toString() + "\n";
-
-        } else if (command.equals("unmark")) {
+            response += "\nI removed the last task I added: " + task.toString();
+        }
+        case "unmark" -> {
             int position = Parser.parseNumber(other);
             Task task = tasks.get(position - 1);
             task.markComplete();
-            response += "Task has been re-marked: " + task.toString() + "\n";
-
-        } else if (command.equals("mark")) {
+            response += "\nI marked it again: " + task.toString();
+        }
+        case "mark" -> {
             int position = Parser.parseNumber(other);
             Task task = tasks.get(position - 1);
             task.markIncomplete();
-            response += "Task has been unmarked: " + task.toString() + "\n";
-
-        } else if (command.equals("delete")) {
+            response += "\nI unmarked it again: " + task.toString();
+        }
+        case "delete" -> {
             Task task = Storage.parseTask(other);
             tasks.add(task);
-            response += "Deleted task has been restored: " + task.toString() + "\n";
-
-        } else {
-            throw new EmuException("There's nothing to undo!");
+            response += "\nI brought back this task: " + task.toString();
         }
-
+        default -> throw new EmuException("Erm… I’m not sure what to undo!");
+        }
         return response;
     }
 }

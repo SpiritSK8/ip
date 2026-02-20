@@ -1,0 +1,24 @@
+.dialog-bubble {
+    -fx-background-color: #e8efff;
+    -fx-background-radius: 1em 1em 0 1em;
+}
+
+.reply-dialog-bubble {
+    -fx-background-radius: 1em 1em 1em 0;
+}
+
+.label {
+    -fx-font: 12px "Book Antiqua";
+}
+
+#displayPicture {
+    /* Shadow effect on image. */
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5);
+
+    /* Change size of image. */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+
+    /* Rotate image clockwise by degrees. */
+    -fx-rotate: 0;
+}

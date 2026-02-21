@@ -65,6 +65,8 @@ public class MainWindow extends AnchorPane {
     }
 
     public void setStage(Stage stage) {
+        stage.setMinWidth(400.0);
+        stage.setMinHeight(400.0);
         this.stage = stage;
     }
 

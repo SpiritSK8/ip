@@ -10,7 +10,7 @@ e.g. in `todo DESCRIPTION`, `DESCRIPTION` is a value given by the user.
 > - Formats must be followed in the <ins>exact</ins> order given. 
 > - Extra values given for commands that do not require any 
 (such as `list`, `undo`, and `bye`) will be ignored.
-e.g. bye 123 will be interpreted as bye.
+e.g. `bye 123` will be interpreted as `bye`.
 > - `INDEX` refers to the index of a task when `list` is used.
 ### 1. Add a Task
 Emu supports three types of tasks:

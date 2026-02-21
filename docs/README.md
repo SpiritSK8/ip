@@ -22,24 +22,24 @@ Emu supports three types of tasks:
 
 - **To-Do**: A task with only a `DESCRIPTION`.
 
-- Format: `todo DESCRIPTION`
-  Example: `todo Buy groceries`
+- **Format:** `todo DESCRIPTION`
+- **Example:** `todo Buy groceries`
 
 
 - **Deadline**: A task with a `DESCRIPTION` and a `BY` date.
 
 - `BY` can be **any string**  — if in `YYYY-MM-DD` format,
   it will automatically be converted to `MMM d yyyy`.
-- Format: `deadline DESCRIPTION /by BY`
-  Example: `deadline Submit report /by 2026-02-28`
+- **Format:** `deadline DESCRIPTION /by BY`
+- **Example:** `deadline Submit report /by 2026-02-28`
 
 
 - **Event**: A task with a `DESCRIPTION`, a `FROM` date and a `TO` date.
 
 - `FROM` and `TO` can be **any string**  — if in `YYYY-MM-DD` format,
   it will automatically be converted to `MMM d yyyy`.
-- Format: `event DESCRIPTION /from FROM /to TO`
-  Example: `event Meeting /from 2026-02-21 /to 2026-02-21`
+- **Format:** `event DESCRIPTION /from FROM /to TO`
+- **Example:** `event Meeting /from 2026-02-21 /to 2026-02-21`
 
   > **Note:** Emu does not ensure the event start date/time
   > is before the end date/time.
@@ -47,46 +47,46 @@ Emu supports three types of tasks:
 ### 2. Mark a Task
 Marks a task as done.
 
-- **Command:** `mark INDEX`
-- Example: `mark 2`
+- **Format:** `mark INDEX`
+- **Example:** `mark 2`
 
 ### 3. Unmark a Task
 Unmarks a previously marked task.
 
-- **Command:** `unmark INDEX`
-- Example: `unmark 2`
+- **Format:** `unmark INDEX`
+- **Example:** `unmark 2`
 
 ### 4. Delete a Task
 Deletes a task from the TaskList.
 
-- **Command:** `delete INDEX`
-- Example: `delete 3`
+- **Format:** `delete INDEX`
+- **Example:** `delete 3`
 
 ### 5. Undo Last Change
 Undoes the last action that modified the TaskList.
 
-- **Command:** `undo`
+- **Format:** `undo`
 
 > **NOTE**: Only actions that modify the TaskList (add, delete, mark/unmark) can be undone.
 
 ### 6. List All Tasks
 Displays all tasks in the TaskList.
 
-- **Command:** `list`
+- **Format:** `list`
 
 ### 7. Search Tasks by Keyword
 Searches for tasks whose description contains the given keyword.
 
-- **Command:** `find KEYWORD`
+- **Format:** `find KEYWORD`
 - **Case-sensitive**, returns tasks in the order they appear in the list.
-- Example: `find homework`
+- **Example:** `find homework`
 
 > **NOTE**: If nothing / whitespace is given for `KEYWORD`, `find` will return all tasks
 
 ### 8. Quit and Save
 Saves all tasks and exits the program.
 
-- **Command:** `bye`
+- **Format:** `bye`
 
 > **Note:** Do not close the chatbot via the X button — tasks will **not** be saved.
 

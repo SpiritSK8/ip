@@ -11,7 +11,9 @@ public class MyneUi {
         return """
                 Good day to you. My name is Myne.
                 
-                May our meeting, ordained by the gods be blessed on this fruitful day.""";
+                May our meeting, ordained by the gods be blessed on this fruitful day.
+                
+                Please type "help" should you ever need my assistance.""";
     }
 
     /**

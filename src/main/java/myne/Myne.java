@@ -1,5 +1,8 @@
 package myne;
 
+import myne.command.Response;
+import myne.command.Status;
+import myne.task.TaskParseResult;
 import myne.task.TaskParser;
 
 /**
@@ -27,8 +30,26 @@ public class Myne {
     public Myne(String filePath) {
         this.ui = new MyneUi();
         this.storage = new TaskStorage(filePath);
-        this.taskList = new TaskList(TaskParser.parseTaskFile(storage.fetchTaskFile()));
+        this.taskList = new TaskList();
         this.isAlive = true;
+    }
+
+    /**
+     * Parses the task file and returns a response.
+     * @return A response
+     */
+    public Response parseTaskFile() {
+        TaskParseResult parseResult = TaskParser.parseTaskFile(storage.fetchTaskFile());
+
+        parseResult.getTasks().forEach(taskList::add);
+
+        if (parseResult.hasError()) {
+            String errorHeader = "Hmm, I don't recognize this language... \n\n";
+            String errorMessage = errorHeader + String.join("\n", parseResult.getErrors());
+            return new Response(errorMessage, Status.FAIL);
+        }
+
+        return new Response("Parse task success.", Status.SUCCESS);
     }
 
     /**

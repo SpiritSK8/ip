@@ -31,8 +31,8 @@ public class TaskParser {
      * @return An <code>ArrayList&lt;Task&gt;</code> containing the tasks read from the file,
      *         or empty if the file is not found.
      */
-    public static ArrayList<Task> parseTaskFile(File taskFile) {
-        ArrayList<Task> taskList = new ArrayList<>();
+    public static TaskParseResult parseTaskFile(File taskFile) {
+        TaskParseResult result = new TaskParseResult();
 
         int i = 1;
         try (Scanner sc = new Scanner(taskFile)) {
@@ -40,18 +40,17 @@ public class TaskParser {
                 String data = sc.nextLine();
                 try {
                     Task task = parseTaskString(data);
-                    taskList.add(task);
+                    result.addTask(task);
                 } catch (RuntimeException e) {
-                    System.out.println("Error loading task " + i);
-                    System.out.println(e.getMessage());
+                    result.addError("Error loading task " + i + ".");
                 }
                 i++;
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Error: Task file not found.");
+            result.addError("Error: Task file not found.");
         }
 
-        return taskList;
+        return result;
     }
 
     /**

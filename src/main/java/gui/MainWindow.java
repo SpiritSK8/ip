@@ -17,6 +17,7 @@ import myne.Myne;
 import myne.command.Command;
 import myne.command.CommandParser;
 import myne.command.Response;
+import myne.command.Status;
 
 /**
  * Controller for the main GUI.
@@ -56,6 +57,11 @@ public class MainWindow extends AnchorPane {
 
         // Show greeting message.
         addMyneDialog(myne.getUi().getGreetingText());
+
+        Response response = myne.parseTaskFile();
+        if (response.getStatus() == Status.FAIL) {
+            addMyneDialog(response.getMessage());
+        }
     }
 
     public void setStage(Stage stage) {

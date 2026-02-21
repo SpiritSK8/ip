@@ -3,6 +3,8 @@ package myne;
 import java.util.ArrayList;
 import java.util.List;
 
+import myne.command.Response;
+import myne.command.Status;
 import myne.task.Task;
 
 /**
@@ -61,6 +63,17 @@ public class TaskList {
      */
     public Task delete(int taskIndex) throws IndexOutOfBoundsException {
         return list.remove(taskIndex);
+    }
+
+    /**
+     * Removes the first occurrence of the specified <code>Task</code> from this list, if it is present (optional operation).
+     * If this list does not contain the element, it is unchanged.
+     * Returns true if this list contained the specified element.
+     * @param task The <code>Task</code> to delete
+     * @return <code>true</code> if the list contains the task.
+     */
+    public boolean delete(Task task) {
+        return list.remove(task);
     }
 
     /**

@@ -3,6 +3,7 @@ package myne.command;
 import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
+import myne.task.Task;
 
 /**
  * A class to encapsulate the logic for marking a task and parsing the command for doing so.
@@ -35,8 +36,16 @@ public class MarkCommand implements Command {
             throw new InvalidCommandException("I cannot mark something that does not exist.");
         }
 
+        if (CommandParser.isNumeric(parameters)) {
+            return markByIndex();
+        } else {
+            return markByKeyword();
+        }
+    }
+
+    // This method must be used only if the parameter is guaranteed to be an integer.
+    private Response markByIndex() {
         try {
-            // Mark task and save.
             int index = Integer.parseInt(parameters) - 1;
             taskList.mark(index);
             storage.saveTasks(taskList);
@@ -44,13 +53,30 @@ public class MarkCommand implements Command {
             return new Response("You have carried out your task with utmost diligence. Very good.\n\n"
                     + taskList.get(index).toString(),
                     Status.SUCCESS);
-        } catch (NumberFormatException e) {
-            throw new InvalidCommandException(
-                    "Pray tell, how am I supposed to interpret \"" + parameters + "\" as a number?");
+
         } catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException("Oh my! It seems that you only have "
+            throw new IndexOutOfBoundsException("Oh my! It seems that you only have tasks 1 to "
                     + taskList.size()
-                    + " tasks at present.");
+                    + " at present.");
         }
+    }
+
+    private Response markByKeyword() {
+        TaskList findResult = taskList.find(parameters);
+
+        // There must be exactly 1 task to mark when marking by keyword.
+        if (findResult.isEmpty()) {
+            throw new InvalidCommandException("You have no such task.");
+        }
+        if (findResult.size() > 1) {
+            throw new InvalidCommandException("Which task? Please be more specific.");
+        }
+
+        Task taskToMark = findResult.get(0);
+        taskToMark.mark();
+
+        return new Response("You have carried out your task with utmost diligence. Very good.\n\n"
+                + taskToMark.toString(),
+                Status.SUCCESS);
     }
 }

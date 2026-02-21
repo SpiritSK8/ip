@@ -81,6 +81,21 @@ public class CommandParser {
         return parameterValues;
     }
 
+    /**
+     * Checks if a string is a non-negative integer. More formally, it returns <code>true</code> if and only if the
+     * string is not empty and each individual character in the string can be successfully parsed into an integer.
+     * @param s the string to check.
+     * @return <code>true</code> if the string is a non-negative integer.
+     */
+    public static boolean isNumeric(String s) {
+        for (char c : s.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return !s.isEmpty();
+    }
+
     private static String getFirstWord(String input) {
         String[] parts = input.split(" ", 2);
         return parts[0];

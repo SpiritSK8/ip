@@ -33,24 +33,48 @@ public class DeleteCommand implements Command {
      */
     @Override
     public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
-        if (parameters.trim().isEmpty()) {
+        if (parameters.isBlank()) {
             throw new InvalidCommandException("Do tell me which task to delete.");
         }
 
+        if (CommandParser.isNumeric(parameters)) {
+            return deleteByIndex();
+        } else {
+            return deleteByKeyword();
+        }
+    }
+
+    // This method must be used only if the parameter is guaranteed to be an integer.
+    private Response deleteByIndex() {
         try {
-            // Delete task and save.
             int index = Integer.parseInt(parameters) - 1;
             Task removedTask = taskList.delete(index);
             storage.saveTasks(taskList);
 
             return new Response("Let me take that back.\n\n" + removedTask, Status.SUCCESS);
-        } catch (NumberFormatException e) {
-            throw new InvalidCommandException(
-                    "Pray tell, how am I supposed to interpret \"" + parameters + "\" as a number?");
+
         } catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException("Oh my! It seems that you only have "
+            throw new IndexOutOfBoundsException("Oh my! It seems that you only have tasks 1 to "
                     + taskList.size()
-                    + " tasks at present.");
+                    + " at present.");
         }
+    }
+
+    private Response deleteByKeyword() {
+        TaskList findResult = taskList.find(parameters);
+
+        // There must be exactly 1 task to delete when deleting by keyword.
+        if (findResult.isEmpty()) {
+            throw new InvalidCommandException("You have no such task.");
+        }
+        if (findResult.size() > 1) {
+            throw new InvalidCommandException("Which task? Please be more specific.");
+        }
+
+        Task taskToDelete = findResult.get(0);
+        taskList.delete(taskToDelete);
+        storage.saveTasks(taskList);
+
+        return new Response("Let me take that back.\n\n" + taskToDelete, Status.SUCCESS);
     }
 }

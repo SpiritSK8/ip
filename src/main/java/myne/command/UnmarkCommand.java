@@ -4,6 +4,7 @@ import myne.Myne;
 import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
+import myne.task.Task;
 
 /**
  * A class to encapsulate the logic for unmarking a task and parsing the command for doing so.
@@ -37,22 +38,45 @@ public class UnmarkCommand implements Command {
             throw new InvalidCommandException("I cannot unmark something that does not exist.");
         }
 
+        if (CommandParser.isNumeric(parameters)) {
+            return unmarkByIndex();
+        } else {
+            return unmarkByKeyword();
+        }
+    }
+
+    // This method must be used only if the parameter is guaranteed to be an integer.
+    private Response unmarkByIndex() {
         try {
-            // Unmark task and save.
             int index = Integer.parseInt(parameters) - 1;
-            taskList.unmark(index);
+            taskList.mark(index);
             storage.saveTasks(taskList);
 
-            // Show message.
             return new Response("Ah, you would like to redo it? Very well.\n\n" + taskList.get(index).toString(),
                     Status.SUCCESS);
-        } catch (NumberFormatException e) {
-            throw new InvalidCommandException(
-                    "Pray tell, how am I supposed to interpret \"" + parameters + "\" as a number?");
+
         } catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException("Oh my! It seems that you only have "
+            throw new IndexOutOfBoundsException("Oh my! It seems that you only have tasks 1 to "
                     + taskList.size()
-                    + " tasks at present.");
+                    + " at present.");
         }
+    }
+
+    private Response unmarkByKeyword() {
+        TaskList findResult = taskList.find(parameters);
+
+        // There must be exactly 1 task to unmark when unmarking by keyword.
+        if (findResult.isEmpty()) {
+            throw new InvalidCommandException("You have no such task.");
+        }
+        if (findResult.size() > 1) {
+            throw new InvalidCommandException("Which task? Please be more specific.");
+        }
+
+        Task taskToUnmark = findResult.get(0);
+        taskToUnmark.unmark();
+
+        return new Response("Ah, you would like to redo it? Very well.\n\n" + taskToUnmark.toString(),
+                Status.SUCCESS);
     }
 }

@@ -87,7 +87,7 @@ public class Emu {
                 storage.resetFile(tasks);
             }
             isExit = true;
-            yield "Bye!! Have a WONDERHOY day!\n";
+            yield "Bye!! Have a WONDERHOY day!";
         }
         case "list" -> tasks.listTasks();
         case "find" -> tasks.findTasks(other);

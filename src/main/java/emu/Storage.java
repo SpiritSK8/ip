@@ -22,8 +22,7 @@ public class Storage {
 
     /**
      * Creates a Storage object that uses the given {@code filePath}
-     * to persist task data. If the file or its parent directories
-     * do not exist, they will be created
+     * to persist task data.
      *
      * @param filePath Path to the storage file
      * @throws EmuException If the storage file cannot be created
@@ -34,6 +33,11 @@ public class Storage {
 
         this.storageFile = new File(filePath);
 
+        initialiseFile();
+    }
+
+    // Creates the file or its parent directories if they do not exist
+    private void initialiseFile() throws EmuException {
         try {
             File parentDirectory = storageFile.getParentFile();
             if (parentDirectory != null) {
@@ -71,13 +75,15 @@ public class Storage {
 
     /**
      * Writes the current state of the given {@code tasks}
-     * to the storage file, overwriting any existing data
+     * to the intended storage file, overwriting any existing data
      *
      * @param tasks The up-to-date task list to be stored
      * @throws EmuException If the tasks cannot be written to the file
      */
     public void resetFile(TaskList tasks) throws EmuException {
         assert tasks != null : "tasks cannot be null";
+
+        initialiseFile();
 
         try (FileWriter writer = new FileWriter(storageFile)) {
             for (int i = 0; i < tasks.size(); i++) {

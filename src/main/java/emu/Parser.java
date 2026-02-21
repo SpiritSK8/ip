@@ -17,14 +17,16 @@ public class Parser {
     public Parser(String fullResponse) {
         assert fullResponse != null : "fullResponse should not be null";
 
-        int firstSpace = fullResponse.indexOf(' ');
+        String trimmedResponse = fullResponse.trim();
+        int firstSpace = trimmedResponse.indexOf(' ');
+
         this.command = (firstSpace == -1)
-                ? fullResponse
-                : fullResponse.substring(0, firstSpace);
+                ? trimmedResponse
+                : trimmedResponse.substring(0, firstSpace);
 
         this.other = (firstSpace == -1)
                 ? ""
-                : fullResponse.substring(firstSpace + 1);
+                : trimmedResponse.substring(firstSpace + 1);
     }
 
     public String getCommand() {
@@ -45,7 +47,7 @@ public class Parser {
     public static void verifyTodo(String response) throws EmuException {
         assert response != null : "response should not be null";
 
-        if (response.isEmpty()) {
+        if (response.trim().isEmpty()) {
             throw new EmuException("You can't make a todo without a description!");
         }
     }
@@ -114,7 +116,7 @@ public class Parser {
         assert stringNumber != null : "stringNumber should not be null";
 
         try {
-            return Integer.parseInt(stringNumber);
+            return Integer.parseInt(stringNumber.trim());
         } catch (NumberFormatException e) {
             throw new EmuException("That's not a valid number!");
         }

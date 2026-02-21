@@ -32,7 +32,7 @@ public class FindCommand implements Command {
     public Response execute() throws InvalidCommandException {
         if (parameters.isEmpty()) {
             // Cannot find empty string.
-            throw new InvalidCommandException("A search cannot be performed without any text.");
+            throw new InvalidCommandException("I cannot search anything if you do not tell me what to find.");
         }
 
         TaskList tasksFound = taskList.find(parameters);

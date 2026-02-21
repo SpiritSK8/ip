@@ -13,7 +13,7 @@ public class MyneUi {
                 
                 May our meeting, ordained by the gods be blessed on this fruitful day.
                 
-                Please type "help" should you ever need my assistance.""";
+                Please ask for "help" should you ever need extra assistance.""";
     }
 
     /**
@@ -33,7 +33,7 @@ public class MyneUi {
             return initialMessage;
         }
 
-        StringBuilder sb = new StringBuilder(initialMessage).append("\n");
+        StringBuilder sb = new StringBuilder(initialMessage).append("\n\n");
         for (int i = 0; i < taskList.size() - 1; i++) {
             sb.append(i + 1).append(".").append(taskList.get(i)).append("\n");
         }

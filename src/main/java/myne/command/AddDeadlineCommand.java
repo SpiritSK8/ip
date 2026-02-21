@@ -46,12 +46,12 @@ public class AddDeadlineCommand implements Command {
         taskList.add(deadline);
         storage.saveTasks(taskList);
 
-        return new Response("I entrust you with this task.\n" + deadline.toString(), Status.SUCCESS);
+        return new Response("I entrust you with this task.\n\n" + deadline.toString(), Status.SUCCESS);
     }
 
     private Deadline parseCommand(String parameters) throws InvalidCommandException {
         if (parameters.isEmpty()) {
-            throw new InvalidCommandException("Please provide the task details.");
+            throw new InvalidCommandException("Please provide the task details for me.");
         }
 
         HashMap<String, String> parameterValues = CommandParser.extractParameters(parameters);
@@ -61,10 +61,10 @@ public class AddDeadlineCommand implements Command {
         }
 
         if (parameterValues.get("first").isBlank()) {
-            throw new InvalidCommandException("Please tell me the task name.");
+            throw new InvalidCommandException("The task name... It's missing...");
         }
         if (parameterValues.get("/by").isBlank()) {
-            throw new InvalidCommandException("Please tell me when the task is due.");
+            throw new InvalidCommandException("When is this task due again?");
         }
 
         String name = parameterValues.get("first");

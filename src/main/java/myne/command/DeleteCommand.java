@@ -34,7 +34,7 @@ public class DeleteCommand implements Command {
     @Override
     public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
         if (parameters.trim().isEmpty()) {
-            throw new InvalidCommandException("Tell me which task to delete.");
+            throw new InvalidCommandException("Do tell me which task to delete.");
         }
 
         try {
@@ -43,9 +43,10 @@ public class DeleteCommand implements Command {
             Task removedTask = taskList.delete(index);
             storage.saveTasks(taskList);
 
-            return new Response("Let me take that back.\n" + removedTask, Status.SUCCESS);
+            return new Response("Let me take that back.\n\n" + removedTask, Status.SUCCESS);
         } catch (NumberFormatException e) {
-            throw new InvalidCommandException(parameters + " is not a valid task number.");
+            throw new InvalidCommandException(
+                    "Pray tell, how am I supposed to interpret \"" + parameters + "\" as a number?");
         } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("Oh my! It seems that you only have "
                     + taskList.size()

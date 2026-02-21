@@ -41,11 +41,12 @@ public class MarkCommand implements Command {
             taskList.mark(index);
             storage.saveTasks(taskList);
 
-            return new Response("You have carried out your task with utmost diligence. Very good.\n"
+            return new Response("You have carried out your task with utmost diligence. Very good.\n\n"
                     + taskList.get(index).toString(),
                     Status.SUCCESS);
         } catch (NumberFormatException e) {
-            throw new InvalidCommandException(parameters + " is not a valid task number.");
+            throw new InvalidCommandException(
+                    "Pray tell, how am I supposed to interpret \"" + parameters + "\" as a number?");
         } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("Oh my! It seems that you only have "
                     + taskList.size()

@@ -44,10 +44,11 @@ public class UnmarkCommand implements Command {
             storage.saveTasks(taskList);
 
             // Show message.
-            return new Response("Ah, you would like to redo it? Very well.\n" + taskList.get(index).toString(),
+            return new Response("Ah, you would like to redo it? Very well.\n\n" + taskList.get(index).toString(),
                     Status.SUCCESS);
         } catch (NumberFormatException e) {
-            throw new InvalidCommandException(parameters + " is not a valid task number.");
+            throw new InvalidCommandException(
+                    "Pray tell, how am I supposed to interpret \"" + parameters + "\" as a number?");
         } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("Oh my! It seems that you only have "
                     + taskList.size()

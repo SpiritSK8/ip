@@ -44,7 +44,7 @@ public class Myne {
         parseResult.getTasks().forEach(taskList::add);
 
         if (parseResult.hasError()) {
-            String errorHeader = "Hmm, I don't recognize this language... \n\n";
+            String errorHeader = "Hmm, I don't recognize this language... Can you decipher it for me?\n\n";
             String errorMessage = errorHeader + String.join("\n", parseResult.getErrors());
             return new Response(errorMessage, Status.FAIL);
         }

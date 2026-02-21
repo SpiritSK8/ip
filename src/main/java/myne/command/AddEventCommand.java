@@ -48,7 +48,7 @@ public class AddEventCommand implements Command {
         taskList.add(event);
         storage.saveTasks(taskList);
 
-        return new Response("I entrust you with this task.\n" + event.toString(), Status.SUCCESS);
+        return new Response("I entrust you with this task.\n\n" + event.toString(), Status.SUCCESS);
     }
 
     private Event parseCommand(String parameters) throws InvalidCommandException {
@@ -66,7 +66,7 @@ public class AddEventCommand implements Command {
             throw new InvalidCommandException("Please tell me the task name.");
         }
         if (parameterValues.get("/from").isBlank()) {
-            throw new InvalidCommandException("Please tell me when the event should start.");
+            throw new InvalidCommandException("When can I expect this event to start?");
         }
         if (parameterValues.get("/to").isBlank()) {
             throw new InvalidCommandException("I need to know when the event ends.");
@@ -82,7 +82,7 @@ public class AddEventCommand implements Command {
 
             return new Event(name, from, to);
         } catch (DateTimeParseException e) {
-            throw new InvalidCommandException("Please enter the date in the prescribed format: DD-MM-YYYY");
+            throw new InvalidCommandException("Please enter the date in the following format: DD-MM-YYYY");
         }
     }
 }

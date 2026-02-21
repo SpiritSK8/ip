@@ -47,7 +47,7 @@ public class TaskParser {
                 i++;
             }
         } catch (FileNotFoundException e) {
-            result.addError("Error: Task file not found.");
+            result.addError("Error: data/myne.txt could not be accessed.");
         }
 
         return result;

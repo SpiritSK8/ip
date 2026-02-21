@@ -4,7 +4,7 @@
 you capture, organize, and track tasks efficiently, with a cheerful personality to boot!
 
 ## Features
-> [INFO!] **Notes about the command format:**
+> [!INFO] **Notes about the command format:**
 >- Words in `UPPER_CASE` are values given by the user. 
 e.g. in `todo DESCRIPTION`, `DESCRIPTION` is a value given by the user. 
 > - Formats must be followed in the <ins>exact</ins> order given. 

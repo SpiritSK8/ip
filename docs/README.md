@@ -5,6 +5,7 @@ you capture, organize, and track tasks efficiently, with a cheerful personality 
 
 ## Features
 > **Notes about the command format:**
+>
 > - Words in `UPPER_CASE` are values given by the user.
     e.g. in `todo DESCRIPTION`, `DESCRIPTION` is a value given by the user.
 > - Formats must be followed in the <ins>exact</ins> order given.
@@ -12,27 +13,29 @@ you capture, organize, and track tasks efficiently, with a cheerful personality 
     (such as `list`, `undo`, and `bye`) will be ignored.
     e.g. `bye 123` will be interpreted as `bye`.
 > - `INDEX` refers to the index of a task when `list` is used.
+
 ### 1. Add a Task
 Emu supports three types of tasks:
 
 - **To-Do**: A task with only a `DESCRIPTION`.
-- Format: `todo DESCRIPTION`  
+
+- Format: `todo DESCRIPTION`
   Example: `todo Buy groceries`
 
 
 - **Deadline**: A task with a `DESCRIPTION` and a `BY` date.
-  
-- `BY` can be **any string**  — if in `YYYY-MM-DD` format, 
+
+- `BY` can be **any string**  — if in `YYYY-MM-DD` format,
   it will automatically be converted to `MMM d yyyy`.
-- Format: `deadline DESCRIPTION /by BY`  
+- Format: `deadline DESCRIPTION /by BY`
   Example: `deadline Submit report /by 2026-02-28`
 
 
 - **Event**: A task with a `DESCRIPTION`, a `FROM` date and a `TO` date.
-  
+
 - `FROM` and `TO` can be **any string**  — if in `YYYY-MM-DD` format,
   it will automatically be converted to `MMM d yyyy`.
-- Format: `event DESCRIPTION /from FROM /to TO`  
+- Format: `event DESCRIPTION /from FROM /to TO`
   Example: `event Meeting /from 2026-02-21 /to 2026-02-21`
 
   > **Note:** Emu does not ensure the event start date/time

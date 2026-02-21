@@ -56,10 +56,12 @@ public class AddDeadlineCommand implements Command {
 
         HashMap<String, String> parameterValues = CommandParser.extractParameters(parameters);
 
+        // Checks for missing /by
         if (!parameterValues.containsKey("/by")) {
             throw new InvalidCommandException("Please provide the due date with /by.");
         }
 
+        // Checks for blank name or due date.
         if (parameterValues.get("first").isBlank()) {
             throw new InvalidCommandException("The task name... It's missing...");
         }

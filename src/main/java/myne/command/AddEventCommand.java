@@ -58,10 +58,12 @@ public class AddEventCommand implements Command {
 
         HashMap<String, String> parameterValues = CommandParser.extractParameters(parameters);
 
+        // Checks for missing /from or /to
         if (!parameterValues.containsKey("/from") || !parameterValues.containsKey("/to")) {
             throw new InvalidCommandException("Please provide the dates with /from and /to.");
         }
 
+        // Checks for missing name, start date, or end date.
         if (parameterValues.get("first").isBlank()) {
             throw new InvalidCommandException("Please tell me the task name.");
         }

@@ -4,31 +4,38 @@
 you capture, organize, and track tasks efficiently, with a cheerful personality to boot!
 
 ## Features
-> [INFO!] **Notes about the command format:**
->- Words in `UPPER_CASE` are values given by the user. 
-e.g. in `todo DESCRIPTION`, `DESCRIPTION` is a value given by the user. 
-> - Formats must be followed in the <ins>exact</ins> order given. 
-> - Extra values given for commands that do not require any 
-(such as list, undo, and bye) will be ignored.
-e.g. bye 123 will be interpreted as bye.
+> **Notes about the command format:**
+> - Words in `UPPER_CASE` are values given by the user.
+    e.g. in `todo DESCRIPTION`, `DESCRIPTION` is a value given by the user.
+> - Formats must be followed in the <ins>exact</ins> order given.
+> - Extra values given for commands that do not require any
+    (such as `list`, `undo`, and `bye`) will be ignored.
+    e.g. `bye 123` will be interpreted as `bye`.
 > - `INDEX` refers to the index of a task when `list` is used.
 ### 1. Add a Task
 Emu supports three types of tasks:
 
-- **To-Do**: `todo DESCRIPTION`  
+- **To-Do**: A task with only a `DESCRIPTION`.
+- Format: `todo DESCRIPTION`  
   Example: `todo Buy groceries`
 
 
-- **Deadline**: `deadline DESCRIPTION /by BY`  
-  `BY` can be **any string**  — if in `YYYY-MM-DD` format, it will automatically be converted to `MMM d yyyy`.  
+- **Deadline**: A task with a `DESCRIPTION` and a `BY` date.
+  
+- `BY` can be **any string**  — if in `YYYY-MM-DD` format, 
+  it will automatically be converted to `MMM d yyyy`.
+- Format: `deadline DESCRIPTION /by BY`  
   Example: `deadline Submit report /by 2026-02-28`
 
 
-- **Event**: `event DESCRIPTION /from FROM /to TO`  
-  `FROM` and `TO` can be **any string**  — if in `YYYY-MM-DD` format, it will automatically be converted to `MMM d yyyy`.  
+- **Event**: A task with a `DESCRIPTION`, a `FROM` date and a `TO` date.
+  
+- `FROM` and `TO` can be **any string**  — if in `YYYY-MM-DD` format,
+  it will automatically be converted to `MMM d yyyy`.
+- Format: `event DESCRIPTION /from FROM /to TO`  
   Example: `event Meeting /from 2026-02-21 /to 2026-02-21`
 
-  > **Note:** Emu does not ensure the event start date/time 
+  > **Note:** Emu does not ensure the event start date/time
   > is before the end date/time.
 
 ### 2. Mark a Task
@@ -79,7 +86,7 @@ Saves all tasks and exits the program.
 - Tasks are automatically loaded from `[JAR location]/data/tasks.txt`.
 - Advanced users can edit this file **only when Emu is not running**.
 - Invalid edits may be discarded, or corrupt the original data. Do it
-at your **own discretion**.
+  at your **own discretion**.
 
 ## Command Summary
 
@@ -95,3 +102,4 @@ at your **own discretion**.
 | List Tasks    | `list`                                |
 | Search        | `find KEYWORD`                        |
 | Quit & Save   | `bye`                                 |                                                              |
+|

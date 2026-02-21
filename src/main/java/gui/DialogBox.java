@@ -34,6 +34,8 @@ public class DialogBox extends HBox {
     @FXML
     private Label dialog;
     @FXML
+    private Label username;
+    @FXML
     private Polygon bubbleTail;
     @FXML
     private ImageView displayPicture;
@@ -49,6 +51,24 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
+        username.setVisible(false);
+        username.setManaged(false);
+        displayPicture.setImage(img);
+    }
+
+
+    private DialogBox(String text, Image img, String name) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            fxmlLoader.setController(this);
+            fxmlLoader.setRoot(this);
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        dialog.setText(text);
+        username.setText(name);
         displayPicture.setImage(img);
     }
 
@@ -90,7 +110,7 @@ public class DialogBox extends HBox {
         return db;
     }
 
-    public static DialogBox getMyneDialog(String text, Image img) {
-        return new DialogBox(text, img);
+    public static DialogBox getMyneDialog(String text, Image img, String name) {
+        return new DialogBox(text, img, name);
     }
 }

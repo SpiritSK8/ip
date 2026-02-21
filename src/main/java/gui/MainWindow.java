@@ -61,11 +61,11 @@ public class MainWindow extends AnchorPane {
         this.myne = myne;
 
         // Show greeting message.
-        addMyneDialog(myne.getUi().getGreetingText(), FerMyneFace.MYNE_THANKFUL);
+        addMyneDialog(myne.getUi().getGreeting());
 
         Response response = myne.parseTaskFile();
         if (response.getStatus() == Status.FAIL) {
-            addMyneDialog(response.getMessage(), response.getFace());
+            addMyneDialog(response);
         }
     }
 
@@ -91,17 +91,17 @@ public class MainWindow extends AnchorPane {
             Command command = CommandParser.parse(input, myne);
             Response response = command.execute();
             addUserDialog(input);
-            addMyneDialog(response.getMessage(), response.getFace());
+            addMyneDialog(response);
 
             if (!myne.isAlive()) {
                 exitAppAfterDelay(4.0);
             }
         } catch (FerMyneException e) {
             addUserDialog(input);
-            addMyneDialog(e.getMessage(), e.getFace());
+            addMyneDialog(e.getMessage(), e.getFace(), e.getName());
         } catch (RuntimeException e) {
             addUserDialog(input);
-            addMyneDialog(e.getMessage(), FerMyneFace.MYNE_WORRIED); // Default face for errors.
+            addMyneDialog(e.getMessage(), FerMyneFace.MYNE_WORRIED, "Myne"); // Default face for errors.
         }
 
         userInput.clear();
@@ -113,9 +113,16 @@ public class MainWindow extends AnchorPane {
         );
     }
 
-    private void addMyneDialog(String message, FerMyneFace face) {
+    private void addMyneDialog(Response response) {
         dialogContainer.getChildren().addAll(
-                DialogBox.getMyneDialog(message, ferMyneImages.get(face))
+                DialogBox.getMyneDialog(
+                        response.getMessage(), ferMyneImages.get(response.getFace()), response.getName())
+        );
+    }
+
+    private void addMyneDialog(String message, FerMyneFace face, String name) {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getMyneDialog(message, ferMyneImages.get(face), name)
         );
     }
 

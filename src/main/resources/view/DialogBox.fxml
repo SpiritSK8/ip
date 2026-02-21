@@ -19,8 +19,12 @@
         <VBox fx:id="dialogBubble"
               styleClass="dialog-bubble"
               maxHeight="30.0"
-              spacing="5">
+              spacing="6.0">
             <children>
+                <Label fx:id="username"
+                       minHeight="16.0"
+                       maxHeight="16.0"
+                       text="Username" />
                 <Label fx:id="dialog"
                        minHeight="-Infinity"
                        text="Label"

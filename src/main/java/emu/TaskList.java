@@ -12,12 +12,22 @@ public class TaskList {
     private final ArrayList<Task> tasks;
     private final ArrayList<String> history;
 
+    /**
+     * Initialises a TaskList with the given list of tasks
+     */
     public TaskList(ArrayList<Task> tasks) {
         assert tasks != null : "tasks should not be null";
         this.tasks = tasks;
         this.history = new ArrayList<>();
     }
 
+    /**
+     * Returns the task at the given position in the TaskList
+     *
+     * @param position The position of the task in the TaskList
+     * @return The requested task
+     * @throws EmuException if the position is invalid
+     */
     public Task getTask(int position) throws EmuException {
         if (position < tasks.size() && position >= TASKLIST_STARTING_POINT) {
             Task task = tasks.get(position);
@@ -28,10 +38,16 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns the number of tasks in the TaskList
+     */
     public int size() {
         return tasks.size();
     }
 
+    /**
+     * Returns a string representation of all tasks in the TaskList
+     */
     public String listTasks() {
         String temp = "Okay, here's your tasks!";
         for (int i = 1; i <= tasks.size(); i++) {
@@ -44,13 +60,20 @@ public class TaskList {
         return temp;
     }
 
-    public String findTasks(String search) {
-        assert search != null : "search must not be null";
+    /**
+     * Searches for tasks containing the given substring
+     * and returns a string listing them
+     *
+     * @param substring Substring to look for in task description
+     * @return A string of matching tasks
+     */
+    public String findTasks(String substring) {
+        assert substring != null : "substring must not be null";
 
         int counter = 0;
         String temp = "Let me see... these kinda match:";
         for (Task task : tasks) {
-            if (task.getDescription().contains(search)) {
+            if (task.getDescription().contains(substring)) {
                 counter++;
                 temp += "\n" + counter + ". " + task.toString();
             }
@@ -61,6 +84,14 @@ public class TaskList {
         return temp;
     }
 
+    /**
+     * Marks the task at the given position as complete
+     * and returns a string showing the marked task
+     *
+     * @param position The position of the task in the TaskList
+     * @return Response string after marking the task
+     * @throws EmuException if the task is already marked
+     */
     public String markTask(int position) throws EmuException {
         Task task = getTask(position - 1);
         if (task.getStatusIcon().equals(" ")) {
@@ -73,6 +104,14 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks the task at the given position as incomplete
+     * and returns a string showing the unmarked task
+     *
+     * @param position The position of the task in the TaskList
+     * @return Response string after unmarking the task
+     * @throws EmuException if the task is already unmarked
+     */
     public String unmarkTask(int position) throws EmuException {
         Task task = getTask(position - 1);
         if (task.getStatusIcon().equals("X")) {
@@ -86,6 +125,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a ToDo task with the given description
+     * and returns a string showing the added task
+     *
+     * @param desc Description of the ToDo task
+     * @return Response string after adding the task
+     */
     public String addToDoTask(String desc) {
         assert desc != null && !desc.isEmpty() : "desc cannot be null or empty";
 
@@ -97,11 +143,19 @@ public class TaskList {
                 + "Isn't that cool?";
     }
 
-    public String addDeadlineTask(String desc, String by) {
-        assert desc != null && !desc.isEmpty() : "desc cannot be null or empty";
+    /**
+     * Adds a Deadline task with the given description and by date
+     * and returns a string showing the added task
+     *
+     * @param description Description of the Deadline task
+     * @param by By date/string of the Deadline task
+     * @return Response string after adding the task
+     */
+    public String addDeadlineTask(String description, String by) {
+        assert description != null && !description.isEmpty() : "description cannot be null or empty";
         assert by != null && !by.isEmpty() : "by cannot be null or empty";
 
-        Deadline task = new Deadline(desc, by);
+        Deadline task = new Deadline(description, by);
         tasks.add(task);
         history.add("add");
         return "Okay! This Deadline is in:\n"
@@ -109,12 +163,21 @@ public class TaskList {
                 + "Hmm... hope that's right!";
     }
 
-    public String addEventTask(String desc, String from, String to) {
-        assert desc != null && !desc.isEmpty() : "desc cannot be null or empty";
+    /**
+     * Adds an Event task with the given description, from date, and to date
+     * and returns a string showing the added task
+     *
+     * @param description Description of the Event task
+     * @param from From date/string of the Event task
+     * @param to To date/string of the Event task
+     * @return Response string after adding the task
+     */
+    public String addEventTask(String description, String from, String to) {
+        assert description != null && !description.isEmpty() : "description cannot be null or empty";
         assert from != null && !from.isEmpty() : "from cannot be null or empty";
         assert to != null && !to.isEmpty() : "to cannot be null or empty";
 
-        Event task = new Event(desc, from, to);
+        Event task = new Event(description, from, to);
         tasks.add(task);
         history.add("add");
         return "Ooh! I put in this Event:\n"
@@ -122,6 +185,14 @@ public class TaskList {
                 + "Hehe, nice!";
     }
 
+    /**
+     * Deletes the task at the given position
+     * and returns a string showing the deleted task
+     *
+     * @param position The position of the task in the TaskList
+     * @return Response string after deleting the task
+     * @throws EmuException if the position is invalid
+     */
     public String deleteTask(int position) throws EmuException {
         Task task = getTask(position - 1);
         tasks.remove(position - 1);
@@ -131,6 +202,13 @@ public class TaskList {
                 + "It's gone now!";
     }
 
+    /**
+     * Undoes the previous edit to the Tasklist
+     * and returns a string showing the undone task
+     *
+     * @return Response string representing the undone task
+     * @throws EmuException if there’s nothing to undo
+     */
     public String undoLastCommand() throws EmuException {
         if (history.isEmpty()) {
             throw new EmuException("Hmm... I can't undo anything right now!");
@@ -145,29 +223,29 @@ public class TaskList {
         String response = "Oh! Let's undo that then...";
 
         switch (command) {
-            case "add" -> {
-                Task task = tasks.get(tasks.size() - 1);
-                tasks.remove(tasks.size() - 1);
-                response += "\nI removed the last task I added: " + task.toString();
-            }
-            case "unmark" -> {
-                int position = Parser.parseNumber(other);
-                Task task = tasks.get(position - 1);
-                task.markComplete();
-                response += "\nI marked it again: " + task.toString();
-            }
-            case "mark" -> {
-                int position = Parser.parseNumber(other);
-                Task task = tasks.get(position - 1);
-                task.markIncomplete();
-                response += "\nI unmarked it again: " + task.toString();
-            }
-            case "delete" -> {
-                Task task = Storage.parseTask(other);
-                tasks.add(task);
-                response += "\nI brought back this task at the end of your list: " + task.toString();
-            }
-            default -> throw new EmuException("Erm... I'm not sure what to undo!");
+        case "add" -> {
+            Task task = tasks.get(tasks.size() - 1);
+            tasks.remove(tasks.size() - 1);
+            response += "\nI removed the last task I added:\n" + task.toString();
+        }
+        case "unmark" -> {
+            int position = Parser.parseNumber(other);
+            Task task = tasks.get(position - 1);
+            task.markComplete();
+            response += "\nI marked it again:\n" + task.toString();
+        }
+        case "mark" -> {
+            int position = Parser.parseNumber(other);
+            Task task = tasks.get(position - 1);
+            task.markIncomplete();
+            response += "\nI unmarked it again:\n" + task.toString();
+        }
+        case "delete" -> {
+            Task task = Storage.parseTask(other);
+            tasks.add(task);
+            response += "\nI brought back this task at the end of your list:\n" + task.toString();
+        }
+        default -> throw new EmuException("Erm... I'm not sure what to undo!");
         }
         return response;
     }

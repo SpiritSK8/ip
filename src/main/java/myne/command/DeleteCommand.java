@@ -1,5 +1,7 @@
 package myne.command;
 
+import myne.FerMyneException;
+import myne.FerMyneFace;
 import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
@@ -34,7 +36,7 @@ public class DeleteCommand implements Command {
     @Override
     public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
         if (parameters.isBlank()) {
-            throw new InvalidCommandException("Do tell me which task to delete.");
+            throw new InvalidCommandException("Do tell me which task to delete.", FerMyneFace.MYNE_CONFUSED);
         }
 
         if (CommandParser.isNumeric(parameters)) {
@@ -51,12 +53,15 @@ public class DeleteCommand implements Command {
             Task removedTask = taskList.delete(index);
             storage.saveTasks(taskList);
 
-            return new Response("Let me take that back.\n\n" + removedTask, Status.SUCCESS);
+            return new Response("Let me take that back.\n\n" + removedTask,
+                    Status.SUCCESS,
+                    FerMyneFace.MYNE_HAPPY);
 
         } catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException("Oh my! It seems that you only have tasks 1 to "
+            throw new FerMyneException("Oh my! It seems that you only have tasks 1 to "
                     + taskList.size()
-                    + " at present.");
+                    + " at present.",
+                    FerMyneFace.MYNE_CONFUSED);
         }
     }
 
@@ -65,16 +70,18 @@ public class DeleteCommand implements Command {
 
         // There must be exactly 1 task to delete when deleting by keyword.
         if (findResult.isEmpty()) {
-            throw new InvalidCommandException("You have no such task.");
+            throw new InvalidCommandException("You have no such task.", FerMyneFace.MYNE_DISGUSTED);
         }
         if (findResult.size() > 1) {
-            throw new InvalidCommandException("Which task? Please be more specific.");
+            throw new InvalidCommandException("Which task? Please be more specific.", FerMyneFace.MYNE_WORRIED);
         }
 
         Task taskToDelete = findResult.get(0);
         taskList.delete(taskToDelete);
         storage.saveTasks(taskList);
 
-        return new Response("Let me take that back.\n\n" + taskToDelete, Status.SUCCESS);
+        return new Response("Let me take that back.\n\n" + taskToDelete,
+                Status.SUCCESS,
+                FerMyneFace.MYNE_HAPPY);
     }
 }

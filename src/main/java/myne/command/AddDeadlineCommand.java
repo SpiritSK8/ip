@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 
+import myne.FerMyneFace;
 import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
@@ -46,27 +47,29 @@ public class AddDeadlineCommand implements Command {
         taskList.add(deadline);
         storage.saveTasks(taskList);
 
-        return new Response("I entrust you with this task.\n\n" + deadline.toString(), Status.SUCCESS);
+        return new Response("Carry out this task.\n\n" + deadline.toString(),
+                Status.SUCCESS,
+                FerMyneFace.FERDINAND_DEFAULT);
     }
 
     private Deadline parseCommand(String parameters) throws InvalidCommandException {
         if (parameters.isEmpty()) {
-            throw new InvalidCommandException("Please provide the task details for me.");
+            throw new InvalidCommandException("Nothing is there, fool.", FerMyneFace.FERDINAND_EXASPERATED);
         }
 
         HashMap<String, String> parameterValues = CommandParser.extractParameters(parameters);
 
         // Checks for missing /by
         if (!parameterValues.containsKey("/by")) {
-            throw new InvalidCommandException("Please provide the due date with /by.");
+            throw new InvalidCommandException("Provide the due date with /by.", FerMyneFace.FERDINAND_DEFAULT);
         }
 
         // Checks for blank name or due date.
         if (parameterValues.get("first").isBlank()) {
-            throw new InvalidCommandException("The task name... It's missing...");
+            throw new InvalidCommandException("Where is the task name?", FerMyneFace.FERDINAND_EXASPERATED);
         }
         if (parameterValues.get("/by").isBlank()) {
-            throw new InvalidCommandException("When is this task due again?");
+            throw new InvalidCommandException("When is this task due?", FerMyneFace.FERDINAND_EXASPERATED);
         }
 
         String name = parameterValues.get("first");
@@ -77,7 +80,8 @@ public class AddDeadlineCommand implements Command {
 
             return new Deadline(name, dueDate);
         } catch (DateTimeParseException e) {
-            throw new InvalidCommandException("Please enter the date in the following format: DD-MM-YYYY");
+            throw new InvalidCommandException("Your date is improper. Change it to DD-MM-YYYY.",
+                    FerMyneFace.FERDINAND_EXASPERATED);
         }
     }
 }

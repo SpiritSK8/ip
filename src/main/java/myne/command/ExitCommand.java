@@ -1,5 +1,6 @@
 package myne.command;
 
+import myne.FerMyneFace;
 import myne.Myne;
 import myne.MyneUi;
 
@@ -25,6 +26,6 @@ public class ExitCommand implements Command {
     @Override
     public Response execute() {
         myne.exit();
-        return new Response(ui.getFarewellText(), Status.SUCCESS);
+        return new Response(ui.getFarewellText(), Status.SUCCESS, FerMyneFace.MYNE_THANKFUL);
     }
 }

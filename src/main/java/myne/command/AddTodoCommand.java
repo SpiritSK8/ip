@@ -1,5 +1,6 @@
 package myne.command;
 
+import myne.FerMyneFace;
 import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
@@ -32,7 +33,7 @@ public class AddTodoCommand implements Command {
     @Override
     public Response execute() throws InvalidCommandException {
         if (taskName.isEmpty()) {
-            throw new InvalidCommandException("The task name cannot be nothing, can it?");
+            throw new InvalidCommandException("The task name cannot be nothing, can it?", FerMyneFace.MYNE_WORRIED);
         }
 
         // Add task and save.
@@ -40,6 +41,8 @@ public class AddTodoCommand implements Command {
         taskList.add(todo);
         storage.saveTasks(taskList);
 
-        return new Response("I entrust you with this task.\n\n" + todo.toString(), Status.SUCCESS);
+        return new Response("I entrust you with this task.\n\n" + todo.toString(),
+                Status.SUCCESS,
+                FerMyneFace.MYNE_THANKFUL);
     }
 }

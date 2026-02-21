@@ -1,5 +1,7 @@
 package myne.command;
 
+import myne.FerMyneException;
+import myne.FerMyneFace;
 import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
@@ -33,7 +35,7 @@ public class MarkCommand implements Command {
     @Override
     public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
         if (parameters.trim().isEmpty()) {
-            throw new InvalidCommandException("I cannot mark something that does not exist.");
+            throw new InvalidCommandException("Where is your task?", FerMyneFace.FERDINAND_EXASPERATED);
         }
 
         if (CommandParser.isNumeric(parameters)) {
@@ -52,12 +54,13 @@ public class MarkCommand implements Command {
 
             return new Response("You have carried out your task with utmost diligence. Very good.\n\n"
                     + taskList.get(index).toString(),
-                    Status.SUCCESS);
+                    Status.SUCCESS,
+                    FerMyneFace.FERDINAND_HAPPY);
 
         } catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException("Oh my! It seems that you only have tasks 1 to "
-                    + taskList.size()
-                    + " at present.");
+            throw new FerMyneException("I do not recall giving you that task. You only have tasks 1 to "
+                    + taskList.size() + ".",
+                    FerMyneFace.FERDINAND_DEFAULT);
         }
     }
 
@@ -66,10 +69,10 @@ public class MarkCommand implements Command {
 
         // There must be exactly 1 task to mark when marking by keyword.
         if (findResult.isEmpty()) {
-            throw new InvalidCommandException("You have no such task.");
+            throw new FerMyneException("You have no such task.", FerMyneFace.FERDINAND_EXASPERATED);
         }
         if (findResult.size() > 1) {
-            throw new InvalidCommandException("Which task? Please be more specific.");
+            throw new FerMyneException("Which task? Be more specific.", FerMyneFace.FERDINAND_DEFAULT);
         }
 
         Task taskToMark = findResult.get(0);
@@ -77,6 +80,7 @@ public class MarkCommand implements Command {
 
         return new Response("You have carried out your task with utmost diligence. Very good.\n\n"
                 + taskToMark.toString(),
-                Status.SUCCESS);
+                Status.SUCCESS,
+                FerMyneFace.FERDINAND_HAPPY);
     }
 }

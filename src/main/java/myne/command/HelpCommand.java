@@ -1,5 +1,7 @@
 package myne.command;
 
+import myne.FerMyneFace;
+
 /**
  * Command to show Myne help.
  */
@@ -32,12 +34,10 @@ public class HelpCommand implements Command {
     @Override
     public Response execute() {
         String commandType = parameters.trim();
-        String helpMessage = getHelpFor(commandType);
-
-        return new Response(helpMessage, Status.SUCCESS);
+        return getHelpFor(commandType);
     }
 
-    private String getHelpFor(String commandType) {
+    private Response getHelpFor(String commandType) {
         return switch (commandType) {
             case "bye" -> getByeHelp();
             case "todo" -> getTodoHelp();
@@ -48,32 +48,40 @@ public class HelpCommand implements Command {
             case "unmark" -> getUnmarkHelp();
             case "delete" -> getDeleteHelp();
             case "find" -> getFindHelp();
-            default -> HELP;
+            default -> getDefaultHelp();
         };
     }
 
-    private String getByeHelp() {
-        return """
+    private Response getDefaultHelp() {
+        return new Response(HELP, Status.SUCCESS, FerMyneFace.MYNE_HAPPY);
+    }
+
+    private Response getByeHelp() {
+        String help = """
                 For when you wish to depart.
                 
                 Usage:
                 bye""";
+
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_THANKFUL);
     }
 
-    private String getTodoHelp() {
-        return """
-                Adds a new task with the specified task_name.
+    private Response getTodoHelp() {
+        String help = """
+                I shall write down a new task for you.
                 
                 Usage:
                 todo <task_name>
                 
                 Example usage:
                 todo read books""";
+
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_DEFAULT);
     }
 
-    private String getDeadlineHelp() {
-        return """
-                Adds a new task with a deadline.
+    private Response getDeadlineHelp() {
+        String help = """
+                I shall give you a task which must be finished before it's due.
                 
                 Usage:
                 deadline <task_name> /by <due_date>
@@ -81,68 +89,88 @@ public class HelpCommand implements Command {
                 Example usage:
                 deadline buy books /by 14-3-2026
                 deadline read books /by 5 may 2026""";
+
+        return new Response(help, Status.SUCCESS, FerMyneFace.FERDINAND_DEFAULT);
     }
 
-    private String getEventHelp() {
-        return """
-                Adds a new task with a start and end date.
+    private Response getEventHelp() {
+        String help = """
+                How exciting! Tell me when the event starts and ends and I will write it down for you.
                 
                 Usage:
                 event <task_name> /from <start_date> /to <end_date>
                 
                 Example usage:
                 event read books /from 14-3-2026 /to 15 mar 2026""";
+
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_WONDER);
     }
 
-    private String getListHelp() {
-        return """
-                Lists all of the tasks that you have.
+    private Response getListHelp() {
+        String help = """
+                Did you forget your tasks again?
                 
                 Usage:
                 list""";
+
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_WORRIED);
     }
 
-    private String getMarkHelp() {
-        return """
-                Marks the specified task as done.
+    private Response getMarkHelp() {
+        String help = """
+                One task down!
                 
                 Usage:
                 mark <task_number>
+                mark <keyword>
                 
                 Example usage:
-                mark 1""";
+                mark 1
+                mark read books""";
+
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_JOYFUL);
     }
 
-    private String getUnmarkHelp() {
-        return """
-                Marks the specified task as not done.
+    private Response getUnmarkHelp() {
+        String help = """
+                Send word when you need to redo a task.
                 
                 Usage:
                 unmark <task_number>
+                unmark <keyword>
                 
                 Example usage:
-                unmark 1""";
+                unmark 1
+                unmark read books""";
+
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_HAPPY);
     }
 
-    private String getDeleteHelp() {
-        return """
-                Deletes the specified task.
+    private Response getDeleteHelp() {
+        String help = """
+                Let's give that task to another person...
                 
                 Usage:
                 delete <task_number>
+                delete <keyword>
                 
                 Example usage:
-                delete 1""";
+                delete 1
+                delete read books""";
+
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_WORRIED);
     }
 
-    private String getFindHelp() {
-        return """
-                Finds all the tasks that match the keyword.
+    private Response getFindHelp() {
+        String help = """
+                I'll get to read... Eheheh... But of course it is to help you find your task!
                 
                 Usage:
                 find <keyword>
                 
                 Example usage:
                 find book""";
+
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_JOYFUL);
     }
 }

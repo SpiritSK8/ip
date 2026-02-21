@@ -1,5 +1,7 @@
 package myne.command;
 
+import myne.FerMyneException;
+import myne.FerMyneFace;
 import myne.Myne;
 import myne.MyneUi;
 import myne.TaskList;
@@ -35,7 +37,7 @@ public class UnmarkCommand implements Command {
     @Override
     public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
         if (parameters.trim().isEmpty()) {
-            throw new InvalidCommandException("I cannot unmark something that does not exist.");
+            throw new InvalidCommandException("I cannot unmark nothing.", FerMyneFace.MYNE_DISGUSTED);
         }
 
         if (CommandParser.isNumeric(parameters)) {
@@ -53,12 +55,14 @@ public class UnmarkCommand implements Command {
             storage.saveTasks(taskList);
 
             return new Response("Ah, you would like to redo it? Very well.\n\n" + taskList.get(index).toString(),
-                    Status.SUCCESS);
+                    Status.SUCCESS,
+                    FerMyneFace.MYNE_DEFAULT);
 
         } catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException("Oh my! It seems that you only have tasks 1 to "
+            throw new FerMyneException("Oh my! It seems that you only have tasks 1 to "
                     + taskList.size()
-                    + " at present.");
+                    + " at present.",
+                    FerMyneFace.MYNE_CONFUSED);
         }
     }
 
@@ -67,16 +71,17 @@ public class UnmarkCommand implements Command {
 
         // There must be exactly 1 task to unmark when unmarking by keyword.
         if (findResult.isEmpty()) {
-            throw new InvalidCommandException("You have no such task.");
+            throw new InvalidCommandException("You have no such task.", FerMyneFace.MYNE_WORRIED);
         }
         if (findResult.size() > 1) {
-            throw new InvalidCommandException("Which task? Please be more specific.");
+            throw new InvalidCommandException("Which task? Please be more specific.", FerMyneFace.MYNE_WORRIED);
         }
 
         Task taskToUnmark = findResult.get(0);
         taskToUnmark.unmark();
 
         return new Response("Ah, you would like to redo it? Very well.\n\n" + taskToUnmark.toString(),
-                Status.SUCCESS);
+                Status.SUCCESS,
+                FerMyneFace.MYNE_DEFAULT);
     }
 }

@@ -1,12 +1,23 @@
 .dialog-bubble {
     -fx-background-color: rgba(232, 239, 255, 0.95);
-    -fx-background-radius: 1em 1em 0 1em;
+    -fx-background-radius: 1em 0 1em 1em;
 }
 
 .reply-dialog-bubble {
-    -fx-background-radius: 1em 1em 1em 0;
+    -fx-background-radius: 0 1em 1em 1em;
 }
 
 .label {
     -fx-font: 13px "Book Antiqua";
+}
+
+/* Tail styling. Taken from ChatGPT */
+.bubble-tail-right {
+    -fx-background-color: #dddddd;
+    -fx-shape: "M 0 0 L 10 0 L 0 10 Z";
+}
+
+.bubble-tail-left {
+    -fx-background-color: #dddddd;
+    -fx-shape: "M 10 0 L 0 10 L 10 10 Z";
 }

@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.shape.Polygon?>
 <fx:root alignment="TOP_RIGHT"
          maxHeight="1.7976931348623157E308"
          maxWidth="1.7976931348623157E308"
@@ -29,9 +30,13 @@
                 <Insets bottom="7.0" left="10.0" right="10.0" top="7.0" />
             </padding>
         </VBox>
+        <Polygon fx:id="bubbleTail"
+                 points="0,0, 10,0, 0,10"
+                 translateX="-1"
+                 fill="#e8effff2" />
         <ImageView fx:id="displayPicture"
-                   fitHeight="60.0"
-                   fitWidth="60.0"
+                   fitHeight="74.0"
+                   fitWidth="74.0"
                    pickOnBounds="true"
                    preserveRatio="true">
             <HBox.margin>

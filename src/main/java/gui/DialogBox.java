@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 
 /**
  * Represents a dialog box consisting of an ImageView to represent the speaker's face
@@ -26,12 +27,14 @@ public class DialogBox extends HBox {
      * Chat bubble margin for the opposite side.
      * For example, the user's chat bubbles are on the left, so extra margin on the right is needed.
      */
-    private static final double oppositeMargin = 80.0;
+    private static final double oppositeMargin = 88.0;
 
     @FXML
     private VBox dialogBubble;
     @FXML
     private Label dialog;
+    @FXML
+    private Polygon bubbleTail;
     @FXML
     private ImageView displayPicture;
 
@@ -68,6 +71,10 @@ public class DialogBox extends HBox {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
+
+        // Flips the tail.
+        bubbleTail.setScaleX(-1.0);
+        bubbleTail.setTranslateX(1.0);
 
         setAlignment(Pos.TOP_LEFT);
 

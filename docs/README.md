@@ -90,16 +90,15 @@ Saves all tasks and exits the program.
 
 ## Command Summary
 
-| Action        | Command Example                       |
-|---------------|---------------------------------------|
-| Add To-Do     | `todo DESCRIPTION`                    |
-| Add Deadline  | `deadline DESCRIPTION /by BY`         |
-| Add Event     | `event DESCRIPTION /from FROM /to TO`|
-| Delete        | `delete INDEX`                        |
-| Mark Task     | `mark INDEX`                          |
-| Unmark Task   | `unmark INDEX`                        |
-| Undo          | `undo`                                |
-| List Tasks    | `list`                                |
-| Search        | `find KEYWORD`                        |
-| Quit & Save   | `bye`                                 |                                                              |
-|
+| Action        | Command Example                        |
+|---------------|----------------------------------------|
+| Add To-Do     | `todo DESCRIPTION`                     |
+| Add Deadline  | `deadline DESCRIPTION /by BY`          |
+| Add Event     | `event DESCRIPTION /from FROM /to TO`  |
+| Delete        | `delete INDEX`                         |
+| Mark Task     | `mark INDEX`                           |
+| Unmark Task   | `unmark INDEX`                         |
+| Undo          | `undo`                                 |
+| List Tasks    | `list`                                 |
+| Search        | `find KEYWORD`                         |
+| Quit & Save   | `bye`                                  |

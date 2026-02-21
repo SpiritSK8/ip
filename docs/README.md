@@ -7,11 +7,14 @@ you capture, organize, and track tasks efficiently, with a cheerful personality 
 > **Notes about the command format:**
 >
 > - Words in `UPPER_CASE` are values given by the user.
-    e.g. in `todo DESCRIPTION`, `DESCRIPTION` is a value given by the user.
+>   e.g. in `todo DESCRIPTION`, `DESCRIPTION` is a value given by the user.
+>
 > - Formats must be followed in the <ins>exact</ins> order given.
+>
 > - Extra values given for commands that do not require any
     (such as `list`, `undo`, and `bye`) will be ignored.
     e.g. `bye 123` will be interpreted as `bye`.
+>
 > - `INDEX` refers to the index of a task when `list` is used.
 
 ### 1. Add a Task
@@ -64,7 +67,7 @@ Undoes the last action that modified the TaskList.
 
 - **Command:** `undo`
 
-> Only actions that modify the TaskList (add, delete, mark/unmark) can be undone.
+> **NOTE**: Only actions that modify the TaskList (add, delete, mark/unmark) can be undone.
 
 ### 6. List All Tasks
 Displays all tasks in the TaskList.
@@ -75,15 +78,17 @@ Displays all tasks in the TaskList.
 Searches for tasks whose description contains the given keyword.
 
 - **Command:** `find KEYWORD`
-- Case-sensitive, returns tasks in the order they appear in the list.
+- **Case-sensitive**, returns tasks in the order they appear in the list.
 - Example: `find homework`
+
+> **NOTE**: If nothing / whitespace is given for `KEYWORD`, `find` will return all tasks
 
 ### 8. Quit and Save
 Saves all tasks and exits the program.
 
 - **Command:** `bye`
 
-> Do not close via the X button — tasks will not be saved.
+> **Note:** Do not close the chatbot via the X button — tasks will **not** be saved.
 
 ### 9. Data Handling
 - Tasks are automatically loaded from `[JAR location]/data/tasks.txt`.

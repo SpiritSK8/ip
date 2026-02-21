@@ -34,7 +34,7 @@ public class DeleteCommand implements Command {
     @Override
     public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
         if (parameters.trim().isEmpty()) {
-            throw new InvalidCommandException("I cannot delete something that does not exist.");
+            throw new InvalidCommandException("Tell me which task to delete.");
         }
 
         try {

@@ -1,4 +1,7 @@
 import javafx.application.Application;
+import myne.command.CommandParser;
+
+import java.util.HashMap;
 
 /**
  * Main class to launch the GUI.

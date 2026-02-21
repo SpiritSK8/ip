@@ -3,6 +3,7 @@ package myne.command;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
 
 import myne.Myne;
 import myne.TaskList;
@@ -50,31 +51,31 @@ public class AddDeadlineCommand implements Command {
 
     private Deadline parseCommand(String parameters) throws InvalidCommandException {
         if (parameters.isEmpty()) {
-            throw new InvalidCommandException("Deadline description cannot be empty.");
-        }
-        if (!parameters.contains("/by")) {
-            throw new InvalidCommandException("Deadlines must have a /by.");
+            throw new InvalidCommandException("Please provide the task details.");
         }
 
-        String[] parts = parameters.split("/by");
+        HashMap<String, String> parameterValues = CommandParser.extractParameters(parameters);
 
-        if (parts.length < 2) {
-            throw new InvalidCommandException("Missing description or due date.");
+        if (!parameterValues.containsKey("/by")) {
+            throw new InvalidCommandException("Please provide the due date with /by.");
         }
 
-        String name = parts[0].trim();
-        String dueDateText = parts[1].trim();
-
-        if (name.isEmpty() || dueDateText.isEmpty()) {
-            throw new InvalidCommandException("Missing description or due date.");
+        if (parameterValues.get("first").isBlank()) {
+            throw new InvalidCommandException("Please tell me the task name.");
         }
+        if (parameterValues.get("/by").isBlank()) {
+            throw new InvalidCommandException("Please tell me when the task is due.");
+        }
+
+        String name = parameterValues.get("first");
+        String dueDateText = parameterValues.get("/by");
 
         try {
             LocalDate dueDate = LocalDate.parse(dueDateText, formatter);
 
             return new Deadline(name, dueDate);
         } catch (DateTimeParseException e) {
-            throw new InvalidCommandException("Please enter the date in the prescribed format: DD-MM-YYYY");
+            throw new InvalidCommandException("Please enter the date in the following format: DD-MM-YYYY");
         }
     }
 }

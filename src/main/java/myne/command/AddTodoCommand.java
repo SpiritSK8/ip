@@ -32,7 +32,7 @@ public class AddTodoCommand implements Command {
     @Override
     public Response execute() throws InvalidCommandException {
         if (taskName.isEmpty()) {
-            throw new InvalidCommandException("Todo description cannot be empty.");
+            throw new InvalidCommandException("The task name cannot be nothing.");
         }
 
         // Add task and save.

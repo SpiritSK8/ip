@@ -3,6 +3,7 @@ package myne.command;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
 
 import myne.Myne;
 import myne.TaskList;
@@ -52,32 +53,28 @@ public class AddEventCommand implements Command {
 
     private Event parseCommand(String parameters) throws InvalidCommandException {
         if (parameters.isEmpty()) {
-            throw new InvalidCommandException("Event description cannot be empty.");
-        }
-        if (!parameters.contains("/from") || !parameters.contains("/to")) {
-            throw new InvalidCommandException("Events must have a /from and /to.");
+            throw new InvalidCommandException("Please provide the task details.");
         }
 
-        String[] parts = parameters.split("/from");
+        HashMap<String, String> parameterValues = CommandParser.extractParameters(parameters);
 
-        if (parts.length < 2) {
-            throw new InvalidCommandException("Missing description, start time, or end time.");
+        if (!parameterValues.containsKey("/from") || !parameterValues.containsKey("/to")) {
+            throw new InvalidCommandException("Please provide the dates with /from and /to.");
         }
 
-        String name = parts[0].trim();
-
-        parts = parts[1].split("/to");
-
-        if (parts.length < 2) {
-            throw new InvalidCommandException("Missing description, start time, or end time.");
+        if (parameterValues.get("first").isBlank()) {
+            throw new InvalidCommandException("Please tell me the task name.");
+        }
+        if (parameterValues.get("/from").isBlank()) {
+            throw new InvalidCommandException("Please tell me when the event should start.");
+        }
+        if (parameterValues.get("/to").isBlank()) {
+            throw new InvalidCommandException("I need to know when the event ends.");
         }
 
-        String fromText = parts[0].trim();
-        String toText = parts[1].trim();
-
-        if (name.isEmpty() || fromText.isEmpty() || toText.isEmpty()) {
-            throw new InvalidCommandException("Missing description, start time, or end time.");
-        }
+        String name = parameterValues.get("first");
+        String fromText = parameterValues.get("/from");
+        String toText = parameterValues.get("/to");
 
         try {
             LocalDate from = LocalDate.parse(fromText, formatter);

@@ -11,7 +11,7 @@ public class Deadline extends Task {
     private static final String STORAGE_MARKER = "D";
     private static final String DISPLAY_MARKER = "[D]";
     private static final DateTimeFormatter DATE_FORMATTER =
-            DateTimeFormatter.ofPattern("MMM dd yyyy");
+            DateTimeFormatter.ofPattern("MMM d yyyy");
 
     private String by;
     private LocalDate byDate;

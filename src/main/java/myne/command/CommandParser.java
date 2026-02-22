@@ -33,15 +33,15 @@ public class CommandParser {
             case "delete" -> new DeleteCommand(myne, parameters);
             case "find" -> new FindCommand(myne, parameters);
             case "help" -> new HelpCommand(parameters);
-            default -> throw new InvalidCommandException("Come again?", FerMyneFace.MYNE_DEFAULT);
+            default -> throw new InvalidCommandException("Come again?", FerMyneFace.MYNE_DEFAULT, Myne.MYNE_NAME);
         };
     }
 
     /**
      * Extracts all the parameter names and corresponding values into a hashmap.<br>
      * <br>
-     * Parameter names are signified by a forward slash (/) followed by a name without any space.
-     * Everything after the space until just before the next forward slash is considered the parameter value.
+     * Parameter names are signified by a forward slash (/) followed by a single word.
+     * Everything after the first word until just before the next forward slash is considered the parameter value.
      * Everything before the first forward slash is the first parameter value, and since it is
      * nameless, it will be assigned to the "first" key. Parameter names and values are trimmed.<br>
      * <br>
@@ -50,12 +50,13 @@ public class CommandParser {
      * Example usage:
      * <pre>
      * {@code
-     * String params = "summer festival /from 03-05-2026 /to     6 May 2026     /extra";
+     * String params = "summer festival /     from 03-05-2026 /to     6 May 2026     //    /extra";
      * HashMap<String, String> paramValues = extractParameters(params);
-     * paramValues.get("first"); // Returns "summer festival"
-     * paramValues.get("/from"); // Returns "03-05-2026"
-     * paramValues.get("/to"); // Returns "6 May 2026". Notice how the spaces are trimmed.
-     * paramValues.get("/extra"); // Returns "";
+     * paramValues.get("first");     // Returns "summer festival"
+     * paramValues.get("/from");     // Returns "03-05-2026". The spaces from the parameter name are trimmed.
+     * paramValues.get("/to");       // Returns "6 May 2026". The spaces from the parameter value are trimmed.
+     * paramValues.containsKey("/"); // Returns false. Unnamed slash parameters are ignored.
+     * paramValues.get("/extra");    // Returns "";
      * }
      * </pre>
      * @param parameters The full parameter text, i.e. everything after the first word of the command.
@@ -98,12 +99,12 @@ public class CommandParser {
     }
 
     private static String getFirstWord(String input) {
-        String[] parts = input.split(" ", 2);
+        String[] parts = input.trim().split(" ", 2);
         return parts[0];
     }
 
     private static String getAllAfterFirstWord(String input) {
-        String[] parts = input.split(" ", 2);
+        String[] parts = input.trim().split(" ", 2);
         if (parts.length < 2) {
             return "";
         } else {

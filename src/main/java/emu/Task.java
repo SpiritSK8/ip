@@ -24,7 +24,7 @@ public abstract class Task {
     /**
      * Returns the status icon used for display.
      *
-     * @return {@code "X"} if complete, otherwise a single space.
+     * @return "X" if complete, otherwise a single space.
      */
     public String getStatusIcon() {
         return (isComplete ? "X" : " ");

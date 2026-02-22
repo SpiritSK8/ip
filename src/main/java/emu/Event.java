@@ -21,7 +21,7 @@ public class Event extends Task {
 
     /**
      * Constructs an Event task with the specified description, start date, and end date.
-     * Attempts to convert {@code from} and {@code to} to a {@code LocalDate}.
+     * Attempts to convert from and {@code to} to a LocalDate.
      * If conversion fails, stores the original string.
      *
      * @param description The description of the event.

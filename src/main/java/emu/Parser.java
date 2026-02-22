@@ -67,7 +67,7 @@ public class Parser {
      *
      * @param userInput User input for a Deadline task.
      * @return A String array containing description and date.
-     * @throws EmuException If userInput is missing {@code /by} or description/date is empty.
+     * @throws EmuException If userInput is missing /by or description/date is empty.
      */
     public static String[] parseDeadline(String userInput) throws EmuException {
         assert userInput != null : "userInput must not be null";

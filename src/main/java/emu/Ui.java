@@ -15,7 +15,7 @@ public class Ui {
      * Returns the initial greeting message, with an additional message
      * if storage failed to initialise.
      *
-     * @param hasStorageFailed {@code true} if storage has failed to initialise.
+     * @param hasStorageFailed Represents if storage has failed to initialise.
      * @return Greeting message.
      */
     public String giveGreeting(boolean hasStorageFailed) {

@@ -14,7 +14,7 @@ public class Emu {
 
     /**
      * Creates an Emu instance and initialises the Ui, TaskList, and Storage components.
-     * If storage cannot be created, sets {@code hasStorageFailed} to true and continues.
+     * If storage cannot be created, sets hasStorageFailed to true and continues.
      */
     public Emu() {
         this.ui = new Ui();
@@ -31,7 +31,7 @@ public class Emu {
 
     /**
      * Initialises the TaskList by loading tasks from storage.
-     * If loading fails, sets {@code hasStorageFailed} to true.
+     * If loading fails, sets hasStorageFailed to true.
      *
      * @return Greeting string with a warning if storage failed.
      */

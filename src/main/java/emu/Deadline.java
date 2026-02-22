@@ -18,7 +18,7 @@ public class Deadline extends Task {
 
     /**
      * Creates a deadline task with the specified description and by date.
-     * Attempts to convert {@code by} to a {@code LocalDate}.
+     * Attempts to convert by to a LocalDate.
      * If conversion fails, stores the original string.
      *
      * @param description Description of the deadline task.

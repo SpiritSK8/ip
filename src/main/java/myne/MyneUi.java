@@ -1,11 +1,11 @@
 package myne;
 
+import java.util.Arrays;
+import java.util.List;
+
 import myne.command.HelpCommand;
 import myne.command.Response;
 import myne.command.Status;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * A class to encapsulate input/output interaction between Myne and the user.

@@ -1,8 +1,8 @@
 package myne.command;
 
+import myne.Myne;
 import myne.MyneException;
 import myne.MyneFace;
-import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
 import myne.User;
@@ -99,8 +99,8 @@ public class DeleteCommand implements Command {
 
     /**
      * Deletes all the tasks contained in <code>tl</code> from <code>this.taskList</code> and returns a response.
-     *      * @param tl The <code>TaskList</code> containing the tasks to delete.
-     *      * @return the response showing which tasks were deleted.
+     * @param tl The <code>TaskList</code> containing the tasks to delete.
+     * @return the response showing which tasks were deleted.
      */
     private Response deleteByExactMatches(TaskList tl) {
         StringBuilder sb = new StringBuilder(DELETE_MESSAGE).append("\n\n");
@@ -112,7 +112,7 @@ public class DeleteCommand implements Command {
         }
         Task taskToDelete = tl.get(tl.size() - 1);
         if (taskList.delete(taskToDelete)) {
-            sb.append(taskToDelete);// Last line doesn't need newline.
+            sb.append(taskToDelete); // Last line doesn't need newline.
         }
 
         storage.saveTasks(taskList);

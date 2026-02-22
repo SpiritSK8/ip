@@ -1,7 +1,7 @@
 package myne.command;
 
-import myne.MyneFace;
 import myne.Myne;
+import myne.MyneFace;
 import myne.MyneUi;
 import myne.TaskList;
 import myne.User;

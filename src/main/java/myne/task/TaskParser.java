@@ -3,7 +3,6 @@ package myne.task;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import myne.TaskList;

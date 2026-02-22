@@ -1,8 +1,8 @@
 package myne.command;
 
+import myne.Myne;
 import myne.MyneException;
 import myne.MyneFace;
-import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
 import myne.User;

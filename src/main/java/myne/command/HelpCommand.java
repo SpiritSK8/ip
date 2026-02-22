@@ -1,7 +1,6 @@
 package myne.command;
 
 import myne.MyneFace;
-import myne.Myne;
 import myne.User;
 
 /**

@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
+
 import myne.User;
 
 /**
@@ -74,6 +75,9 @@ public class DialogBox extends HBox {
         displayPicture.setImage(img);
     }
 
+    /**
+     * Sets up the dialog box by clipping the display picture into a circle and setting the margin.
+     */
     @FXML
     public void initialize() {
         // Clips the profile image into a circle.

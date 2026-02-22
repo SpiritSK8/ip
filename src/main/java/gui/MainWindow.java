@@ -16,14 +16,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import myne.Myne;
 import myne.MyneException;
 import myne.MyneFace;
-import myne.Myne;
+import myne.User;
 import myne.command.Command;
 import myne.command.CommandParser;
 import myne.command.Response;
 import myne.command.Status;
-import myne.User;
 
 /**
  * Controller for the main GUI.
@@ -46,6 +46,9 @@ public class MainWindow extends AnchorPane {
 
     private final HashMap<MyneFace, Image> ferMyneImages = new HashMap<>();
 
+    /**
+     * Makes the ScrollPane auto-scroll and disables send button when user input is empty.
+     */
     @FXML
     public void initialize() {
         setImages();
@@ -130,27 +133,38 @@ public class MainWindow extends AnchorPane {
 
     private void setImages() {
         ferMyneImages.put(MyneFace.MYNE_DEFAULT,
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneDefault.png"))));
+                new Image(Objects.requireNonNull(
+                        this.getClass().getResourceAsStream("/images/MyneDefault.png"))));
         ferMyneImages.put(MyneFace.MYNE_HAPPY,
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneHappy.png"))));
+                new Image(Objects.requireNonNull(
+                        this.getClass().getResourceAsStream("/images/MyneHappy.png"))));
         ferMyneImages.put(MyneFace.MYNE_THANKFUL,
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneThankful.png"))));
+                new Image(Objects.requireNonNull(
+                        this.getClass().getResourceAsStream("/images/MyneThankful.png"))));
         ferMyneImages.put(MyneFace.MYNE_WONDER,
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneWonder.png"))));
+                new Image(Objects.requireNonNull(
+                        this.getClass().getResourceAsStream("/images/MyneWonder.png"))));
         ferMyneImages.put(MyneFace.MYNE_JOYFUL,
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneJoyful.png"))));
+                new Image(Objects.requireNonNull(
+                        this.getClass().getResourceAsStream("/images/MyneJoyful.png"))));
         ferMyneImages.put(MyneFace.MYNE_CONFUSED,
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneConfused.png"))));
+                new Image(Objects.requireNonNull(
+                        this.getClass().getResourceAsStream("/images/MyneConfused.png"))));
         ferMyneImages.put(MyneFace.MYNE_WORRIED,
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneWorried.png"))));
+                new Image(Objects.requireNonNull(
+                        this.getClass().getResourceAsStream("/images/MyneWorried.png"))));
         ferMyneImages.put(MyneFace.MYNE_DISGUSTED,
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneDisgusted.png"))));
+                new Image(Objects.requireNonNull(
+                        this.getClass().getResourceAsStream("/images/MyneDisgusted.png"))));
         ferMyneImages.put(MyneFace.FERDINAND_DEFAULT,
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/FerdinandDefault.png"))));
+                new Image(Objects.requireNonNull(
+                        this.getClass().getResourceAsStream("/images/FerdinandDefault.png"))));
         ferMyneImages.put(MyneFace.FERDINAND_HAPPY,
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/FerdinandHappy.png"))));
+                new Image(Objects.requireNonNull(
+                        this.getClass().getResourceAsStream("/images/FerdinandHappy.png"))));
         ferMyneImages.put(MyneFace.FERDINAND_EXASPERATED,
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/FerdinandExasperated.png"))));
+                new Image(Objects.requireNonNull(
+                        this.getClass().getResourceAsStream("/images/FerdinandExasperated.png"))));
     }
 
     private void showGreeting(Runnable then) {

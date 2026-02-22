@@ -5,8 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 
-import myne.MyneFace;
 import myne.Myne;
+import myne.MyneFace;
 import myne.TaskList;
 import myne.TaskStorage;
 import myne.User;

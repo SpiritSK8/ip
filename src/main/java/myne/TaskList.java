@@ -64,8 +64,8 @@ public class TaskList {
     }
 
     /**
-     * Removes the first occurrence of the specified <code>Task</code> from this list, if it is present (optional operation).
-     * If this list does not contain the element, it is unchanged.
+     * Removes the first occurrence of the specified <code>Task</code> from this list,
+     * if it is present (optional operation). If this list does not contain the element, it is unchanged.
      * Returns true if this list contained the specified element.
      * @param task The <code>Task</code> to delete
      * @return <code>true</code> if the list contains the task.

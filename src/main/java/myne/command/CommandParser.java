@@ -1,10 +1,10 @@
 package myne.command;
 
-import myne.MyneFace;
-import myne.Myne;
-import myne.User;
-
 import java.util.HashMap;
+
+import myne.Myne;
+import myne.MyneFace;
+import myne.User;
 
 /**
  * Factory class for producing different commands.

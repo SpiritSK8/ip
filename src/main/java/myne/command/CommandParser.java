@@ -2,6 +2,7 @@ package myne.command;
 
 import myne.MyneFace;
 import myne.Myne;
+import myne.User;
 
 import java.util.HashMap;
 
@@ -33,7 +34,7 @@ public class CommandParser {
             case "delete" -> new DeleteCommand(myne, parameters);
             case "find" -> new FindCommand(myne, parameters);
             case "help" -> new HelpCommand(parameters);
-            default -> throw new InvalidCommandException("Come again?", MyneFace.MYNE_DEFAULT, Myne.MYNE_NAME);
+            default -> throw new InvalidCommandException("Come again?", MyneFace.MYNE_DEFAULT, User.MYNE);
         };
     }
 

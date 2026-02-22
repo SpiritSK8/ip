@@ -2,6 +2,7 @@ package myne.command;
 
 import myne.MyneFace;
 import myne.Myne;
+import myne.User;
 
 /**
  * Command to show Myne help.
@@ -57,7 +58,7 @@ public class HelpCommand implements Command {
     }
 
     private Response getDefaultHelp() {
-        return new Response(HELP, Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
+        return new Response(HELP, Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, User.FERDINAND);
     }
 
     private Response getHelpHelp() {
@@ -69,7 +70,7 @@ public class HelpCommand implements Command {
                 help
                 help <command_name>""";
 
-        return new Response(help, Status.SUCCESS, MyneFace.MYNE_WONDER, Myne.MYNE_NAME);
+        return new Response(help, Status.SUCCESS, MyneFace.MYNE_WONDER, User.MYNE);
     }
 
     private Response getByeHelp() {
@@ -79,7 +80,7 @@ public class HelpCommand implements Command {
                 Usage:
                 bye""";
 
-        return new Response(help, Status.SUCCESS, MyneFace.MYNE_THANKFUL, Myne.MYNE_NAME);
+        return new Response(help, Status.SUCCESS, MyneFace.MYNE_THANKFUL, User.MYNE);
     }
 
     private Response getTodoHelp() {
@@ -92,7 +93,7 @@ public class HelpCommand implements Command {
                 Example usage:
                 todo read books""";
 
-        return new Response(help, Status.SUCCESS, MyneFace.MYNE_DEFAULT, Myne.MYNE_NAME);
+        return new Response(help, Status.SUCCESS, MyneFace.MYNE_DEFAULT, User.MYNE);
     }
 
     private Response getDeadlineHelp() {
@@ -106,7 +107,7 @@ public class HelpCommand implements Command {
                 deadline buy books /by 14-3-2026
                 deadline read books /by 5 may 2026""";
 
-        return new Response(help, Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
+        return new Response(help, Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, User.FERDINAND);
     }
 
     private Response getEventHelp() {
@@ -120,7 +121,7 @@ public class HelpCommand implements Command {
                 Example usage:
                 event read books /from 14-3-2026 /to 15 mar 2026""";
 
-        return new Response(help, Status.SUCCESS, MyneFace.MYNE_WONDER, Myne.MYNE_NAME);
+        return new Response(help, Status.SUCCESS, MyneFace.MYNE_WONDER, User.MYNE);
     }
 
     private Response getListHelp() {
@@ -131,7 +132,7 @@ public class HelpCommand implements Command {
                 Usage:
                 list""";
 
-        return new Response(help, Status.SUCCESS, MyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
+        return new Response(help, Status.SUCCESS, MyneFace.MYNE_WORRIED, User.MYNE);
     }
 
     private Response getMarkHelp() {
@@ -147,7 +148,7 @@ public class HelpCommand implements Command {
                 mark 1
                 mark read books""";
 
-        return new Response(help, Status.SUCCESS, MyneFace.MYNE_JOYFUL, Myne.MYNE_NAME);
+        return new Response(help, Status.SUCCESS, MyneFace.MYNE_JOYFUL, User.MYNE);
     }
 
     private Response getUnmarkHelp() {
@@ -162,7 +163,7 @@ public class HelpCommand implements Command {
                 unmark 1
                 unmark read books""";
 
-        return new Response(help, Status.SUCCESS, MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+        return new Response(help, Status.SUCCESS, MyneFace.FERDINAND_EXASPERATED, User.FERDINAND);
     }
 
     private Response getDeleteHelp() {
@@ -178,7 +179,7 @@ public class HelpCommand implements Command {
                 delete 1
                 delete read books""";
 
-        return new Response(help, Status.SUCCESS, MyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
+        return new Response(help, Status.SUCCESS, MyneFace.MYNE_WORRIED, User.MYNE);
     }
 
     private Response getFindHelp() {
@@ -193,13 +194,13 @@ public class HelpCommand implements Command {
                 find book
                 find oo""";
 
-        return new Response(help, Status.SUCCESS, MyneFace.MYNE_JOYFUL, Myne.MYNE_NAME);
+        return new Response(help, Status.SUCCESS, MyneFace.MYNE_JOYFUL, User.MYNE);
     }
 
     private Response getUnknownHelp() {
         String help = """
                 I do not recognize that command. Please type "help" to look at the list of commands.""";
 
-        return new Response(help, Status.SUCCESS, MyneFace.MYNE_DEFAULT, Myne.MYNE_NAME);
+        return new Response(help, Status.SUCCESS, MyneFace.MYNE_DEFAULT, User.MYNE);
     }
 }

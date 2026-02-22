@@ -5,6 +5,7 @@ import myne.MyneFace;
 import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
+import myne.User;
 import myne.task.Task;
 
 /**
@@ -44,12 +45,12 @@ public class DeleteCommand implements Command {
         if (taskList.isEmpty()) {
             throw new MyneException(
                     "Oh my! It seems like you have no tasks at the moment. Shall we remedy that?\n\n",
-                    MyneFace.MYNE_WONDER, Myne.MYNE_NAME);
+                    MyneFace.MYNE_WONDER, User.MYNE);
         }
 
         if (parameters.isBlank()) {
             throw new InvalidCommandException(
-                    "Do tell me which task to delete.\n\n" + USAGE, MyneFace.MYNE_CONFUSED, Myne.MYNE_NAME);
+                    "Do tell me which task to delete.\n\n" + USAGE, MyneFace.MYNE_CONFUSED, User.MYNE);
         }
 
         // If the parameter is an integer, then we delete by task index.
@@ -85,14 +86,14 @@ public class DeleteCommand implements Command {
             return new Response(DELETE_MESSAGE + "\n\n" + removedTask,
                     Status.SUCCESS,
                     MyneFace.MYNE_WORRIED,
-                    Myne.MYNE_NAME);
+                    User.MYNE);
 
         } catch (IndexOutOfBoundsException e) {
             throw new MyneException("Oh my! It seems that you only have tasks 1 to "
                     + taskList.size()
                     + " at present.",
                     MyneFace.MYNE_WONDER,
-                    Myne.MYNE_NAME);
+                    User.MYNE);
         }
     }
 
@@ -119,7 +120,7 @@ public class DeleteCommand implements Command {
         return new Response(sb.toString(),
                 Status.SUCCESS,
                 MyneFace.MYNE_WORRIED,
-                Myne.MYNE_NAME);
+                User.MYNE);
     }
 
     /**
@@ -130,13 +131,13 @@ public class DeleteCommand implements Command {
     private Response deleteByPartialMatch() throws MyneException {
         TaskList findResult = taskList.findMatching(parameters);
         if (findResult.isEmpty()) {
-            throw new MyneException("You have no such task.", MyneFace.MYNE_DISGUSTED, Myne.MYNE_NAME);
+            throw new MyneException("You have no such task.", MyneFace.MYNE_DISGUSTED, User.MYNE);
         }
 
         if (findResult.size() > 1) {
             throw new MyneException(
                     "More than 1 task match that name. Please be more specific.",
-                    MyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
+                    MyneFace.MYNE_WORRIED, User.MYNE);
         }
 
         // Delete the sole task that was found.
@@ -147,6 +148,6 @@ public class DeleteCommand implements Command {
         return new Response(DELETE_MESSAGE + "\n\n" + taskToDelete,
                 Status.SUCCESS,
                 MyneFace.MYNE_WORRIED,
-                Myne.MYNE_NAME);
+                User.MYNE);
     }
 }

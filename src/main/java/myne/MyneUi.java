@@ -17,16 +17,16 @@ public class MyneUi {
     public List<Response> getGreetings() {
         Response greeting1 = new Response(
                 "Good day to you. My name is Myne. May our meeting be blessed on this fruitful day.",
-                Status.SUCCESS, MyneFace.MYNE_THANKFUL, Myne.MYNE_NAME);
+                Status.SUCCESS, MyneFace.MYNE_THANKFUL, User.MYNE);
 
         Response greeting2 = new Response("""
                 I am Ferdinand, Myne's guardian. From now on, you will be working under us.\
                 If you wish to take on a task, simply send word and we will assign it to you.""",
-                Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
+                Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, User.FERDINAND);
 
         Response greeting3 = new Response(
                 "In short, you can tell us what tasks you want to do, and we will record them.",
-                Status.SUCCESS, MyneFace.MYNE_HAPPY, Myne.MYNE_NAME);
+                Status.SUCCESS, MyneFace.MYNE_HAPPY, User.MYNE);
 
         Response greeting4 = new HelpCommand("").execute();
 
@@ -40,7 +40,7 @@ public class MyneUi {
     public Response getFarewell() {
         String farewell = "Farewell. May the time come when our threads of fate are woven together again.";
 
-        return new Response(farewell, Status.SUCCESS, MyneFace.MYNE_THANKFUL, Myne.MYNE_NAME);
+        return new Response(farewell, Status.SUCCESS, MyneFace.MYNE_THANKFUL, User.MYNE);
     }
 
     /**

@@ -16,9 +16,6 @@ import myne.task.TaskParser;
  * <code>........|___/............</code>
  */
 public class Myne {
-    public static final String MYNE_NAME = "Myne";
-    public static final String FERDINAND_NAME = "Ferdinand";
-
     private final MyneUi ui;
     private final TaskStorage storage;
     private final TaskList taskList;
@@ -49,10 +46,10 @@ public class Myne {
         if (parseResult.hasError()) {
             String errorHeader = "Hmm, I don't recognize this language in your list... Can you decipher it for me?\n\n";
             String errorMessage = errorHeader + String.join("\n", parseResult.getErrors());
-            return new Response(errorMessage, Status.FAIL, MyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
+            return new Response(errorMessage, Status.FAIL, MyneFace.MYNE_WORRIED, User.MYNE);
         }
 
-        return new Response("Task parsing success.", Status.SUCCESS, MyneFace.MYNE_DEFAULT, Myne.MYNE_NAME);
+        return new Response("Task parsing success.", Status.SUCCESS, MyneFace.MYNE_DEFAULT, User.MYNE);
     }
 
     /**

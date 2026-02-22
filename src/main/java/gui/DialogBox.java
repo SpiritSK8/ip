@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
+import myne.User;
 
 /**
  * Represents a dialog box consisting of an ImageView to represent the speaker's face
@@ -57,7 +58,7 @@ public class DialogBox extends HBox {
     }
 
 
-    private DialogBox(String text, Image img, String name) {
+    private DialogBox(String text, Image img, User user) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -68,7 +69,8 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
-        username.setText(name);
+        username.setText(user.getName());
+        username.setTextFill(user.getColor());
         displayPicture.setImage(img);
     }
 
@@ -110,7 +112,7 @@ public class DialogBox extends HBox {
         return db;
     }
 
-    public static DialogBox getMyneDialog(String text, Image img, String name) {
-        return new DialogBox(text, img, name);
+    public static DialogBox getMyneDialog(String text, Image img, User user) {
+        return new DialogBox(text, img, user);
     }
 }

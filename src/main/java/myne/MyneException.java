@@ -2,19 +2,19 @@ package myne;
 
 public class MyneException extends RuntimeException {
     private final MyneFace face;
-    private final String name;
+    private final User user;
 
-    public MyneException(String message, MyneFace face, String name) {
+    public MyneException(String message, MyneFace face, User user) {
         super(message);
         this.face = face;
-        this.name = name;
+        this.user = user;
     }
 
     public MyneFace getFace() {
         return face;
     }
 
-    public String getName() {
-        return name;
+    public User getUser() {
+        return user;
     }
 }

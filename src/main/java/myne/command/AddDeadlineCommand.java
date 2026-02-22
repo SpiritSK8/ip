@@ -9,6 +9,7 @@ import myne.MyneFace;
 import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
+import myne.User;
 import myne.task.Deadline;
 
 /**
@@ -55,13 +56,13 @@ public class AddDeadlineCommand implements Command {
         return new Response("Carry out this task.\n\n" + deadline.toString(),
                 Status.SUCCESS,
                 MyneFace.FERDINAND_DEFAULT,
-                Myne.FERDINAND_NAME);
+                User.FERDINAND);
     }
 
     private Deadline parseCommand(String parameters) throws InvalidCommandException {
         if (parameters.isEmpty()) {
             throw new InvalidCommandException(
-                    "Nothing is there, fool.\n\n" + USAGE, MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+                    "Nothing is there, fool.\n\n" + USAGE, MyneFace.FERDINAND_EXASPERATED, User.FERDINAND);
         }
 
         HashMap<String, String> parameterValues = CommandParser.extractParameters(parameters);
@@ -69,17 +70,17 @@ public class AddDeadlineCommand implements Command {
         // Checks for missing /by
         if (!parameterValues.containsKey("/by")) {
             throw new InvalidCommandException(
-                    "Provide the due date with /by.\n\n" + USAGE, MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
+                    "Provide the due date with /by.\n\n" + USAGE, MyneFace.FERDINAND_DEFAULT, User.FERDINAND);
         }
 
         // Checks for blank name or due date.
         if (parameterValues.get("first").isBlank()) {
             throw new InvalidCommandException(
-                    "You are missing the task name.", MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+                    "You are missing the task name.", MyneFace.FERDINAND_EXASPERATED, User.FERDINAND);
         }
         if (parameterValues.get("/by").isBlank()) {
             throw new InvalidCommandException(
-                    "You are missing the due date.", MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+                    "You are missing the due date.", MyneFace.FERDINAND_EXASPERATED, User.FERDINAND);
         }
 
         String name = parameterValues.get("first");
@@ -92,7 +93,7 @@ public class AddDeadlineCommand implements Command {
         } catch (DateTimeParseException e) {
             throw new InvalidCommandException("Your date is improper. Change it to DD-MM-YYYY.",
                     MyneFace.FERDINAND_EXASPERATED,
-                    Myne.FERDINAND_NAME);
+                    User.FERDINAND);
         }
     }
 }

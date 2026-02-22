@@ -5,6 +5,7 @@ import myne.MyneFace;
 import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
+import myne.User;
 import myne.task.Task;
 
 /**
@@ -43,12 +44,12 @@ public class MarkCommand implements Command {
         if (taskList.isEmpty()) {
             throw new MyneException(
                     "You have no tasks yet. Do not slack off.\n\n",
-                    MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+                    MyneFace.FERDINAND_EXASPERATED, User.FERDINAND);
         }
 
         if (parameters.isBlank()) {
             throw new InvalidCommandException(
-                    "Which task?\n\n" + USAGE, MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+                    "Which task?\n\n" + USAGE, MyneFace.FERDINAND_EXASPERATED, User.FERDINAND);
         }
 
         // If the parameter is an integer, then we mark by task index.
@@ -84,13 +85,13 @@ public class MarkCommand implements Command {
             return new Response(MARK_MESSAGE + "\n\n" + taskList.get(index).toString(),
                     Status.SUCCESS,
                     MyneFace.FERDINAND_HAPPY,
-                    Myne.FERDINAND_NAME);
+                    User.FERDINAND);
 
         } catch (IndexOutOfBoundsException e) {
             throw new MyneException("I do not recall giving you that task. You only have tasks 1 to "
                     + taskList.size() + ".",
                     MyneFace.FERDINAND_DEFAULT,
-                    Myne.FERDINAND_NAME);
+                    User.FERDINAND);
         }
     }
 
@@ -115,7 +116,7 @@ public class MarkCommand implements Command {
         return new Response(sb.toString(),
                 Status.SUCCESS,
                 MyneFace.FERDINAND_HAPPY,
-                Myne.FERDINAND_NAME);
+                User.FERDINAND);
     }
 
     /**
@@ -128,12 +129,12 @@ public class MarkCommand implements Command {
         // There must be exactly 1 task to mark when marking by keyword.
         if (findResult.isEmpty()) {
             throw new MyneException(
-                    "You have no such task.", MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+                    "You have no such task.", MyneFace.FERDINAND_EXASPERATED, User.FERDINAND);
         }
         if (findResult.size() > 1) {
             throw new MyneException(
                     "There are more than 1 task that match that name, fool. Be more specific.",
-                    MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
+                    MyneFace.FERDINAND_DEFAULT, User.FERDINAND);
         }
 
         // Mark the sole task that was found.
@@ -144,6 +145,6 @@ public class MarkCommand implements Command {
         return new Response(MARK_MESSAGE + "\n\n" + taskToMark.toString(),
                 Status.SUCCESS,
                 MyneFace.FERDINAND_HAPPY,
-                Myne.FERDINAND_NAME);
+                User.FERDINAND);
     }
 }

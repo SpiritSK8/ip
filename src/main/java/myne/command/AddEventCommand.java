@@ -9,6 +9,7 @@ import myne.MyneFace;
 import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
+import myne.User;
 import myne.task.Event;
 
 /**
@@ -57,13 +58,13 @@ public class AddEventCommand implements Command {
         return new Response("I entrust you with this task.\n\n" + event.toString(),
                 Status.SUCCESS,
                 MyneFace.MYNE_DEFAULT,
-                Myne.MYNE_NAME);
+                User.MYNE);
     }
 
     private Event parseCommand(String parameters) throws InvalidCommandException {
         if (parameters.isEmpty()) {
             throw new InvalidCommandException(
-                    "Please provide the event details.\n\n" + USAGE, MyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
+                    "Please provide the event details.\n\n" + USAGE, MyneFace.MYNE_WORRIED, User.MYNE);
         }
 
         HashMap<String, String> parameterValues = CommandParser.extractParameters(parameters);
@@ -71,21 +72,21 @@ public class AddEventCommand implements Command {
         // Checks for missing /from or /to
         if (!parameterValues.containsKey("/from") || !parameterValues.containsKey("/to")) {
             throw new InvalidCommandException(
-                    "Please provide the dates with /from and /to.\n\n" + USAGE, MyneFace.MYNE_DEFAULT, Myne.MYNE_NAME);
+                    "Please provide the dates with /from and /to.\n\n" + USAGE, MyneFace.MYNE_DEFAULT, User.MYNE);
         }
 
         // Checks for missing name, start date, or end date.
         if (parameterValues.get("first").isBlank()) {
             throw new InvalidCommandException(
-                    "Your event needs a name, doesn't it?", MyneFace.MYNE_CONFUSED, Myne.MYNE_NAME);
+                    "Your event needs a name, doesn't it?", MyneFace.MYNE_CONFUSED, User.MYNE);
         }
         if (parameterValues.get("/from").isBlank()) {
             throw new InvalidCommandException(
-                    "Your event needs a starting date.", MyneFace.MYNE_HAPPY, Myne.MYNE_NAME);
+                    "Your event needs a starting date.", MyneFace.MYNE_HAPPY, User.MYNE);
         }
         if (parameterValues.get("/to").isBlank()) {
             throw new InvalidCommandException(
-                    "I need to know when the event ends.", MyneFace.MYNE_DISGUSTED, Myne.MYNE_NAME);
+                    "I need to know when the event ends.", MyneFace.MYNE_DISGUSTED, User.MYNE);
         }
 
         String name = parameterValues.get("first");
@@ -100,7 +101,7 @@ public class AddEventCommand implements Command {
         } catch (DateTimeParseException e) {
             throw new InvalidCommandException("There is a mistake in your date. Use this format: DD-MM-YYYY",
                     MyneFace.MYNE_WORRIED,
-                    Myne.MYNE_NAME);
+                    User.MYNE);
         }
     }
 }

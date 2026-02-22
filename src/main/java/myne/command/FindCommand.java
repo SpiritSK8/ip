@@ -4,6 +4,7 @@ import myne.MyneFace;
 import myne.Myne;
 import myne.MyneUi;
 import myne.TaskList;
+import myne.User;
 
 /**
  * A class that encapsulates the logic for finding tasks and parsing the command for it.
@@ -35,7 +36,7 @@ public class FindCommand implements Command {
             // Cannot find empty string.
             throw new InvalidCommandException("You forgot to tell me what to find, fool.",
                     MyneFace.FERDINAND_EXASPERATED,
-                    Myne.FERDINAND_NAME);
+                    User.FERDINAND);
         }
 
         TaskList tasksFound = taskList.findMatching(parameters);
@@ -44,10 +45,10 @@ public class FindCommand implements Command {
             return new Response("I could not find anything of the sort.",
                     Status.SUCCESS,
                     MyneFace.FERDINAND_EXASPERATED,
-                    Myne.FERDINAND_NAME);
+                    User.FERDINAND);
         }
 
         String text = ui.getTaskListText(tasksFound, "Here.");
-        return new Response(text, Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
+        return new Response(text, Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, User.FERDINAND);
     }
 }

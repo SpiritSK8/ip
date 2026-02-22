@@ -4,6 +4,7 @@ import myne.MyneFace;
 import myne.Myne;
 import myne.MyneUi;
 import myne.TaskList;
+import myne.User;
 
 /**
  * A class to encapsulate the logic for listing the tasks in Myne.
@@ -29,11 +30,11 @@ public class ListCommand implements Command {
         if (taskList.isEmpty()) {
             return new Response("Hm... It appears you are under-worked. Shall we remedy that?",
                     Status.SUCCESS,
-                    MyneFace.FERDINAND_EXASPERATED,
-                    Myne.FERDINAND_NAME);
+                    MyneFace.MYNE_WONDER,
+                    User.MYNE);
         }
 
         String text = ui.getTaskListText(taskList, "Here.");
-        return new Response(text, Status.SUCCESS, MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+        return new Response(text, Status.SUCCESS, MyneFace.FERDINAND_EXASPERATED, User.FERDINAND);
     }
 }

@@ -1,6 +1,5 @@
 package gui;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -22,9 +21,9 @@ import myne.MyneFace;
 import myne.Myne;
 import myne.command.Command;
 import myne.command.CommandParser;
-import myne.command.HelpCommand;
 import myne.command.Response;
 import myne.command.Status;
+import myne.User;
 
 /**
  * Controller for the main GUI.
@@ -51,8 +50,6 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         setImages();
 
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-
         // Taken from ChatGPT: How to disable button when input text is empty.
         // https://chatgpt.com/share/6998b63e-85a8-800d-a1e3-7d7031147a98
         sendButton.disableProperty().bind(
@@ -70,6 +67,7 @@ public class MainWindow extends AnchorPane {
     public void setStage(Stage stage) {
         stage.setMinWidth(400.0);
         stage.setMinHeight(400.0);
+
         this.stage = stage;
     }
 
@@ -96,10 +94,10 @@ public class MainWindow extends AnchorPane {
             }
         } catch (MyneException e) {
             addUserDialog(input);
-            addMyneDialog(e.getMessage(), e.getFace(), e.getName());
+            addMyneDialog(e.getMessage(), e.getFace(), e.getUser());
         } catch (RuntimeException e) {
             addUserDialog(input);
-            addMyneDialog(e.getMessage(), MyneFace.MYNE_WORRIED, "Myne"); // Default face for errors.
+            addMyneDialog(e.getMessage(), MyneFace.MYNE_WORRIED, User.MYNE); // Default face for errors.
         }
 
         userInput.clear();
@@ -114,13 +112,13 @@ public class MainWindow extends AnchorPane {
     private void addMyneDialog(Response response) {
         dialogContainer.getChildren().addAll(
                 DialogBox.getMyneDialog(
-                        response.getMessage(), ferMyneImages.get(response.getFace()), response.getName())
+                        response.getMessage(), ferMyneImages.get(response.getFace()), response.getUser())
         );
     }
 
-    private void addMyneDialog(String message, MyneFace face, String name) {
+    private void addMyneDialog(String message, MyneFace face, User user) {
         dialogContainer.getChildren().addAll(
-                DialogBox.getMyneDialog(message, ferMyneImages.get(face), name)
+                DialogBox.getMyneDialog(message, ferMyneImages.get(face), user)
         );
     }
 

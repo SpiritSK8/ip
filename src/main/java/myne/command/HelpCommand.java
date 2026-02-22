@@ -1,6 +1,7 @@
 package myne.command;
 
 import myne.FerMyneFace;
+import myne.Myne;
 
 /**
  * Command to show Myne help.
@@ -53,7 +54,7 @@ public class HelpCommand implements Command {
     }
 
     private Response getDefaultHelp() {
-        return new Response(HELP, Status.SUCCESS, FerMyneFace.MYNE_HAPPY);
+        return new Response(HELP, Status.SUCCESS, FerMyneFace.MYNE_HAPPY, Myne.MYNE_NAME);
     }
 
     private Response getByeHelp() {
@@ -63,7 +64,7 @@ public class HelpCommand implements Command {
                 Usage:
                 bye""";
 
-        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_THANKFUL);
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_THANKFUL, Myne.MYNE_NAME);
     }
 
     private Response getTodoHelp() {
@@ -76,7 +77,7 @@ public class HelpCommand implements Command {
                 Example usage:
                 todo read books""";
 
-        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_DEFAULT);
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_DEFAULT, Myne.MYNE_NAME);
     }
 
     private Response getDeadlineHelp() {
@@ -90,7 +91,7 @@ public class HelpCommand implements Command {
                 deadline buy books /by 14-3-2026
                 deadline read books /by 5 may 2026""";
 
-        return new Response(help, Status.SUCCESS, FerMyneFace.FERDINAND_DEFAULT);
+        return new Response(help, Status.SUCCESS, FerMyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
     }
 
     private Response getEventHelp() {
@@ -103,7 +104,7 @@ public class HelpCommand implements Command {
                 Example usage:
                 event read books /from 14-3-2026 /to 15 mar 2026""";
 
-        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_WONDER);
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_WONDER, Myne.MYNE_NAME);
     }
 
     private Response getListHelp() {
@@ -113,7 +114,7 @@ public class HelpCommand implements Command {
                 Usage:
                 list""";
 
-        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_WORRIED);
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
     }
 
     private Response getMarkHelp() {
@@ -128,7 +129,7 @@ public class HelpCommand implements Command {
                 mark 1
                 mark read books""";
 
-        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_JOYFUL);
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_JOYFUL, Myne.MYNE_NAME);
     }
 
     private Response getUnmarkHelp() {
@@ -143,7 +144,7 @@ public class HelpCommand implements Command {
                 unmark 1
                 unmark read books""";
 
-        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_HAPPY);
+        return new Response(help, Status.SUCCESS, FerMyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
     }
 
     private Response getDeleteHelp() {
@@ -158,7 +159,7 @@ public class HelpCommand implements Command {
                 delete 1
                 delete read books""";
 
-        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_WORRIED);
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
     }
 
     private Response getFindHelp() {
@@ -171,6 +172,6 @@ public class HelpCommand implements Command {
                 Example usage:
                 find book""";
 
-        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_JOYFUL);
+        return new Response(help, Status.SUCCESS, FerMyneFace.MYNE_JOYFUL, Myne.MYNE_NAME);
     }
 }

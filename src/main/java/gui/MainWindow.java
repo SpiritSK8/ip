@@ -61,7 +61,8 @@ public class MainWindow extends AnchorPane {
         this.myne = myne;
 
         // Show greeting message.
-        addMyneDialog(myne.getUi().getGreeting());
+        addMyneDialog(myne.getUi().getMyneGreeting());
+        addMyneDialog(myne.getUi().getFerdinandGreeting());
 
         Response response = myne.parseTaskFile();
         if (response.getStatus() == Status.FAIL) {

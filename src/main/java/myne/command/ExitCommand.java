@@ -26,6 +26,6 @@ public class ExitCommand implements Command {
     @Override
     public Response execute() {
         myne.exit();
-        return new Response(ui.getFarewellText(), Status.SUCCESS, FerMyneFace.MYNE_THANKFUL);
+        return ui.getFarewell();
     }
 }

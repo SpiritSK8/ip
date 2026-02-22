@@ -1,5 +1,8 @@
 package myne;
 
+import myne.command.Response;
+import myne.command.Status;
+
 /**
  * A class to encapsulate input/output interaction between Myne and the user.
  */
@@ -7,20 +10,34 @@ public class MyneUi {
     /**
      * Returns the greeting for when Myne starts.
      */
-    public String getGreetingText() {
-        return """
+    public Response getMyneGreeting() {
+        String greeting = """
                 Good day to you. My name is Myne.
                 
-                May our meeting, ordained by the gods be blessed on this fruitful day.
+                May our meeting, ordained by the gods be blessed on this fruitful day.""";
+
+        return new Response(greeting, Status.SUCCESS, FerMyneFace.MYNE_THANKFUL, Myne.MYNE_NAME);
+    }
+
+    /**
+     * Returns the greeting for when Myne starts.
+     */
+    public Response getFerdinandGreeting() {
+        String greeting = """
+                I am Ferdinand.
                 
-                Please ask for "help" should you ever need extra assistance.""";
+                Ask for "help" if you are lost.""";
+
+        return new Response(greeting, Status.SUCCESS, FerMyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
     }
 
     /**
      * Shows the exit message.
      */
-    public String getFarewellText() {
-        return "Farewell. May the time come when our threads of fate are woven together again.";
+    public Response getFarewell() {
+        String farewell = "Farewell. May the time come when our threads of fate are woven together again.";
+
+        return new Response(farewell, Status.SUCCESS, FerMyneFace.MYNE_THANKFUL, Myne.MYNE_NAME);
     }
 
     /**

@@ -49,27 +49,32 @@ public class AddDeadlineCommand implements Command {
 
         return new Response("Carry out this task.\n\n" + deadline.toString(),
                 Status.SUCCESS,
-                FerMyneFace.FERDINAND_DEFAULT);
+                FerMyneFace.FERDINAND_DEFAULT,
+                Myne.FERDINAND_NAME);
     }
 
     private Deadline parseCommand(String parameters) throws InvalidCommandException {
         if (parameters.isEmpty()) {
-            throw new InvalidCommandException("Nothing is there, fool.", FerMyneFace.FERDINAND_EXASPERATED);
+            throw new InvalidCommandException(
+                    "Nothing is there, fool.", FerMyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
         }
 
         HashMap<String, String> parameterValues = CommandParser.extractParameters(parameters);
 
         // Checks for missing /by
         if (!parameterValues.containsKey("/by")) {
-            throw new InvalidCommandException("Provide the due date with /by.", FerMyneFace.FERDINAND_DEFAULT);
+            throw new InvalidCommandException(
+                    "Provide the due date with /by.", FerMyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
         }
 
         // Checks for blank name or due date.
         if (parameterValues.get("first").isBlank()) {
-            throw new InvalidCommandException("Where is the task name?", FerMyneFace.FERDINAND_EXASPERATED);
+            throw new InvalidCommandException(
+                    "Where is the task name?", FerMyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
         }
         if (parameterValues.get("/by").isBlank()) {
-            throw new InvalidCommandException("When is this task due?", FerMyneFace.FERDINAND_EXASPERATED);
+            throw new InvalidCommandException(
+                    "When is this task due?", FerMyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
         }
 
         String name = parameterValues.get("first");
@@ -81,7 +86,8 @@ public class AddDeadlineCommand implements Command {
             return new Deadline(name, dueDate);
         } catch (DateTimeParseException e) {
             throw new InvalidCommandException("Your date is improper. Change it to DD-MM-YYYY.",
-                    FerMyneFace.FERDINAND_EXASPERATED);
+                    FerMyneFace.FERDINAND_EXASPERATED,
+                    Myne.FERDINAND_NAME);
         }
     }
 }

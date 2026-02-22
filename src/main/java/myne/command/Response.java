@@ -9,6 +9,7 @@ public class Response {
     private final String message;
     private final Status status;
     private final FerMyneFace face;
+    private final String name;
 
     /**
      * Creates a new Response object.
@@ -16,10 +17,11 @@ public class Response {
      * @param status One of the <code>Status</code> results.
      * @param face The face used for the chat.
      */
-    public Response(String message, Status status, FerMyneFace face) {
+    public Response(String message, Status status, FerMyneFace face, String name) {
         this.message = message;
         this.status = status;
         this.face = face;
+        this.name = name;
     }
 
     public String getMessage() {
@@ -32,6 +34,10 @@ public class Response {
 
     public FerMyneFace getFace() {
         return face;
+    }
+
+    public String getName() {
+        return name;
     }
 }
 

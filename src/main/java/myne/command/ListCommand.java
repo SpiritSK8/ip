@@ -29,10 +29,11 @@ public class ListCommand implements Command {
         if (taskList.isEmpty()) {
             return new Response("Hm... It appears you are under-worked. Shall we remedy that?",
                     Status.SUCCESS,
-                    FerMyneFace.MYNE_CONFUSED);
+                    FerMyneFace.FERDINAND_EXASPERATED,
+                    Myne.FERDINAND_NAME);
         }
 
-        String text = ui.getTaskListText(taskList, "Behold, your tasks!");
-        return new Response(text, Status.SUCCESS, FerMyneFace.MYNE_HAPPY);
+        String text = ui.getTaskListText(taskList, "You forgot your tasks again?");
+        return new Response(text, Status.SUCCESS, FerMyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
     }
 }

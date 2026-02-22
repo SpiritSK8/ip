@@ -34,7 +34,8 @@ public class FindCommand implements Command {
         if (parameters.isEmpty()) {
             // Cannot find empty string.
             throw new InvalidCommandException("You forgot to tell me what to find, fool.",
-                    FerMyneFace.FERDINAND_EXASPERATED);
+                    FerMyneFace.FERDINAND_EXASPERATED,
+                    Myne.FERDINAND_NAME);
         }
 
         TaskList tasksFound = taskList.find(parameters);
@@ -42,10 +43,11 @@ public class FindCommand implements Command {
         if (tasksFound.isEmpty()) {
             return new Response("I could not find anything of the sort.",
                     Status.SUCCESS,
-                    FerMyneFace.FERDINAND_EXASPERATED);
+                    FerMyneFace.FERDINAND_EXASPERATED,
+                    Myne.FERDINAND_NAME);
         }
 
         String text = ui.getTaskListText(tasksFound, "Here are my findings.");
-        return new Response(text, Status.SUCCESS, FerMyneFace.FERDINAND_DEFAULT);
+        return new Response(text, Status.SUCCESS, FerMyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
     }
 }

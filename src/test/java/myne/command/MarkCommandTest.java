@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.io.File;
 import java.io.IOException;
 
+import myne.MyneException;
 import org.junit.jupiter.api.Test;
 
 import myne.Myne;
@@ -31,7 +32,7 @@ public class MarkCommandTest {
 
         // Test: Attempt marking a task that doesn't exist.
         MarkCommand command = new MarkCommand(myne, "1");
-        assertThrows(IndexOutOfBoundsException.class, command::execute);
+        assertThrows(MyneException.class, command::execute);
 
         // Add new task manually.
         myne.getTaskList().add(new Todo("Test"));

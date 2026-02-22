@@ -1,6 +1,7 @@
 .dialog-bubble {
     -fx-background-color: rgba(232, 239, 255, 0.95);
     -fx-background-radius: 1em 0 1em 1em;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 12, 0.2, 0, 0);
 }
 
 .reply-dialog-bubble {
@@ -12,5 +13,9 @@
 }
 
 #username {
-    -fx-font: bold 12px "Cambria";
+    -fx-font: bold 13px "Cambria";
+}
+
+#displayPicture {
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.25), 10, 0.3, 5, 5);
 }

@@ -1,5 +1,5 @@
 .root {
-    main-color: #023d81;
+    main-color: #0f3e78;
     -fx-background-color: main-color;
     -fx-background-image: url("../images/Background.png");
     -fx-background-repeat: no-repeat;
@@ -11,17 +11,23 @@
 .text-field {
     -fx-background-color: #d3dbeb;
     -fx-font: 14px "Book Antiqua";
+    -fx-background-radius: 24;
+    -fx-padding: 8 15 8 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 14, 0.1, 2, 2);
 }
 
 .button {
-    -fx-background-color: #4e6cb7;
-    -fx-font: bold 14px "Book Antiqua";
+    -fx-background-color: #1f5fbf;
+    -fx-font: bold 22px "Book Antiqua";
     -fx-text-fill: white;
+    -fx-background-radius: 24;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 14, 0.1, 2, 2);
+    -fx-padding: 0;
 }
 
 .button:pressed {
     -fx-background-color: #d3a518;
-    -fx-font-size: 16px;
+    -fx-font-size: 20px;
 }
 
 .scroll-pane,

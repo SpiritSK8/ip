@@ -27,7 +27,7 @@ Emu supports three types of tasks:
   - **Example:** `todo Buy groceries`
 
 
-- ### **Deadline Task:**
+- ### **Deadline Task**
   - A task with a `DESCRIPTION` and a `BY` date.
   - `BY` can be **any string**  — if in `YYYY-MM-DD` format,
     it will automatically be converted to `MMM d yyyy`.
@@ -36,7 +36,7 @@ Emu supports three types of tasks:
   - **Example:** `deadline Submit report /by 2026-02-28`
 
 
-- ### **Event Task:** 
+- ### **Event Task** 
   - A task with a `DESCRIPTION`, a `FROM` date and a `TO` date.
   - `FROM` and `TO` can be **any string**  — if in `YYYY-MM-DD` format,
     it will automatically be converted to `MMM d yyyy`.
@@ -44,8 +44,8 @@ Emu supports three types of tasks:
   - **Format:** `event DESCRIPTION /from FROM /to TO`
   - **Example:** `event Meeting /from 2026-02-21 /to 2026-02-21`
 
-    > **Note:** Emu does not ensure the event start date/time
-    is before the end date/time.
+    > **Note:** Emu does not ensure the event `FROM` date
+    is before the `TO` date.
 
 ### 2. Mark a Task
 Marks a task as done.
@@ -78,7 +78,7 @@ Displays all tasks in the TaskList.
 - **Format:** `list`
 
 ### 7. Search Tasks by Keyword
-Searches for tasks whose description contains the given keyword.
+Searches for tasks whose description contains the given `KEYWORD`.
 
 - **Format:** `find KEYWORD`
 - **Case-sensitive**, returns tasks in the order they appear in the list.

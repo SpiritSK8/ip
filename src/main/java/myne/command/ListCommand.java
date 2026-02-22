@@ -1,6 +1,6 @@
 package myne.command;
 
-import myne.FerMyneFace;
+import myne.MyneFace;
 import myne.Myne;
 import myne.MyneUi;
 import myne.TaskList;
@@ -29,11 +29,11 @@ public class ListCommand implements Command {
         if (taskList.isEmpty()) {
             return new Response("Hm... It appears you are under-worked. Shall we remedy that?",
                     Status.SUCCESS,
-                    FerMyneFace.FERDINAND_EXASPERATED,
+                    MyneFace.FERDINAND_EXASPERATED,
                     Myne.FERDINAND_NAME);
         }
 
         String text = ui.getTaskListText(taskList, "You forgot your tasks again?");
-        return new Response(text, Status.SUCCESS, FerMyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+        return new Response(text, Status.SUCCESS, MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
     }
 }

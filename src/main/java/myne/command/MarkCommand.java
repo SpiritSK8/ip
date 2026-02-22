@@ -1,7 +1,7 @@
 package myne.command;
 
-import myne.FerMyneException;
-import myne.FerMyneFace;
+import myne.MyneException;
+import myne.MyneFace;
 import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
@@ -36,7 +36,7 @@ public class MarkCommand implements Command {
     public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
         if (parameters.trim().isEmpty()) {
             throw new InvalidCommandException(
-                    "Where is your task?", FerMyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+                    "Where is your task?", MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
         }
 
         if (CommandParser.isNumeric(parameters)) {
@@ -56,13 +56,13 @@ public class MarkCommand implements Command {
             return new Response("You have carried out your task with utmost diligence. Very good.\n\n"
                     + taskList.get(index).toString(),
                     Status.SUCCESS,
-                    FerMyneFace.FERDINAND_HAPPY,
+                    MyneFace.FERDINAND_HAPPY,
                     Myne.FERDINAND_NAME);
 
         } catch (IndexOutOfBoundsException e) {
-            throw new FerMyneException("I do not recall giving you that task. You only have tasks 1 to "
+            throw new MyneException("I do not recall giving you that task. You only have tasks 1 to "
                     + taskList.size() + ".",
-                    FerMyneFace.FERDINAND_DEFAULT,
+                    MyneFace.FERDINAND_DEFAULT,
                     Myne.FERDINAND_NAME);
         }
     }
@@ -72,12 +72,12 @@ public class MarkCommand implements Command {
 
         // There must be exactly 1 task to mark when marking by keyword.
         if (findResult.isEmpty()) {
-            throw new FerMyneException(
-                    "You have no such task.", FerMyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+            throw new MyneException(
+                    "You have no such task.", MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
         }
         if (findResult.size() > 1) {
-            throw new FerMyneException(
-                    "Which task? Be more specific.", FerMyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
+            throw new MyneException(
+                    "Which task? Be more specific.", MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
         }
 
         Task taskToMark = findResult.get(0);
@@ -86,7 +86,7 @@ public class MarkCommand implements Command {
         return new Response("You have carried out your task with utmost diligence. Very good.\n\n"
                 + taskToMark.toString(),
                 Status.SUCCESS,
-                FerMyneFace.FERDINAND_HAPPY,
+                MyneFace.FERDINAND_HAPPY,
                 Myne.FERDINAND_NAME);
     }
 }

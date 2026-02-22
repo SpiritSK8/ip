@@ -3,7 +3,7 @@ package myne;
 /**
  * Faces to attach to a response.
  */
-public enum FerMyneFace {
+public enum MyneFace {
     MYNE_DEFAULT,
     MYNE_HAPPY,
     MYNE_THANKFUL,

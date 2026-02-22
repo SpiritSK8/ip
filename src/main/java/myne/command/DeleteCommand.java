@@ -1,7 +1,7 @@
 package myne.command;
 
-import myne.FerMyneException;
-import myne.FerMyneFace;
+import myne.MyneException;
+import myne.MyneFace;
 import myne.Myne;
 import myne.TaskList;
 import myne.TaskStorage;
@@ -37,7 +37,7 @@ public class DeleteCommand implements Command {
     public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
         if (parameters.isBlank()) {
             throw new InvalidCommandException(
-                    "Do tell me which task to delete.", FerMyneFace.MYNE_CONFUSED, Myne.MYNE_NAME);
+                    "Do tell me which task to delete.", MyneFace.MYNE_CONFUSED, Myne.MYNE_NAME);
         }
 
         if (CommandParser.isNumeric(parameters)) {
@@ -56,14 +56,14 @@ public class DeleteCommand implements Command {
 
             return new Response("Let me entrust this task to someone else...\n\n" + removedTask,
                     Status.SUCCESS,
-                    FerMyneFace.MYNE_WORRIED,
+                    MyneFace.MYNE_WORRIED,
                     Myne.MYNE_NAME);
 
         } catch (IndexOutOfBoundsException e) {
-            throw new FerMyneException("Oh my! It seems that you only have tasks 1 to "
+            throw new MyneException("Oh my! It seems that you only have tasks 1 to "
                     + taskList.size()
                     + " at present.",
-                    FerMyneFace.MYNE_WONDER,
+                    MyneFace.MYNE_WONDER,
                     Myne.MYNE_NAME);
         }
     }
@@ -73,11 +73,11 @@ public class DeleteCommand implements Command {
 
         // There must be exactly 1 task to delete when deleting by keyword.
         if (findResult.isEmpty()) {
-            throw new InvalidCommandException("You have no such task.", FerMyneFace.MYNE_DISGUSTED, Myne.MYNE_NAME);
+            throw new InvalidCommandException("You have no such task.", MyneFace.MYNE_DISGUSTED, Myne.MYNE_NAME);
         }
         if (findResult.size() > 1) {
             throw new InvalidCommandException(
-                    "Which task? Please be more specific.", FerMyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
+                    "Which task? Please be more specific.", MyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
         }
 
         Task taskToDelete = findResult.get(0);
@@ -86,7 +86,7 @@ public class DeleteCommand implements Command {
 
         return new Response("Let me entrust this task to someone else...\n\n" + taskToDelete,
                 Status.SUCCESS,
-                FerMyneFace.MYNE_WORRIED,
+                MyneFace.MYNE_WORRIED,
                 Myne.MYNE_NAME);
     }
 }

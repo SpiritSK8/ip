@@ -49,10 +49,10 @@ public class Myne {
         if (parseResult.hasError()) {
             String errorHeader = "Hmm, I don't recognize this language... Can you decipher it for me?\n\n";
             String errorMessage = errorHeader + String.join("\n", parseResult.getErrors());
-            return new Response(errorMessage, Status.FAIL, FerMyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
+            return new Response(errorMessage, Status.FAIL, MyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
         }
 
-        return new Response("Parse task success.", Status.SUCCESS, FerMyneFace.MYNE_DEFAULT, Myne.MYNE_NAME);
+        return new Response("Parse task success.", Status.SUCCESS, MyneFace.MYNE_DEFAULT, Myne.MYNE_NAME);
     }
 
     /**

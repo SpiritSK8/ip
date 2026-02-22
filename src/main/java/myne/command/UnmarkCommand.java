@@ -1,9 +1,8 @@
 package myne.command;
 
-import myne.FerMyneException;
-import myne.FerMyneFace;
+import myne.MyneException;
+import myne.MyneFace;
 import myne.Myne;
-import myne.MyneUi;
 import myne.TaskList;
 import myne.TaskStorage;
 import myne.task.Task;
@@ -37,7 +36,7 @@ public class UnmarkCommand implements Command {
     @Override
     public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
         if (parameters.trim().isEmpty()) {
-            throw new InvalidCommandException("I cannot unmark nothing.", FerMyneFace.MYNE_DISGUSTED, Myne.MYNE_NAME);
+            throw new InvalidCommandException("I cannot unmark nothing.", MyneFace.MYNE_DISGUSTED, Myne.MYNE_NAME);
         }
 
         if (CommandParser.isNumeric(parameters)) {
@@ -56,14 +55,14 @@ public class UnmarkCommand implements Command {
 
             return new Response("Ah, you would like to redo it? Very well.\n\n" + taskList.get(index).toString(),
                     Status.SUCCESS,
-                    FerMyneFace.MYNE_DEFAULT,
+                    MyneFace.MYNE_DEFAULT,
                     Myne.MYNE_NAME);
 
         } catch (IndexOutOfBoundsException e) {
-            throw new FerMyneException("Oh my! It seems that you only have tasks 1 to "
+            throw new MyneException("Oh my! It seems that you only have tasks 1 to "
                     + taskList.size()
                     + " at present.",
-                    FerMyneFace.MYNE_CONFUSED,
+                    MyneFace.MYNE_CONFUSED,
                     Myne.MYNE_NAME);
         }
     }
@@ -73,11 +72,11 @@ public class UnmarkCommand implements Command {
 
         // There must be exactly 1 task to unmark when unmarking by keyword.
         if (findResult.isEmpty()) {
-            throw new InvalidCommandException("You have no such task.", FerMyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
+            throw new InvalidCommandException("You have no such task.", MyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
         }
         if (findResult.size() > 1) {
             throw new InvalidCommandException(
-                    "Which task? Please be more specific.", FerMyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
+                    "Which task? Please be more specific.", MyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
         }
 
         Task taskToUnmark = findResult.get(0);
@@ -85,7 +84,7 @@ public class UnmarkCommand implements Command {
 
         return new Response("Ah, you would like to redo it? Very well.\n\n" + taskToUnmark.toString(),
                 Status.SUCCESS,
-                FerMyneFace.MYNE_DEFAULT,
+                MyneFace.MYNE_DEFAULT,
                 Myne.MYNE_NAME);
     }
 }

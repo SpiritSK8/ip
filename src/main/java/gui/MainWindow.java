@@ -14,8 +14,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import myne.FerMyneException;
-import myne.FerMyneFace;
+import myne.MyneException;
+import myne.MyneFace;
 import myne.Myne;
 import myne.command.Command;
 import myne.command.CommandParser;
@@ -41,7 +41,7 @@ public class MainWindow extends AnchorPane {
     private final Image userImage =
             new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
 
-    private final HashMap<FerMyneFace, Image> ferMyneImages = new HashMap<>();
+    private final HashMap<MyneFace, Image> ferMyneImages = new HashMap<>();
 
     @FXML
     public void initialize() {
@@ -97,12 +97,12 @@ public class MainWindow extends AnchorPane {
             if (!myne.isAlive()) {
                 exitAppAfterDelay(4.0);
             }
-        } catch (FerMyneException e) {
+        } catch (MyneException e) {
             addUserDialog(input);
             addMyneDialog(e.getMessage(), e.getFace(), e.getName());
         } catch (RuntimeException e) {
             addUserDialog(input);
-            addMyneDialog(e.getMessage(), FerMyneFace.MYNE_WORRIED, "Myne"); // Default face for errors.
+            addMyneDialog(e.getMessage(), MyneFace.MYNE_WORRIED, "Myne"); // Default face for errors.
         }
 
         userInput.clear();
@@ -121,7 +121,7 @@ public class MainWindow extends AnchorPane {
         );
     }
 
-    private void addMyneDialog(String message, FerMyneFace face, String name) {
+    private void addMyneDialog(String message, MyneFace face, String name) {
         dialogContainer.getChildren().addAll(
                 DialogBox.getMyneDialog(message, ferMyneImages.get(face), name)
         );
@@ -134,27 +134,27 @@ public class MainWindow extends AnchorPane {
     }
 
     private void setImages() {
-        ferMyneImages.put(FerMyneFace.MYNE_DEFAULT,
+        ferMyneImages.put(MyneFace.MYNE_DEFAULT,
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneDefault.png"))));
-        ferMyneImages.put(FerMyneFace.MYNE_HAPPY,
+        ferMyneImages.put(MyneFace.MYNE_HAPPY,
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneHappy.png"))));
-        ferMyneImages.put(FerMyneFace.MYNE_THANKFUL,
+        ferMyneImages.put(MyneFace.MYNE_THANKFUL,
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneThankful.png"))));
-        ferMyneImages.put(FerMyneFace.MYNE_WONDER,
+        ferMyneImages.put(MyneFace.MYNE_WONDER,
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneWonder.png"))));
-        ferMyneImages.put(FerMyneFace.MYNE_JOYFUL,
+        ferMyneImages.put(MyneFace.MYNE_JOYFUL,
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneJoyful.png"))));
-        ferMyneImages.put(FerMyneFace.MYNE_CONFUSED,
+        ferMyneImages.put(MyneFace.MYNE_CONFUSED,
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneConfused.png"))));
-        ferMyneImages.put(FerMyneFace.MYNE_WORRIED,
+        ferMyneImages.put(MyneFace.MYNE_WORRIED,
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneWorried.png"))));
-        ferMyneImages.put(FerMyneFace.MYNE_DISGUSTED,
+        ferMyneImages.put(MyneFace.MYNE_DISGUSTED,
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/MyneDisgusted.png"))));
-        ferMyneImages.put(FerMyneFace.FERDINAND_DEFAULT,
+        ferMyneImages.put(MyneFace.FERDINAND_DEFAULT,
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/FerdinandDefault.png"))));
-        ferMyneImages.put(FerMyneFace.FERDINAND_HAPPY,
+        ferMyneImages.put(MyneFace.FERDINAND_HAPPY,
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/FerdinandHappy.png"))));
-        ferMyneImages.put(FerMyneFace.FERDINAND_EXASPERATED,
+        ferMyneImages.put(MyneFace.FERDINAND_EXASPERATED,
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/FerdinandExasperated.png"))));
     }
 }

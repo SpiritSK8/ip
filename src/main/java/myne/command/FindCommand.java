@@ -1,6 +1,6 @@
 package myne.command;
 
-import myne.FerMyneFace;
+import myne.MyneFace;
 import myne.Myne;
 import myne.MyneUi;
 import myne.TaskList;
@@ -34,7 +34,7 @@ public class FindCommand implements Command {
         if (parameters.isEmpty()) {
             // Cannot find empty string.
             throw new InvalidCommandException("You forgot to tell me what to find, fool.",
-                    FerMyneFace.FERDINAND_EXASPERATED,
+                    MyneFace.FERDINAND_EXASPERATED,
                     Myne.FERDINAND_NAME);
         }
 
@@ -43,11 +43,11 @@ public class FindCommand implements Command {
         if (tasksFound.isEmpty()) {
             return new Response("I could not find anything of the sort.",
                     Status.SUCCESS,
-                    FerMyneFace.FERDINAND_EXASPERATED,
+                    MyneFace.FERDINAND_EXASPERATED,
                     Myne.FERDINAND_NAME);
         }
 
         String text = ui.getTaskListText(tasksFound, "Here are my findings.");
-        return new Response(text, Status.SUCCESS, FerMyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
+        return new Response(text, Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
     }
 }

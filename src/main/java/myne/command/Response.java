@@ -1,6 +1,6 @@
 package myne.command;
 
-import myne.FerMyneFace;
+import myne.MyneFace;
 
 /**
  * A class to encapsulate the response from executing commands.
@@ -8,7 +8,7 @@ import myne.FerMyneFace;
 public class Response {
     private final String message;
     private final Status status;
-    private final FerMyneFace face;
+    private final MyneFace face;
     private final String name;
 
     /**
@@ -17,7 +17,7 @@ public class Response {
      * @param status One of the <code>Status</code> results.
      * @param face The face used for the chat.
      */
-    public Response(String message, Status status, FerMyneFace face, String name) {
+    public Response(String message, Status status, MyneFace face, String name) {
         this.message = message;
         this.status = status;
         this.face = face;
@@ -32,7 +32,7 @@ public class Response {
         return status;
     }
 
-    public FerMyneFace getFace() {
+    public MyneFace getFace() {
         return face;
     }
 

@@ -1,16 +1,16 @@
 package myne;
 
-public class FerMyneException extends RuntimeException {
-    private final FerMyneFace face;
+public class MyneException extends RuntimeException {
+    private final MyneFace face;
     private final String name;
 
-    public FerMyneException(String message, FerMyneFace face, String name) {
+    public MyneException(String message, MyneFace face, String name) {
         super(message);
         this.face = face;
         this.name = name;
     }
 
-    public FerMyneFace getFace() {
+    public MyneFace getFace() {
         return face;
     }
 

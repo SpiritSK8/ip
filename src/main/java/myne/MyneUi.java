@@ -16,7 +16,7 @@ public class MyneUi {
                 
                 May our meeting, ordained by the gods be blessed on this fruitful day.""";
 
-        return new Response(greeting, Status.SUCCESS, FerMyneFace.MYNE_THANKFUL, Myne.MYNE_NAME);
+        return new Response(greeting, Status.SUCCESS, MyneFace.MYNE_THANKFUL, Myne.MYNE_NAME);
     }
 
     /**
@@ -28,7 +28,7 @@ public class MyneUi {
                 
                 Ask for "help" if you are lost.""";
 
-        return new Response(greeting, Status.SUCCESS, FerMyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
+        return new Response(greeting, Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
     }
 
     /**
@@ -37,7 +37,7 @@ public class MyneUi {
     public Response getFarewell() {
         String farewell = "Farewell. May the time come when our threads of fate are woven together again.";
 
-        return new Response(farewell, Status.SUCCESS, FerMyneFace.MYNE_THANKFUL, Myne.MYNE_NAME);
+        return new Response(farewell, Status.SUCCESS, MyneFace.MYNE_THANKFUL, Myne.MYNE_NAME);
     }
 
     /**

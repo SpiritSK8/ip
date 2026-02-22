@@ -1,6 +1,5 @@
 package myne.command;
 
-import myne.FerMyneFace;
 import myne.Myne;
 import myne.MyneUi;
 

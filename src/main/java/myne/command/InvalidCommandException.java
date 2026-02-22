@@ -1,13 +1,13 @@
 package myne.command;
 
-import myne.FerMyneException;
-import myne.FerMyneFace;
+import myne.MyneException;
+import myne.MyneFace;
 
 /**
  * A class for exceptions related to improperly formatted commands.
  */
-public class InvalidCommandException extends FerMyneException {
-    public InvalidCommandException(String message, FerMyneFace face, String name) {
+public class InvalidCommandException extends MyneException {
+    public InvalidCommandException(String message, MyneFace face, String name) {
         super(message, face, name);
     }
 }

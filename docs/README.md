@@ -3,6 +3,8 @@
 **Emu** is a **desktop smart task management chatbot** that helps
 you capture, organize, and track tasks efficiently, with a cheerful personality to boot!
 
+![](Ui.png)
+
 ## Features
 > **Notes about the command format:**
 >

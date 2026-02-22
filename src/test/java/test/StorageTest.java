@@ -83,7 +83,7 @@ public class StorageTest {
             File tempFile = File.createTempFile("test-list", ".txt");
             tempFile.deleteOnExit();
 
-            // Try {@code resetFile} and get file.
+            // Try resetFile and get file.
             Storage storage = new Storage(tempFile.getAbsolutePath());
             storage.resetFile(sample);
 

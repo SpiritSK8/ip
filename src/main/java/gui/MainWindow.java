@@ -50,6 +50,8 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         setImages();
 
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+
         // Taken from ChatGPT: How to disable button when input text is empty.
         // https://chatgpt.com/share/6998b63e-85a8-800d-a1e3-7d7031147a98
         sendButton.disableProperty().bind(
@@ -60,14 +62,12 @@ public class MainWindow extends AnchorPane {
     /** Injects the Myne instance */
     public void setMyne(Myne myne) {
         this.myne = myne;
-
         showGreeting(this::parseTaskFile);
     }
 
     public void setStage(Stage stage) {
         stage.setMinWidth(400.0);
         stage.setMinHeight(400.0);
-
         this.stage = stage;
     }
 

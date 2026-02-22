@@ -69,8 +69,8 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
-        username.setText(user.getName());
-        username.setTextFill(user.getColor());
+        username.setText(user.name());
+        username.setTextFill(user.color());
         displayPicture.setImage(img);
     }
 

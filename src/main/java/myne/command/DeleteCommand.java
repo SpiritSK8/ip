@@ -11,6 +11,12 @@ import myne.task.Task;
  * A class to encapsulate the logic for deleting tasks and parsing the command for doing so.
  */
 public class DeleteCommand implements Command {
+    private static final String DELETE_MESSAGE = "Let me give this task to someone else...";
+    private static final String USAGE = """
+            Usage:
+            delete <task_number>
+            delete <task_name>""";
+
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String parameters;
@@ -30,31 +36,47 @@ public class DeleteCommand implements Command {
 
     /**
      * Deletes the task from Myne's task list and updates the file.
-     * @throws InvalidCommandException If the index provided is not an integer.
-     * @throws IndexOutOfBoundsException If the index provided is less than 1 or more than the task list size.
+     * @throws InvalidCommandException If the task index or name are not provided.
+     * @throws MyneException If the index provided is less than 1 or more than the task list size.
      */
     @Override
-    public Response execute() throws InvalidCommandException, IndexOutOfBoundsException {
+    public Response execute() throws InvalidCommandException, MyneException {
         if (parameters.isBlank()) {
             throw new InvalidCommandException(
-                    "Do tell me which task to delete.", MyneFace.MYNE_CONFUSED, Myne.MYNE_NAME);
+                    "Do tell me which task to delete.\n\n" + USAGE, MyneFace.MYNE_CONFUSED, Myne.MYNE_NAME);
         }
 
+        // If the parameter is an integer, then we delete by task index.
         if (CommandParser.isNumeric(parameters)) {
             return deleteByIndex();
-        } else {
-            return deleteByKeyword();
         }
+
+        /* If the parameter is not an integer, we treat it as find-then-delete.
+         * If exact matches are found, then we delete all of them.
+         * Otherwise, for partial matches, there must be exactly 1 task to delete.
+         * We don't want the user to type "delete a" and accidentally delete half of their tasks.
+         */
+
+        // Try to find exact matches first
+        TaskList findResultExact = taskList.findExact(parameters);
+        if (!findResultExact.isEmpty()) {
+            return deleteByExactMatches(findResultExact);
+        }
+
+        return deleteByPartialMatch();
     }
 
-    // This method must be used only if the parameter is guaranteed to be an integer.
-    private Response deleteByIndex() {
+    /**
+     * Treats <code>this.parameters</code> as index, and deletes the (index - 1) task from <code>this.taskList</code>.
+     * @return a response showing which task was deleted.
+     */
+    private Response deleteByIndex() throws MyneException {
         try {
             int index = Integer.parseInt(parameters) - 1;
             Task removedTask = taskList.delete(index);
             storage.saveTasks(taskList);
 
-            return new Response("Let me entrust this task to someone else...\n\n" + removedTask,
+            return new Response(DELETE_MESSAGE + "\n\n" + removedTask,
                     Status.SUCCESS,
                     MyneFace.MYNE_WORRIED,
                     Myne.MYNE_NAME);
@@ -68,23 +90,55 @@ public class DeleteCommand implements Command {
         }
     }
 
-    private Response deleteByKeyword() {
-        TaskList findResult = taskList.find(parameters);
+    /**
+     * Deletes all the tasks contained in <code>tl</code> from <code>this.taskList</code> and returns a response.
+     *      * @param tl The <code>TaskList</code> containing the tasks to delete.
+     *      * @return the response showing which tasks were deleted.
+     */
+    private Response deleteByExactMatches(TaskList tl) {
+        StringBuilder sb = new StringBuilder(DELETE_MESSAGE).append("\n\n");
+        for (int i = 0; i < tl.size() - 1; i++) {
+            Task taskToDelete = tl.get(i);
+            if (taskList.delete(taskToDelete)) {
+                sb.append(taskToDelete).append("\n");
+            }
+        }
+        Task taskToDelete = tl.get(tl.size() - 1);
+        if (taskList.delete(taskToDelete)) {
+            sb.append(taskToDelete);// Last line doesn't need newline.
+        }
 
-        // There must be exactly 1 task to delete when deleting by keyword.
+        storage.saveTasks(taskList);
+
+        return new Response(sb.toString(),
+                Status.SUCCESS,
+                MyneFace.MYNE_WORRIED,
+                Myne.MYNE_NAME);
+    }
+
+    /**
+     * Finds a task from <code>this.taskList</code> that partially match <code>this.parameters</code> and, if exactly
+     * 1 task is found, deletes it.
+     * @return a response showing which task was deleted.
+     */
+    private Response deleteByPartialMatch() throws MyneException {
+        TaskList findResult = taskList.findMatching(parameters);
         if (findResult.isEmpty()) {
-            throw new InvalidCommandException("You have no such task.", MyneFace.MYNE_DISGUSTED, Myne.MYNE_NAME);
-        }
-        if (findResult.size() > 1) {
-            throw new InvalidCommandException(
-                    "Which task? Please be more specific.", MyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
+            throw new MyneException("You have no such task.", MyneFace.MYNE_DISGUSTED, Myne.MYNE_NAME);
         }
 
+        if (findResult.size() > 1) {
+            throw new MyneException(
+                    "More than 1 task match that name. Please be more specific.",
+                    MyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
+        }
+
+        // Delete the sole task that was found.
         Task taskToDelete = findResult.get(0);
         taskList.delete(taskToDelete);
         storage.saveTasks(taskList);
 
-        return new Response("Let me entrust this task to someone else...\n\n" + taskToDelete,
+        return new Response(DELETE_MESSAGE + "\n\n" + taskToDelete,
                 Status.SUCCESS,
                 MyneFace.MYNE_WORRIED,
                 Myne.MYNE_NAME);

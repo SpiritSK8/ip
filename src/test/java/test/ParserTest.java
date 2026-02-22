@@ -9,7 +9,6 @@ import emu.EmuException;
 import emu.Parser;
 
 public class ParserTest {
-
     @Test
     void testParseDeadline() throws EmuException {
         // Valid case.

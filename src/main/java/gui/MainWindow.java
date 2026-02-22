@@ -1,9 +1,12 @@
 package gui;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -61,15 +64,7 @@ public class MainWindow extends AnchorPane {
     public void setMyne(Myne myne) {
         this.myne = myne;
 
-        // Show greeting message.
-        addMyneDialog(myne.getUi().getMyneGreeting());
-        addMyneDialog(myne.getUi().getFerdinandGreeting());
-        addMyneDialog(new HelpCommand("").execute());
-
-        Response response = myne.parseTaskFile();
-        if (response.getStatus() == Status.FAIL) {
-            addMyneDialog(response);
-        }
+        showGreeting(this::parseTaskFile);
     }
 
     public void setStage(Stage stage) {
@@ -131,7 +126,7 @@ public class MainWindow extends AnchorPane {
 
     private void exitAppAfterDelay(double seconds) {
         PauseTransition pause = new PauseTransition(Duration.seconds(seconds));
-        pause.setOnFinished(event -> stage.close());
+        pause.setOnFinished(e -> stage.close());
         pause.play();
     }
 
@@ -158,5 +153,37 @@ public class MainWindow extends AnchorPane {
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/FerdinandHappy.png"))));
         ferMyneImages.put(MyneFace.FERDINAND_EXASPERATED,
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/FerdinandExasperated.png"))));
+    }
+
+    private void showGreeting(Runnable then) {
+        // Disable user input until greetings have been shown.
+        userInput.setDisable(true);
+
+        List<Response> greetings = myne.getUi().getGreetings();
+        PauseTransition[] pauses = greetings.stream().map(
+                // Maps each response into a PauseTransition with a duration of X second. This essentially
+                // builds a sequence of actions to be played sequentially with a delay of X second in between.
+                response -> {
+                    PauseTransition pause = new PauseTransition(Duration.seconds(0.9));
+                    pause.setOnFinished(e -> addMyneDialog(response));
+                    return pause;
+                }
+        ).toArray(PauseTransition[]::new);
+
+        SequentialTransition sequence = new SequentialTransition(pauses);
+
+        sequence.setOnFinished(e -> {
+            userInput.setDisable(false);
+            then.run();
+        });
+
+        sequence.play();
+    }
+
+    private void parseTaskFile() {
+        Response response = myne.parseTaskFile();
+        if (response.getStatus() == Status.FAIL) {
+            addMyneDialog(response);
+        }
     }
 }

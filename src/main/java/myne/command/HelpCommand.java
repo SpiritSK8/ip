@@ -8,7 +8,7 @@ import myne.Myne;
  */
 public class HelpCommand implements Command {
     private static final String HELP = """
-            For efficient communication, we will be using commands. \
+            For efficient communication, we will be using the following commands. \
             Anything else will be ignored, so memorize them well.
             
             help

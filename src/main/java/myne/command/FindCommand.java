@@ -38,7 +38,7 @@ public class FindCommand implements Command {
                     Myne.FERDINAND_NAME);
         }
 
-        TaskList tasksFound = taskList.find(parameters);
+        TaskList tasksFound = taskList.findMatching(parameters);
 
         if (tasksFound.isEmpty()) {
             return new Response("I could not find anything of the sort.",
@@ -47,7 +47,7 @@ public class FindCommand implements Command {
                     Myne.FERDINAND_NAME);
         }
 
-        String text = ui.getTaskListText(tasksFound, "Here are my findings.");
+        String text = ui.getTaskListText(tasksFound, "Here.");
         return new Response(text, Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
     }
 }

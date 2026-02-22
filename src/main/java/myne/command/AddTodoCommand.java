@@ -10,6 +10,10 @@ import myne.task.Todo;
  * A class to encapsulate the logic for adding a <code>Todo</code> and parsing the command for doing so.
  */
 public class AddTodoCommand implements Command {
+    private static final String USAGE = """
+            Usage:
+            todo <task_name>""";
+
     private final TaskList taskList;
     private final TaskStorage storage;
     private final String taskName;

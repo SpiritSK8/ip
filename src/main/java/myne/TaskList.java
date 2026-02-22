@@ -3,8 +3,6 @@ package myne;
 import java.util.ArrayList;
 import java.util.List;
 
-import myne.command.Response;
-import myne.command.Status;
 import myne.task.Task;
 
 /**
@@ -107,12 +105,28 @@ public class TaskList {
      * @param textToFind The text to find.
      * @return A new <code>TaskList</code> containing the tasks found.
      */
-    public TaskList find(String textToFind) {
+    public TaskList findMatching(String textToFind) {
         TaskList tasksFound = new TaskList();
 
         // Matches the text with any prefix/suffix, ignoring case.
         list.stream()
                 .filter(task -> task.getName().toLowerCase().contains(textToFind.toLowerCase()))
+                .forEach(tasksFound::add);
+
+        return tasksFound;
+    }
+
+    /**
+     * Finds all tasks whose name matches the specified text exactly. Search is case-insensitive.
+     * @param textToFind The text to find.
+     * @return A new <code>TaskList</code> containing the tasks found.
+     */
+    public TaskList findExact(String textToFind) {
+        TaskList tasksFound = new TaskList();
+
+        // Matches the text with any prefix/suffix, ignoring case.
+        list.stream()
+                .filter(task -> task.getName().equalsIgnoreCase(textToFind))
                 .forEach(tasksFound::add);
 
         return tasksFound;

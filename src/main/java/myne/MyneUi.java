@@ -11,10 +11,7 @@ public class MyneUi {
      * Returns the greeting for when Myne starts.
      */
     public Response getMyneGreeting() {
-        String greeting = """
-                Good day to you. My name is Myne.
-                
-                May our meeting, ordained by the gods be blessed on this fruitful day.""";
+        String greeting = "Good day to you. My name is Myne. May our meeting be blessed on this fruitful day.";
 
         return new Response(greeting, Status.SUCCESS, MyneFace.MYNE_THANKFUL, Myne.MYNE_NAME);
     }
@@ -24,9 +21,11 @@ public class MyneUi {
      */
     public Response getFerdinandGreeting() {
         String greeting = """
-                I am Ferdinand.
+                I am Ferdinand, Myne's guardian.
+                From now on, you will be working under us.
+                If you wish to take on a task, simply send word and we will assign it to you.
                 
-                Ask for "help" if you are lost.""";
+                Type "help" if you need assistance.""";
 
         return new Response(greeting, Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
     }

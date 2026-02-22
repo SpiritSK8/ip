@@ -19,6 +19,7 @@ import myne.MyneFace;
 import myne.Myne;
 import myne.command.Command;
 import myne.command.CommandParser;
+import myne.command.HelpCommand;
 import myne.command.Response;
 import myne.command.Status;
 
@@ -63,6 +64,7 @@ public class MainWindow extends AnchorPane {
         // Show greeting message.
         addMyneDialog(myne.getUi().getMyneGreeting());
         addMyneDialog(myne.getUi().getFerdinandGreeting());
+        addMyneDialog(new HelpCommand("").execute());
 
         Response response = myne.parseTaskFile();
         if (response.getStatus() == Status.FAIL) {

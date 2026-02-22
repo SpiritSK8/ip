@@ -8,7 +8,8 @@ import myne.Myne;
  */
 public class HelpCommand implements Command {
     private static final String HELP = """
-            These are the commands that you may enter.
+            For efficient communication, we will be using commands. \
+            Anything else will be ignored, so memorize them well.
             
             help
             bye
@@ -21,7 +22,7 @@ public class HelpCommand implements Command {
             delete
             find
             
-            Please type "help <command_name>" to learn more about a command.""";
+            Type "help <command_name>" to learn more about a command.""";
 
     private final String parameters;
 
@@ -40,6 +41,8 @@ public class HelpCommand implements Command {
 
     private Response getHelpFor(String commandType) {
         return switch (commandType) {
+            case "" -> getDefaultHelp();
+            case "help" -> getHelpHelp();
             case "bye" -> getByeHelp();
             case "todo" -> getTodoHelp();
             case "deadline" -> getDeadlineHelp();
@@ -49,17 +52,29 @@ public class HelpCommand implements Command {
             case "unmark" -> getUnmarkHelp();
             case "delete" -> getDeleteHelp();
             case "find" -> getFindHelp();
-            default -> getDefaultHelp();
+            default -> getUnknownHelp();
         };
     }
 
     private Response getDefaultHelp() {
-        return new Response(HELP, Status.SUCCESS, MyneFace.MYNE_HAPPY, Myne.MYNE_NAME);
+        return new Response(HELP, Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
+    }
+
+    private Response getHelpHelp() {
+        String help = """
+                Use this command to read the manual.
+                You can also learn more about individual commands by adding the command name after "help".
+                
+                Usage:
+                help
+                help <command_name>""";
+
+        return new Response(help, Status.SUCCESS, MyneFace.MYNE_WONDER, Myne.MYNE_NAME);
     }
 
     private Response getByeHelp() {
         String help = """
-                For when you wish to depart.
+                Use this command if you wish to depart.
                 
                 Usage:
                 bye""";
@@ -69,7 +84,7 @@ public class HelpCommand implements Command {
 
     private Response getTodoHelp() {
         String help = """
-                I shall write down a new task for you.
+                Use this command to add a new task.
                 
                 Usage:
                 todo <task_name>
@@ -82,7 +97,7 @@ public class HelpCommand implements Command {
 
     private Response getDeadlineHelp() {
         String help = """
-                I shall give you a task which must be finished before it's due.
+                This command adds a new task with a due date.
                 
                 Usage:
                 deadline <task_name> /by <due_date>
@@ -96,7 +111,8 @@ public class HelpCommand implements Command {
 
     private Response getEventHelp() {
         String help = """
-                How exciting! Tell me when the event starts and ends and I will write it down for you.
+                Use this command to add a new event with a start and end date.
+                How exciting!
                 
                 Usage:
                 event <task_name> /from <start_date> /to <end_date>
@@ -109,7 +125,8 @@ public class HelpCommand implements Command {
 
     private Response getListHelp() {
         String help = """
-                Did you forget your tasks again?
+                Use this command to list your tasks.
+                You... didn't forget your tasks again, right?
                 
                 Usage:
                 list""";
@@ -119,11 +136,12 @@ public class HelpCommand implements Command {
 
     private Response getMarkHelp() {
         String help = """
+                Use this command to mark a task as done.
                 One task down!
                 
                 Usage:
                 mark <task_number>
-                mark <keyword>
+                mark <task_name>
                 
                 Example usage:
                 mark 1
@@ -134,11 +152,11 @@ public class HelpCommand implements Command {
 
     private Response getUnmarkHelp() {
         String help = """
-                Send word when you need to redo a task.
+                This command unmarks a task.
                 
                 Usage:
                 unmark <task_number>
-                unmark <keyword>
+                unmark <task_name>
                 
                 Example usage:
                 unmark 1
@@ -149,11 +167,12 @@ public class HelpCommand implements Command {
 
     private Response getDeleteHelp() {
         String help = """
-                Let's give that task to another person...
+                Use this command to delete a task.
+                If you can't handle it, we can always give it to another person...
                 
                 Usage:
                 delete <task_number>
-                delete <keyword>
+                delete <task_name>
                 
                 Example usage:
                 delete 1
@@ -164,14 +183,23 @@ public class HelpCommand implements Command {
 
     private Response getFindHelp() {
         String help = """
-                I'll get to read... Eheheh... But of course it is to help you find your task!
+                Use this command to find your tasks.
+                I'll get to read through your tasks!
                 
                 Usage:
-                find <keyword>
+                find <task_name>
                 
                 Example usage:
-                find book""";
+                find book
+                find oo""";
 
         return new Response(help, Status.SUCCESS, MyneFace.MYNE_JOYFUL, Myne.MYNE_NAME);
+    }
+
+    private Response getUnknownHelp() {
+        String help = """
+                I do not recognize that command. Please type "help" to look at the list of commands.""";
+
+        return new Response(help, Status.SUCCESS, MyneFace.MYNE_DEFAULT, Myne.MYNE_NAME);
     }
 }

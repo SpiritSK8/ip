@@ -33,7 +33,7 @@ public class ListCommand implements Command {
                     Myne.FERDINAND_NAME);
         }
 
-        String text = ui.getTaskListText(taskList, "You forgot your tasks again?");
+        String text = ui.getTaskListText(taskList, "Here.");
         return new Response(text, Status.SUCCESS, MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
     }
 }

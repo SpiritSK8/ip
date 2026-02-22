@@ -15,7 +15,12 @@ import myne.task.Deadline;
  * A class to encapsulate the logic for adding a <code>Deadline</code> and parsing the command for doing so.
  */
 public class AddDeadlineCommand implements Command {
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+    private static final String USAGE = """
+            Usage:
+            deadline <task_name> /by <due_date>
+            (DD-MM-YYYY)""";
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(
             "[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
 
     private final TaskList taskList;
@@ -56,7 +61,7 @@ public class AddDeadlineCommand implements Command {
     private Deadline parseCommand(String parameters) throws InvalidCommandException {
         if (parameters.isEmpty()) {
             throw new InvalidCommandException(
-                    "Nothing is there, fool.", MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+                    "Nothing is there, fool.\n\n" + USAGE, MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
         }
 
         HashMap<String, String> parameterValues = CommandParser.extractParameters(parameters);
@@ -64,24 +69,24 @@ public class AddDeadlineCommand implements Command {
         // Checks for missing /by
         if (!parameterValues.containsKey("/by")) {
             throw new InvalidCommandException(
-                    "Provide the due date with /by.", MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
+                    "Provide the due date with /by.\n\n" + USAGE, MyneFace.FERDINAND_DEFAULT, Myne.FERDINAND_NAME);
         }
 
         // Checks for blank name or due date.
         if (parameterValues.get("first").isBlank()) {
             throw new InvalidCommandException(
-                    "Where is the task name?", MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+                    "You are missing the task name.", MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
         }
         if (parameterValues.get("/by").isBlank()) {
             throw new InvalidCommandException(
-                    "When is this task due?", MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+                    "You are missing the due date.", MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
         }
 
         String name = parameterValues.get("first");
         String dueDateText = parameterValues.get("/by");
 
         try {
-            LocalDate dueDate = LocalDate.parse(dueDateText, formatter);
+            LocalDate dueDate = LocalDate.parse(dueDateText, FORMATTER);
 
             return new Deadline(name, dueDate);
         } catch (DateTimeParseException e) {

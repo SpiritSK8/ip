@@ -67,6 +67,11 @@ public class CommandParser {
 
         String[] parts = parameters.split("/");
 
+        // Happens if the parameter is only "/".
+        if (parts.length == 0) {
+            return parameterValues;
+        }
+
         parameterValues.put("first", parts[0].trim()); // The first parameter doesn't have any /<parameter_name>
 
         for (int i = 1; i < parts.length; i++) {

@@ -41,6 +41,12 @@ public class UnmarkCommand implements Command {
      */
     @Override
     public Response execute() throws InvalidCommandException, MyneException {
+        if (taskList.isEmpty()) {
+            throw new MyneException(
+                    "Oh my! It seems like you have no tasks at the moment. Shall we remedy that?\n\n",
+                    MyneFace.MYNE_WONDER, Myne.MYNE_NAME);
+        }
+
         if (parameters.isBlank()) {
             throw new InvalidCommandException(
                     "I cannot unmark nothing, can I?\n\n" + USAGE, MyneFace.MYNE_DISGUSTED, Myne.MYNE_NAME);

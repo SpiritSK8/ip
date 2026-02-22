@@ -40,6 +40,12 @@ public class MarkCommand implements Command {
      */
     @Override
     public Response execute() throws InvalidCommandException, MyneException {
+        if (taskList.isEmpty()) {
+            throw new MyneException(
+                    "You have no tasks yet. Do not slack off.\n\n",
+                    MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);
+        }
+
         if (parameters.isBlank()) {
             throw new InvalidCommandException(
                     "Which task?\n\n" + USAGE, MyneFace.FERDINAND_EXASPERATED, Myne.FERDINAND_NAME);

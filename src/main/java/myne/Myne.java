@@ -47,12 +47,12 @@ public class Myne {
         parseResult.getTasks().forEach(taskList::add);
 
         if (parseResult.hasError()) {
-            String errorHeader = "Hmm, I don't recognize this language... Can you decipher it for me?\n\n";
+            String errorHeader = "Hmm, I don't recognize this language in your list... Can you decipher it for me?\n\n";
             String errorMessage = errorHeader + String.join("\n", parseResult.getErrors());
             return new Response(errorMessage, Status.FAIL, MyneFace.MYNE_WORRIED, Myne.MYNE_NAME);
         }
 
-        return new Response("Parse task success.", Status.SUCCESS, MyneFace.MYNE_DEFAULT, Myne.MYNE_NAME);
+        return new Response("Task parsing success.", Status.SUCCESS, MyneFace.MYNE_DEFAULT, Myne.MYNE_NAME);
     }
 
     /**

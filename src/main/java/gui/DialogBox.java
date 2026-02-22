@@ -20,7 +20,7 @@ import javafx.util.Duration;
  * Represents a dialog box consisting of an ImageView to represent the speaker's face
  * and a label containing text from the speaker.
  * ChatGPT was used to improve the style of DialogBox to match the chatbot personality,
- * helping to find the perfect colors and fonts to use
+ * helping to find the perfect colors and fonts to use.
  */
 public class DialogBox extends HBox {
     @FXML

@@ -51,8 +51,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Emu's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates two dialog boxes, one echoing user input and the other containing Emu's
+     * reply and then appends them to the dialog container. Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() {
@@ -69,7 +69,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getEmuDialog(response, emuImage)
         );
 
-        // Closes the system if Emu exit status is true
+        // Closes the system if Emu exit status is true.
         if (emu.getExitStatus()) {
             PauseTransition delay = new PauseTransition(Duration.seconds(1.0));
             delay.setOnFinished(event -> javafx.application.Platform.exit());

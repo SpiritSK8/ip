@@ -3,8 +3,7 @@ package emu;
 import java.util.ArrayList;
 
 /**
- * Coordinates the UI, TaskList, Parser, and Storage components
- * to handle user commands and program flow
+ * Coordinates the Ui, TaskList, Parser, and Storage components to handle user commands and program flow.
  */
 public class Emu {
     private Storage storage;
@@ -14,8 +13,8 @@ public class Emu {
     private boolean hasStorageFailed; // Tracks if storage failed to initialise
 
     /**
-     * Initialises the storage, UI, and TaskList
-     * If storage cannot be created, sets hasStorageFailed to true and continues
+     * Creates an Emu instance and initialises the Ui, TaskList, and Storage components.
+     * If storage cannot be created, sets {@code hasStorageFailed} to true and continues.
      */
     public Emu() {
         this.ui = new Ui();
@@ -31,10 +30,10 @@ public class Emu {
     }
 
     /**
-     * Initialises the TaskList by loading from storage
-     * If loading storage fails, hasStorageFailed set to true
+     * Initialises the TaskList by loading tasks from storage.
+     * If loading fails, sets {@code hasStorageFailed} to true.
      *
-     * @return Greeting string, with warning if storage failed
+     * @return Greeting string with a warning if storage failed.
      */
     public String initialiseTaskList() {
         try {
@@ -46,7 +45,7 @@ public class Emu {
     }
 
     /**
-     * Returns whether the chatbot is set to exit
+     * Returns whether the chatbot is set to exit.
      */
     public boolean getExitStatus() {
         return this.isExit;
@@ -54,15 +53,15 @@ public class Emu {
 
     /**
      * Calls for the command to be executed based on user input
-     * and returns a formatted response
+     * and returns a formatted response.
      *
-     * @param input User input string
-     * @return Formatted response string
+     * @param input User input string.
+     * @return Formatted response string.
      */
     public String respond(String input) {
         assert input != null : "input should not be null";
 
-        // Parses the input into command and other portions
+        // Parse user input into command and argument.
         Parser parts = new Parser(input);
 
         try {
@@ -73,12 +72,12 @@ public class Emu {
     }
 
     /**
-     * Handles the execution of a command based on its type and argument
+     * Handles the execution of a command based on its type and argument.
      *
-     * @param command The command string
-     * @param other The argument string for the command
-     * @return The result string from executing the command
-     * @throws EmuException If the command is invalid or fails
+     * @param command The command string.
+     * @param other The argument string for the command.
+     * @return The result string from executing the command.
+     * @throws EmuException If the command is invalid or fails.
      */
     private String executeCommand(String command, String other) throws EmuException {
         return switch (command) {

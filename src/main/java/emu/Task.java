@@ -1,57 +1,73 @@
 package emu;
 
 /**
- * Defines common variables and methods shared by all task types
- * Each task has a description and a completion status
+ * Defines common variables and methods shared by all task types.
+ * Each task has a description and a completion status.
  */
 public abstract class Task {
     private String description;
     private boolean isComplete;
 
     /**
-     * Initialises the common variables shared by all tasks
+     * Constructs a Task with the specified description.
      *
-     * @param description Description of the task
+     * @param description Description of the task.
      */
     public Task(String description) {
-        assert description != null : "description should not be null";
-        assert !description.isEmpty() : "description should not be empty";
+        assert description != null && !description.isEmpty()
+                : "description must not be null or empty";
 
         this.description = description;
         this.isComplete = false;
     }
 
+    /**
+     * Returns the status icon used for display.
+     *
+     * @return {@code "X"} if complete, otherwise a single space.
+     */
     public String getStatusIcon() {
         return (isComplete ? "X" : " ");
     }
 
+    /**
+     * Returns the task description.
+     *
+     * @return The task description.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Marks the task as complete.
+     */
     public void markComplete() {
         isComplete = true;
     }
 
+    /**
+     * Marks the task as incomplete.
+     */
     public void markIncomplete() {
         isComplete = false;
     }
 
     /**
-     * Returns string for storage on hard disk
-     * Subclasses may append extra information
+     * Returns the string used for storage on the hard disk.
+     * Subclasses may append extra information.
      *
-     * @return String representation used for writing to hard disk
+     * @return String representation used for writing to disk.
      */
     public String toStorageString() {
         return " | " + getStatusIcon() + " | " + description;
     }
 
     /**
-     * Returns string for display to the user
-     * Subclasses may append extra information
+     * Returns the string representation of the task for display to the user.
+     * Subclasses may append extra information.
      *
-     * @return String representation used for listing
+     * @return String representation used for listing.
      */
     @Override
     public String toString() {

@@ -1,26 +1,26 @@
 package emu;
 
 /**
- * Represents a to-do task that has only a description
+ * Represents a to-do task that has only a description.
  */
 public class ToDo extends Task {
     private static final String STORAGE_MARKER = "T";
     private static final String DISPLAY_MARKER = "[T]";
 
     /**
-     * Initialises a To-Do task
+     * Constructs a ToDo task with the specified description.
      *
-     * @param description Description of the To-Do task
+     * @param description Description of the ToDo task.
      */
     public ToDo(String description) {
         super(description);
+        assert description != null && !description.isEmpty() : "description must not be null or empty";
     }
 
     /**
-     * Returns the string representation of the task
-     * for storage on hard disk
+     * Returns the string representation of the task for storage on disk.
      *
-     * @return Storage format of a to-do task
+     * @return Storage format of the ToDo task.
      */
     @Override
     public String toStorageString() {
@@ -28,10 +28,9 @@ public class ToDo extends Task {
     }
 
     /**
-     * Returns the string representation of the task
-     * when listed to the user
+     * Returns the string representation of the task for display to the user.
      *
-     * @return Display format of a to-do task
+     * @return Display format of the ToDo task.
      */
     @Override
     public String toString() {

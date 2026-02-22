@@ -1,7 +1,7 @@
 package emu;
 
 /**
- * Handles formatting of messages shown to the user
+ * Handles formatting of messages shown to the user.
  */
 public class Ui {
     private static final String DIVIDER_LINE =
@@ -12,29 +12,29 @@ public class Ui {
             "UWA!!! I can't seem to find your past tasks!";
 
     /**
-     * Returns the initial greeting message,
-     * with additional message if storage failed to initialise
+     * Returns the initial greeting message, with an additional message
+     * if storage failed to initialise.
      *
-     * @param hasStorageFailed If storage has failed to initialise
-     * @return Greeting message
+     * @param hasStorageFailed {@code true} if storage has failed to initialise.
+     * @return Greeting message.
      */
     public String giveGreeting(boolean hasStorageFailed) {
         if (hasStorageFailed) {
-            return STANDARD_GREETING + STORAGE_FAILURE;
+            return STANDARD_GREETING + " " + STORAGE_FAILURE;
         } else {
             return STANDARD_GREETING;
         }
     }
 
     /**
-     * Formats a response message for display to the user
+     * Formats a response message for display to the user.
      *
-     * @param response Text to be formatted
-     * @return Formatted text
+     * @param response Text to be formatted.
+     * @return Formatted text.
      */
     public String formatResponse(String response) {
-        assert response != null : "response should not be null";
-        assert !response.isEmpty() : "response should not be empty";
+        assert response != null : "response must not be null";
+        assert !response.isEmpty() : "response must not be empty";
 
         return DIVIDER_LINE + response + "\n" + DIVIDER_LINE;
     }

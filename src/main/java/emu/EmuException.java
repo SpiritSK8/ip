@@ -1,7 +1,7 @@
 package emu;
 
 /**
- * Manages the format of the error messages in Emu
+ * Manages the format of the error messages in Emu.
  */
 public class EmuException extends Exception {
     /**
@@ -17,9 +17,9 @@ public class EmuException extends Exception {
     }
 
     /**
-     * Overrides extending class Exception for a custom message
+     * Returns the formatted exception message prefixed with a custom string.
      *
-     * @return Custom String to be printed for EmuException message
+     * @return Formatted exception message.
      */
     @Override
     public String getMessage() {
@@ -27,11 +27,11 @@ public class EmuException extends Exception {
     }
 
     /**
-     * Returns the actual message stored in EmuException for testing
+     * Returns the actual message stored in EmuException for testing.
      *
-     * @return Actual message stored in EmuException
+     * @return Actual message stored in EmuException.
      */
-    public String realMessage() {
+    public String getRawMessage() {
         return super.getMessage();
     }
 }

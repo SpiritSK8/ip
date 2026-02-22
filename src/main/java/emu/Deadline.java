@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a deadline task with a description and by date
+ * Represents a deadline task with a description and a by date.
  */
 public class Deadline extends Task {
     private static final String STORAGE_MARKER = "D";
@@ -17,12 +17,12 @@ public class Deadline extends Task {
     private LocalDate byDate;
 
     /**
-     * Initialises a deadline task
-     * Tries converting {@code by} to a LocalDate
-     * If fails, defaults to original string
+     * Creates a deadline task with the specified description and by date.
+     * Attempts to convert {@code by} to a {@code LocalDate}.
+     * If conversion fails, stores the original string.
      *
-     * @param description Description of the deadline task
-     * @param by By date as a string
+     * @param description Description of the deadline task.
+     * @param by By date as a string.
      */
     public Deadline(String description, String by) {
         super(description);
@@ -38,10 +38,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns the string representation of the task
-     * for storage on hard disk
+     * Returns the string representation of the task for storage on hard disk.
      *
-     * @return Storage format of a deadline task
+     * @return Storage format of a deadline task.
      */
     @Override
     public String toStorageString() {
@@ -49,10 +48,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns the string representation of the task
-     * when listed to the user
+     * Returns the string representation of the task when listed to the user.
      *
-     * @return Display format of a deadline task
+     * @return Display format of a deadline task.
      */
     @Override
     public String toString() {

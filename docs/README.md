@@ -20,29 +20,32 @@ you capture, organize, and track tasks efficiently, with a cheerful personality 
 ### 1. Add a Task
 Emu supports three types of tasks:
 
-- **To-Do**: A task with only a `DESCRIPTION`.
+- ### **To-Do Task**
+  - A task with only a `DESCRIPTION`.
 
-- **Format:** `todo DESCRIPTION`
-- **Example:** `todo Buy groceries`
-
-
-- **Deadline**: A task with a `DESCRIPTION` and a `BY` date.
-
-- `BY` can be **any string**  — if in `YYYY-MM-DD` format,
-  it will automatically be converted to `MMM d yyyy`.
-- **Format:** `deadline DESCRIPTION /by BY`
-- **Example:** `deadline Submit report /by 2026-02-28`
+  - **Format:** `todo DESCRIPTION`   
+  - **Example:** `todo Buy groceries`
 
 
-- **Event**: A task with a `DESCRIPTION`, a `FROM` date and a `TO` date.
+- ### **Deadline Task:**
+  - A task with a `DESCRIPTION` and a `BY` date.
+  - `BY` can be **any string**  — if in `YYYY-MM-DD` format,
+    it will automatically be converted to `MMM d yyyy`.
 
-- `FROM` and `TO` can be **any string**  — if in `YYYY-MM-DD` format,
-  it will automatically be converted to `MMM d yyyy`.
-- **Format:** `event DESCRIPTION /from FROM /to TO`
-- **Example:** `event Meeting /from 2026-02-21 /to 2026-02-21`
+  - **Format:** `deadline DESCRIPTION /by BY`
+  - **Example:** `deadline Submit report /by 2026-02-28`
 
-  > **Note:** Emu does not ensure the event start date/time
-  > is before the end date/time.
+
+- ### **Event Task:** 
+  - A task with a `DESCRIPTION`, a `FROM` date and a `TO` date.
+  - `FROM` and `TO` can be **any string**  — if in `YYYY-MM-DD` format,
+    it will automatically be converted to `MMM d yyyy`.
+
+  - **Format:** `event DESCRIPTION /from FROM /to TO`
+  - **Example:** `event Meeting /from 2026-02-21 /to 2026-02-21`
+
+    > **Note:** Emu does not ensure the event start date/time
+    is before the end date/time.
 
 ### 2. Mark a Task
 Marks a task as done.

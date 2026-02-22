@@ -20,8 +20,9 @@ public class Event extends Task {
     private LocalDate toDate;
 
     /**
-     * Constructs an Event task with the specified description,
-     * start date, and end date.
+     * Constructs an Event task with the specified description, start date, and end date.
+     * Attempts to convert {@code from} and {@code to} to a {@code LocalDate}.
+     * If conversion fails, stores the original string.
      *
      * @param description The description of the event.
      * @param from The start date of the event.

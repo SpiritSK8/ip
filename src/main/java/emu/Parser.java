@@ -6,8 +6,8 @@ package emu;
  */
 public class Parser {
 
-    private final String command; // Command portion that dictates which method to invoke
-    private final String other;   // Remaining portion passed as argument to method
+    private final String command; // Command portion that dictates which method to invoke.
+    private final String other; // Remaining portion passed as argument to method.
 
     /**
      * Constructs a Parser from the full user response, splitting it
@@ -49,36 +49,36 @@ public class Parser {
     }
 
     /**
-     * Validates the response for creating a ToDo task.
+     * Validates the userInput for creating a ToDo task.
      *
-     * @param response User input for a ToDo task.
-     * @throws EmuException If the response is empty.
+     * @param userInput User input for a ToDo task.
+     * @throws EmuException If the userInput is empty.
      */
-    public static void verifyTodo(String response) throws EmuException {
-        assert response != null : "response must not be null";
+    public static void verifyTodo(String userInput) throws EmuException {
+        assert userInput != null : "userInput must not be null";
 
-        if (response.trim().isEmpty()) {
+        if (userInput.trim().isEmpty()) {
             throw new EmuException("You can't make a todo without a description!");
         }
     }
 
     /**
-     * Parses the response for creating a Deadline task.
+     * Parses the userInput for creating a Deadline task.
      *
-     * @param response User input for a Deadline task.
+     * @param userInput User input for a Deadline task.
      * @return A String array containing description and date.
-     * @throws EmuException If response is missing {@code /by} or description/date is empty.
+     * @throws EmuException If userInput is missing {@code /by} or description/date is empty.
      */
-    public static String[] parseDeadline(String response) throws EmuException {
-        assert response != null : "response must not be null";
+    public static String[] parseDeadline(String userInput) throws EmuException {
+        assert userInput != null : "userInput must not be null";
 
-        int slash = response.indexOf("/by");
+        int slash = userInput.indexOf("/by");
         if (slash == -1) {
             throw new EmuException("You forgot to include /by in your deadline task!");
         }
 
-        String desc = response.substring(0, slash).trim();
-        String by = response.substring(slash + 3).trim();
+        String desc = userInput.substring(0, slash).trim();
+        String by = userInput.substring(slash + 3).trim();
 
         if (desc.isEmpty() || by.isEmpty()) {
             throw new EmuException("You can't make a deadline without a description and a by date silly!!");
@@ -88,25 +88,25 @@ public class Parser {
     }
 
     /**
-     * Parses the response for creating an Event task.
+     * Parses the userInput for creating an Event task.
      *
-     * @param response User input for an Event task.
+     * @param userInput User input for an Event task.
      * @return A String array containing description, from, and to dates.
      * @throws EmuException If format is incorrect or any field is empty.
      */
-    public static String[] parseEvent(String response) throws EmuException {
-        assert response != null : "response must not be null";
+    public static String[] parseEvent(String userInput) throws EmuException {
+        assert userInput != null : "userInput must not be null";
 
-        int slashFrom = response.indexOf("/from");
-        int slashTo = response.indexOf("/to");
+        int slashFrom = userInput.indexOf("/from");
+        int slashTo = userInput.indexOf("/to");
 
         if (slashFrom == -1 || slashTo == -1 || slashTo < slashFrom) {
             throw new EmuException("Incorrect format! Use: event (desc) /from (start) /to (end)");
         }
 
-        String desc = response.substring(0, slashFrom).trim();
-        String from = response.substring(slashFrom + 5, slashTo).trim();
-        String to = response.substring(slashTo + 3).trim();
+        String desc = userInput.substring(0, slashFrom).trim();
+        String from = userInput.substring(slashFrom + 5, slashTo).trim();
+        String to = userInput.substring(slashTo + 3).trim();
 
         if (desc.isEmpty() || from.isEmpty() || to.isEmpty()) {
             throw new EmuException("You can't make an event without a description, a from date, and a to date silly!!");

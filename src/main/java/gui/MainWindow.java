@@ -55,6 +55,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         setImages();
 
+        // Automatically scroll to the bottom when a chat is sent.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
         // Taken from ChatGPT: How to disable button when input text is empty.
@@ -65,6 +66,9 @@ public class MainWindow extends AnchorPane {
 
         // Add up/down arrow listener for command history.
         userInput.setOnKeyPressed(event -> {
+            if (myne.isAlive()) {
+                return;
+            }
             switch (event.getCode()) {
                 case UP:
                     showPrevCommand();
@@ -144,6 +148,9 @@ public class MainWindow extends AnchorPane {
     }
 
     private void exitAppAfterDelay(double seconds) {
+        // Disable user input first.
+        userInput.setDisable(true);
+
         PauseTransition pause = new PauseTransition(Duration.seconds(seconds));
         pause.setOnFinished(e -> stage.close());
         pause.play();

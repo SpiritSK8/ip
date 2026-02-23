@@ -93,9 +93,23 @@ You have carried out your task with utmost diligence. Very good.
 ✔ read books
 ```
 
+### 5. List
+
+Lists all of your tasks.
+
+Usage: `list`
+
+Result: A list of your tasks will be shown with the following message:
+
+```
+Here.
+
+1. Read books
+2. ✔ Buy books (by: 5 Apr 2026)
+```
+
 - `help`
 - `bye`
-- `list`
 - `delete`
 - `find`
 

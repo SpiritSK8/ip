@@ -28,7 +28,7 @@ a command list is included in this user guide for easy reference.
 | `help`     | `help`<br/>`help <command_name>`                       | `help todo`                                                                  | -                                          |
 | `todo`     | `todo <task_name>`                                     | `todo read books`                                                            | -                                          |
 | `deadline` | `deadline <task_name> /by <due_date>`                  | `deadline buy books /by 14-3-2026`<br/>`deadline get books /by 14 Mar 2026`  | Dates must be in DD-MM-YYYY or DD MMM YYYY |
-| `event`    | `event <task_name> /from <start_date> /to <end_date>   | `event write books /from 9-3-2026 /to 9 Mar 2027`                            | Dates must be in DD-MM-YYYY or DD MMM YYYY |
+| `event`    | `event <task_name> /from <start_date> /to <end_date>`  | `event write books /from 9-3-2026 /to 9 Mar 2027`                            | Dates must be in DD-MM-YYYY or DD MMM YYYY |
 | `mark`     | `mark <task_number>`<br/>`mark <task_name>`            | `mark 1`<br/>`mark read books`                                               | Partial match only works with 1 match      |
 | `unmark`   | `unmark <task_number>`<br/>`unmark <task_name>`        | `unmark 1`<br/>`unmark read books`                                           | Partial match only works with 1 match      |
 | `list`     | `list`                                                 | `list`                                                                       | -                                          |

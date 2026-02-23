@@ -10,6 +10,10 @@ import myne.User;
  * A class that encapsulates the logic for finding tasks and parsing the command for it.
  */
 public class FindCommand implements Command {
+    private final static String USAGE = """
+            Usage:
+            find <task_name>""";
+
     private final MyneUi ui;
     private final TaskList taskList;
     private final String parameters;
@@ -34,7 +38,7 @@ public class FindCommand implements Command {
     public Response execute() throws InvalidCommandException {
         if (parameters.isEmpty()) {
             // Cannot find empty string.
-            throw new InvalidCommandException("You forgot to tell me what to find, fool.",
+            throw new InvalidCommandException("You forgot to tell me what to find, fool.\n\n" + USAGE,
                     MyneFace.FERDINAND_EXASPERATED,
                     User.FERDINAND);
         }

@@ -21,7 +21,9 @@ public class AddEventCommand implements Command {
     private static final String USAGE = """
             Usage:
             event <task_name> /from <start_date> /to <end_date>
-            (DD-MM-YYYY, YYYY-MM-DD, or DD MMM YYYY)""";
+            
+            Example:
+            event Read books /from 25-3-2026 /to 26-3-2026""";
 
     private static final DateTimeFormatter FORMATTER = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()

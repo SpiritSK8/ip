@@ -40,7 +40,7 @@ public class MarkCommand implements Command {
      * @throws MyneException If the index provided is less than 1 or more than the task list size.
      */
     @Override
-    public Response execute() throws InvalidCommandException, MyneException {
+    public Response execute() throws MyneException {
         if (taskList.isEmpty()) {
             throw new MyneException(
                     "You have no tasks yet. Do not slack off.\n\n",

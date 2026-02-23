@@ -41,7 +41,7 @@ public class DeleteCommand implements Command {
      * @throws MyneException If the index provided is less than 1 or more than the task list size.
      */
     @Override
-    public Response execute() throws InvalidCommandException, MyneException {
+    public Response execute() throws MyneException {
         if (taskList.isEmpty()) {
             throw new MyneException(
                     "Oh my! It seems like you have no tasks at the moment. Shall we remedy that?\n\n",

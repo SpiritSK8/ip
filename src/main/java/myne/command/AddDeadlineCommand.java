@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 
 import myne.Myne;
+import myne.MyneException;
 import myne.MyneFace;
 import myne.TaskList;
 import myne.TaskStorage;
@@ -45,9 +46,10 @@ public class AddDeadlineCommand implements Command {
     /**
      * Adds the <code>Deadline</code> to Myne's task list and saves it to the file.
      * @throws InvalidCommandException If the parameters provided in the constructor do not match the format.
+     * @throws MyneException If the date provided is in the past.
      */
     @Override
-    public Response execute() throws InvalidCommandException {
+    public Response execute() throws MyneException {
         // Add task and save.
         Deadline deadline = parseCommand(parameters);
         taskList.add(deadline);
@@ -59,7 +61,7 @@ public class AddDeadlineCommand implements Command {
                 User.FERDINAND);
     }
 
-    private Deadline parseCommand(String parameters) throws InvalidCommandException {
+    private Deadline parseCommand(String parameters) throws MyneException {
         if (parameters.isEmpty()) {
             throw new InvalidCommandException(
                     "Nothing is there, fool.\n\n" + USAGE, MyneFace.FERDINAND_EXASPERATED, User.FERDINAND);
@@ -88,6 +90,10 @@ public class AddDeadlineCommand implements Command {
 
         try {
             LocalDate dueDate = LocalDate.parse(dueDateText, FORMATTER);
+
+            if (dueDate.isBefore(LocalDate.now())) {
+                throw new MyneException("That day is past us.", MyneFace.FERDINAND_EXASPERATED, User.FERDINAND);
+            }
 
             return new Deadline(name, dueDate);
         } catch (DateTimeParseException e) {

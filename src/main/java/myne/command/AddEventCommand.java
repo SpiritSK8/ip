@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 
 import myne.Myne;
+import myne.MyneException;
 import myne.MyneFace;
 import myne.TaskList;
 import myne.TaskStorage;
@@ -45,11 +46,13 @@ public class AddEventCommand implements Command {
     }
 
     /**
-     * Adds the <code>Event</code> to Myne's task list and saves it to the file.
+     * Adds the <code>Event</code> to Myne's task list and saves it to the file. The starting date will be the earlier
+     * of the two, if any.
      * @throws InvalidCommandException If the parameters provided in the constructor do not match the format.
+     * @throws MyneException if any of the dates are in the past.
      */
     @Override
-    public Response execute() throws InvalidCommandException {
+    public Response execute() throws MyneException {
         // Add task and save.
         Event event = parseCommand(parameters);
         taskList.add(event);
@@ -61,7 +64,7 @@ public class AddEventCommand implements Command {
                 User.MYNE);
     }
 
-    private Event parseCommand(String parameters) throws InvalidCommandException {
+    private Event parseCommand(String parameters) throws MyneException {
         if (parameters.isEmpty()) {
             throw new InvalidCommandException(
                     "Please provide the event details.\n\n" + USAGE, MyneFace.MYNE_WORRIED, User.MYNE);
@@ -97,7 +100,12 @@ public class AddEventCommand implements Command {
             LocalDate from = LocalDate.parse(fromText, FORMATTER);
             LocalDate to = LocalDate.parse(toText, FORMATTER);
 
-            return new Event(name, from, to);
+            if (from.isBefore(LocalDate.now()) || to.isBefore(LocalDate.now())) {
+                throw new MyneException("That event is in the past...", MyneFace.MYNE_WORRIED, User.MYNE);
+            }
+
+            // Choose whichever date is earlier as the starting date.
+            return from.isAfter(to) ? new Event(name, to, from) : new Event(name, from, to);
         } catch (DateTimeParseException e) {
             throw new InvalidCommandException("There is a mistake in your date. Use this format: DD-MM-YYYY",
                     MyneFace.MYNE_WORRIED,

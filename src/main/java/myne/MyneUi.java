@@ -20,7 +20,7 @@ public class MyneUi {
                 Status.SUCCESS, MyneFace.MYNE_THANKFUL, User.MYNE);
 
         Response greeting2 = new Response("""
-                I am Ferdinand, Myne's guardian. From now on, you will be working under us.\
+                I am Ferdinand, Myne's guardian. From now on, you will be working under us. \
                 If you wish to take on a task, simply send word and we will assign it to you.""",
                 Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, User.FERDINAND);
 
@@ -30,7 +30,12 @@ public class MyneUi {
 
         Response greeting4 = new HelpCommand("").execute();
 
-        Response[] greetings = new Response[] {greeting1, greeting2, greeting3, greeting4};
+        Response greeting5 = new Response("""
+                Furthermore, you can use the up and down arrows to scroll through the commands you have sent. \
+                How exciting!""",
+                Status.SUCCESS, MyneFace.MYNE_WONDER, User.MYNE);
+
+        Response[] greetings = new Response[] {greeting1, greeting2, greeting3, greeting4, greeting5};
         return Arrays.stream(greetings).toList();
     }
 

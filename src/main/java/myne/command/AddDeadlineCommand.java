@@ -99,7 +99,8 @@ public class AddDeadlineCommand implements Command {
 
             return new Deadline(name, dueDate);
         } catch (DateTimeParseException e) {
-            throw new InvalidCommandException("Your date is improper. Change it to DD-MM-YYYY.",
+            throw new InvalidCommandException(
+                    "Your date is improper. Change it to DD-MM-YYYY, YYYY-MM-DD, or DD MMM YYYY.",
                     MyneFace.FERDINAND_EXASPERATED,
                     User.FERDINAND);
         }

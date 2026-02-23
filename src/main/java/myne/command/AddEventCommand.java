@@ -109,7 +109,8 @@ public class AddEventCommand implements Command {
             // Choose whichever date is earlier as the starting date.
             return from.isAfter(to) ? new Event(name, to, from) : new Event(name, from, to);
         } catch (DateTimeParseException e) {
-            throw new InvalidCommandException("There is a mistake in your date. Use this format: DD-MM-YYYY",
+            throw new InvalidCommandException(
+                    "There is a mistake in your date. Use this format: DD-MM-YYYY, YYYY-MM-DD, or DD MMM YYYY.",
                     MyneFace.MYNE_WORRIED,
                     User.MYNE);
         }

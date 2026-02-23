@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -54,7 +53,7 @@ public class MainWindow extends AnchorPane {
     private final Image userImage =
             new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
 
-    private final HashMap<MyneFace, Image> ferMyneImages = new HashMap<>();
+    private final HashMap<MyneFace, Image> myneImages = new HashMap<>();
 
     /**
      * Makes the ScrollPane auto-scroll and disables send button when user input is empty.
@@ -131,13 +130,13 @@ public class MainWindow extends AnchorPane {
     private void addMyneDialog(Response response) {
         dialogContainer.getChildren().addAll(
                 DialogBox.getMyneDialog(
-                        response.getMessage(), ferMyneImages.get(response.getFace()), response.getUser())
+                        response.getMessage(), myneImages.get(response.getFace()), response.getUser())
         );
     }
 
     private void addMyneDialog(String message, MyneFace face, User user) {
         dialogContainer.getChildren().addAll(
-                DialogBox.getMyneDialog(message, ferMyneImages.get(face), user)
+                DialogBox.getMyneDialog(message, myneImages.get(face), user)
         );
     }
 
@@ -151,37 +150,37 @@ public class MainWindow extends AnchorPane {
     }
 
     private void setImages() {
-        ferMyneImages.put(MyneFace.MYNE_DEFAULT,
+        myneImages.put(MyneFace.MYNE_DEFAULT,
                 new Image(Objects.requireNonNull(
                         this.getClass().getResourceAsStream("/images/MyneDefault.png"))));
-        ferMyneImages.put(MyneFace.MYNE_HAPPY,
+        myneImages.put(MyneFace.MYNE_HAPPY,
                 new Image(Objects.requireNonNull(
                         this.getClass().getResourceAsStream("/images/MyneHappy.png"))));
-        ferMyneImages.put(MyneFace.MYNE_THANKFUL,
+        myneImages.put(MyneFace.MYNE_THANKFUL,
                 new Image(Objects.requireNonNull(
                         this.getClass().getResourceAsStream("/images/MyneThankful.png"))));
-        ferMyneImages.put(MyneFace.MYNE_WONDER,
+        myneImages.put(MyneFace.MYNE_WONDER,
                 new Image(Objects.requireNonNull(
                         this.getClass().getResourceAsStream("/images/MyneWonder.png"))));
-        ferMyneImages.put(MyneFace.MYNE_JOYFUL,
+        myneImages.put(MyneFace.MYNE_JOYFUL,
                 new Image(Objects.requireNonNull(
                         this.getClass().getResourceAsStream("/images/MyneJoyful.png"))));
-        ferMyneImages.put(MyneFace.MYNE_CONFUSED,
+        myneImages.put(MyneFace.MYNE_CONFUSED,
                 new Image(Objects.requireNonNull(
                         this.getClass().getResourceAsStream("/images/MyneConfused.png"))));
-        ferMyneImages.put(MyneFace.MYNE_WORRIED,
+        myneImages.put(MyneFace.MYNE_WORRIED,
                 new Image(Objects.requireNonNull(
                         this.getClass().getResourceAsStream("/images/MyneWorried.png"))));
-        ferMyneImages.put(MyneFace.MYNE_DISGUSTED,
+        myneImages.put(MyneFace.MYNE_DISGUSTED,
                 new Image(Objects.requireNonNull(
                         this.getClass().getResourceAsStream("/images/MyneDisgusted.png"))));
-        ferMyneImages.put(MyneFace.FERDINAND_DEFAULT,
+        myneImages.put(MyneFace.FERDINAND_DEFAULT,
                 new Image(Objects.requireNonNull(
                         this.getClass().getResourceAsStream("/images/FerdinandDefault.png"))));
-        ferMyneImages.put(MyneFace.FERDINAND_HAPPY,
+        myneImages.put(MyneFace.FERDINAND_HAPPY,
                 new Image(Objects.requireNonNull(
                         this.getClass().getResourceAsStream("/images/FerdinandHappy.png"))));
-        ferMyneImages.put(MyneFace.FERDINAND_EXASPERATED,
+        myneImages.put(MyneFace.FERDINAND_EXASPERATED,
                 new Image(Objects.requireNonNull(
                         this.getClass().getResourceAsStream("/images/FerdinandExasperated.png"))));
     }
@@ -231,6 +230,7 @@ public class MainWindow extends AnchorPane {
             scrollAnimation.play();
         });
 
+        // Taken from ChatGPT with the prompt: "How to add smooth scrolling"
         // Sets scroll animation.
         scrollPane.addEventFilter(ScrollEvent.SCROLL, event -> {
             event.consume();

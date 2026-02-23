@@ -21,7 +21,7 @@ public class AddDeadlineCommand implements Command {
     private static final String USAGE = """
             Usage:
             deadline <task_name> /by <due_date>
-            (DD-MM-YYYY)""";
+            (DD-MM-YYYY, YYYY-MM-DD, or DD MMM YYYY)""";
 
     private static final DateTimeFormatter FORMATTER = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()

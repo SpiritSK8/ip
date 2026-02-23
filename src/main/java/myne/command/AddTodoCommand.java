@@ -39,7 +39,7 @@ public class AddTodoCommand implements Command {
     public Response execute() throws InvalidCommandException {
         if (taskName.isEmpty()) {
             throw new InvalidCommandException(
-                    "The task name cannot be nothing, can it?", MyneFace.MYNE_WORRIED, User.MYNE);
+                    "The task name cannot be nothing, can it?\n\n" + USAGE, MyneFace.MYNE_WORRIED, User.MYNE);
         }
 
         // Add task and save.

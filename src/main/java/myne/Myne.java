@@ -59,6 +59,10 @@ public class Myne {
         this.isAlive = false;
     }
 
+    public void saveTasks() {
+        storage.saveTasks(taskList);
+    }
+
     public MyneUi getUi() {
         return this.ui;
     }

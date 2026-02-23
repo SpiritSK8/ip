@@ -41,4 +41,10 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
+    // Saves the tasks when application is closed.
+    @Override
+    public void stop() {
+        myne.saveTasks();
+    }
 }

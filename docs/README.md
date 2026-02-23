@@ -4,6 +4,8 @@
 
 _May our meeting be blessed on this fruitful day..._
 
+### [Link to Project](https://github.com/SpiritSK8/ip/releases/tag/A-Release)
+
 You just got transported into a new world, and you will be working under two high-ranking nobles, **Myne** and her guardian, **Ferdinand**.
 Thankfully, you have the leeway to choose your own tasks! Myne and Ferdinand will record down the tasks you wrote down.
 

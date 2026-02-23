@@ -38,7 +38,7 @@
         <Polygon fx:id="bubbleTail"
                  points="0,0, 10,0, 0,10"
                  translateX="-1"
-                 fill="#e8effff2" />
+                 fill="#ccd4e5f2" />
         <ImageView fx:id="displayPicture"
                    fitHeight="74.0"
                    fitWidth="74.0"

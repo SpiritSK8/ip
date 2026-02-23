@@ -1,21 +1,54 @@
 # Myne User Guide
 
-<img width="300" height="540" alt="Ui" src="https://github.com/user-attachments/assets/42c47414-4345-490f-924e-6ab41545c80d" />
+<img width="293" height="539" alt="image" src="https://github.com/user-attachments/assets/9189a860-5a4c-477e-b7ca-2429abfa03bf" />
 
 _May our meeting be blessed on this fruitful day..._
 
-You just got transported into a new world, and you will be working under **Myne** and **Ferdinand**, two high-ranking nobles.
-However, you have the leeway to choose your own tasks! Myne and Ferdinand will record down the tasks you wrote down.
+You just got transported into a new world, and you will be working under two high-ranking nobles, **Myne** and her guardian, **Ferdinand**.
+Thankfully, you have the leeway to choose your own tasks! Myne and Ferdinand will record down the tasks you wrote down.
 
 Basically, it's a to-do app, but with some cool features and an even cooler personality!
 
 ## Features
-- Todo app with **3 types of tasks**
-- Clean UI with **micro animations** for the premium feel
-- CLI-first interaction. The faster you type, the faster you use this app
-- **Command history** with up/down arrow keys
-- Smart task selection. **Mark/unmark/delete tasks by partial name matching**
-- In-app **help message** for each command
+
+### Todo App with 3 Types of Tasks
+
+Easily add todos, deadlines, and events.
+
+### Clean UI
+
+The GUI has been designed with user satisfaction in mind. It combines the fantasy theme
+inspired by the characters and aspects of modern GUI such as rounded corners, ample padding,
+and even **micro animations** when sending chats, giving that premium feel.
+
+### Command History
+
+Accidentally hit that send button while your command still had a syntax error? You can easily
+re-send commands that you have previously entered using up/down arrows. This works just like
+conventional terminals' command history.
+
+### Smart Task Selection by Partial Name Matching
+
+You don't need to go through the hassle of marking, unmarking, and deleting tasks via the task
+numbers. Who remembers task numbers anyway? You can put the task name (or even just a part of it)
+and the app will cleverly find the matching tasks for you and mark/unmark/delete them.
+
+### In-app Help Messages for Each Command
+
+No one likes switching back and forth between the app and user guide. As such, this app is
+entirely self-sufficient for users to learn how to use it. A manual will greet the user upon
+starting the app, and users can learn more about each command through the `help` command.
+
+### A Wide Range of Chacter Expressions!
+
+Enjoy numerous faces from Myne and Ferdinand, characters from the popular light novel series
+**Ascendance of a Bookworm**. Fair warning, Ferdinand will chastise you if you enter commands
+incorrectly.
+
+### CLI-first Interaction
+
+This app is primarily meant for users who can type fast. **The faster you can type, the faster
+you can use this app**.
 
 ## Command List
 

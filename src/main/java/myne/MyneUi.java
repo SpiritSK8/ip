@@ -21,21 +21,33 @@ public class MyneUi {
 
         Response greeting2 = new Response("""
                 I am Ferdinand, Myne's guardian. From now on, you will be working under us. \
-                If you wish to take on a task, simply send word and we will assign it to you.""",
+                Tell us what tasks you want to do, and we will record them.""",
                 Status.SUCCESS, MyneFace.FERDINAND_DEFAULT, User.FERDINAND);
 
-        Response greeting3 = new Response(
-                "In short, you can tell us what tasks you want to do, and we will record them.",
-                Status.SUCCESS, MyneFace.MYNE_HAPPY, User.MYNE);
-
-        Response greeting4 = new HelpCommand("").execute();
-
-        Response greeting5 = new Response("""
+        Response greeting3 = new Response("""
                 Furthermore, you can use the up and down arrows to scroll through the commands you have sent. \
                 How exciting!""",
                 Status.SUCCESS, MyneFace.MYNE_WONDER, User.MYNE);
 
-        Response[] greetings = new Response[] {greeting1, greeting2, greeting3, greeting4, greeting5};
+        Response greeting4 = new Response("""
+                For now, why don't you start with this command?
+                
+                todo Read books
+                
+                That creates a new task for you. You can then mark it with the following command:
+                
+                mark 1
+                
+                You can check the tasks that you have using the following command, if you ever forget them.
+                
+                list
+                
+                Finally, use the following command if you need help.
+                
+                help""",
+                Status.SUCCESS, MyneFace.MYNE_HAPPY, User.MYNE);
+
+        Response[] greetings = new Response[] {greeting1, greeting2, greeting3, greeting4};
         return Arrays.stream(greetings).toList();
     }
 

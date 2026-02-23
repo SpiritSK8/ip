@@ -33,7 +33,7 @@ I entrust this task to you.
 read books
 ```
 
-## Adding deadlines
+### 2. Adding deadlines
 
 Deadline is a type of task with a single due date. The due date format follows DD-MM-YYYY (e.g. 14-4-2026) or DD MMM YYYY (e.g. 14 Apr 2026).
 
@@ -48,7 +48,7 @@ Carry this out.
 read books (by: 14 Apr 2026)
 ```
 
-## Adding events
+### 3. Adding events
 
 Event is a type of task with a start and end date. The date format follows DD-MM-YYYY (e.g. 14-4-2026) or DD MMM YYYY (e.g. 14 Apr 2026).
 
@@ -63,13 +63,39 @@ I entrust this task to you.
 read books (from: 14 Apr 2026 to: 15 Apr 2026)
 ```
 
-## Other commands
+### 4. Mark/Unmark Tasks
+
+Used to mark/unmark tasks as done. These commands accept either the
+index of the task or the name of the task.
+
+If task name is used, then it will first find tasks whose name
+exactly matches the task name provided. If it finds any, it will
+mark/unmark all of them. If not, then partial matches will be
+searched. For partial match mark/unmark to work properly, there
+can only be 1 task with the matching name. This is to prevent the
+user from accidentally typing something like `mark a` and marking
+half of their tasks.
+
+Syntax:
+- `mark <task_number>`
+- `mark <task_name>`
+- `unmark <task_number>`
+- `unmark <task_name>`
+
+Example usage:
+- `mark 1`
+- `unmark read books`
+
+Result: Matching tasks will be marked and the following message will be shown:
+
+```
+You have carried out your task with utmost diligence. Very good.
+✔ read books
+```
 
 - `help`
 - `bye`
 - `list`
-- `mark`
-- `unmark`
 - `delete`
 - `find`
 

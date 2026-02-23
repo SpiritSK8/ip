@@ -60,8 +60,8 @@ a command list is included in this user guide for easy reference.
 |------------|-------------------------------------------------------|-------------------------------------------------------------------------|--------------------------------------------|
 | `help`     | `help` `help <command_name>`                          | `help todo`                                                             | -                                          |
 | `todo`     | `todo <task_name>`                                    | `todo read books`                                                       | -                                          |
-| `deadline` | `deadline <task_name> /by <due_date>`                 | `deadline buy books /by 14-3-2026` `deadline get books /by 14 Mar 2026` | Dates must be in DD-MM-YYYY or DD MMM YYYY |
-| `event`    | `event <task_name> /from <start_date> /to <end_date>` | `event write books /from 9-3-2026 /to 9 Mar 2027`                       | Dates must be in DD-MM-YYYY or DD MMM YYYY |
+| `deadline` | `deadline <task_name> /by <due_date>`                 | `deadline buy books /by 14-3-2026` `deadline get books /by 14 Mar 2026` | Dates must be in DD-MM-YYYY (e.g. 23-2-2026), YYYY-MM-DD, or DD MMM YYYY (e.g. 5 May 2026) |
+| `event`    | `event <task_name> /from <start_date> /to <end_date>` | `event write books /from 9-3-2026 /to 9 Mar 2027`                       | Dates must be in DD-MM-YYYY (e.g. 23-2-2026), YYYY-MM-DD, or DD MMM YYYY (e.g. 5 May 2026) |
 | `mark`     | `mark <task_number>` `mark <task_name>`               | `mark 1` `mark read books`                                              | Partial match only works with 1 match      |
 | `unmark`   | `unmark <task_number>` `unmark <task_name>`           | `unmark 1` `unmark read books`                                          | Partial match only works with 1 match      |
 | `list`     | `list`                                                | `list`                                                                  | -                                          |

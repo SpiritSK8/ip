@@ -42,7 +42,6 @@ public class AddTodoCommand implements Command {
                     "The task name cannot be nothing, can it?\n\n" + USAGE, MyneFace.MYNE_WORRIED, User.MYNE);
         }
 
-        // Add task and save.
         Todo todo = new Todo(taskName);
         taskList.add(todo);
         storage.saveTasks(taskList);

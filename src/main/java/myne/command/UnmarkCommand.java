@@ -53,7 +53,6 @@ public class UnmarkCommand implements Command {
                     "I cannot unmark nothing, can I?\n\n" + USAGE, MyneFace.MYNE_DISGUSTED, User.MYNE);
         }
 
-        // If the parameter is an integer, then we unmark by task index.
         if (CommandParser.isNumeric(parameters)) {
             return unmarkByIndex();
         }
@@ -64,7 +63,6 @@ public class UnmarkCommand implements Command {
          * We don't want the user to type "unmark a" and accidentally unmark half of their tasks.
          */
 
-        // Try to find exact matches first
         TaskList findResultExact = taskList.findExact(parameters);
         if (!findResultExact.isEmpty()) {
             return unmarkByExactMatches(findResultExact);

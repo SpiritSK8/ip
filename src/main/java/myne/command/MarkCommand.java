@@ -52,7 +52,6 @@ public class MarkCommand implements Command {
                     "Which task?\n\n" + USAGE, MyneFace.FERDINAND_EXASPERATED, User.FERDINAND);
         }
 
-        // If the parameter is an integer, then we mark by task index.
         if (CommandParser.isNumeric(parameters)) {
             return markByIndex();
         }
@@ -63,7 +62,6 @@ public class MarkCommand implements Command {
          * We don't want the user to type "mark a" and accidentally mark half of their tasks.
          */
 
-        // Try to find exact matches first
         TaskList findResultExact = taskList.findExact(parameters);
         if (!findResultExact.isEmpty()) {
             return markByExactMatches(findResultExact);

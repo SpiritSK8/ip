@@ -73,7 +73,7 @@ public class CommandParser {
             return parameterValues;
         }
 
-        parameterValues.put("first", parts[0].trim()); // The first parameter doesn't have any /<parameter_name>
+        parameterValues.put("first", parts[0].trim()); // The first parameter doesn't have any name.
 
         for (int i = 1; i < parts.length; i++) {
             String parameterName = getFirstWord(parts[i]); // Doesn't need to be trimmed as getFirstWord() does that.

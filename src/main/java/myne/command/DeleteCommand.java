@@ -53,7 +53,6 @@ public class DeleteCommand implements Command {
                     "Do tell me which task to delete.\n\n" + USAGE, MyneFace.MYNE_CONFUSED, User.MYNE);
         }
 
-        // If the parameter is an integer, then we delete by task index.
         if (CommandParser.isNumeric(parameters)) {
             return deleteByIndex();
         }
@@ -64,7 +63,6 @@ public class DeleteCommand implements Command {
          * We don't want the user to type "delete a" and accidentally delete half of their tasks.
          */
 
-        // Try to find exact matches first
         TaskList findResultExact = taskList.findExact(parameters);
         if (!findResultExact.isEmpty()) {
             return deleteByExactMatches(findResultExact);

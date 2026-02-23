@@ -53,7 +53,6 @@ public class AddEventCommand implements Command {
      */
     @Override
     public Response execute() throws MyneException {
-        // Add task and save.
         Event event = parseCommand(parameters);
         taskList.add(event);
         storage.saveTasks(taskList);
@@ -72,13 +71,11 @@ public class AddEventCommand implements Command {
 
         HashMap<String, String> parameterValues = CommandParser.extractParameters(parameters);
 
-        // Checks for missing /from or /to
         if (!parameterValues.containsKey("/from") || !parameterValues.containsKey("/to")) {
             throw new InvalidCommandException(
                     "Please provide the dates with /from and /to.\n\n" + USAGE, MyneFace.MYNE_DEFAULT, User.MYNE);
         }
 
-        // Checks for missing name, start date, or end date.
         if (parameterValues.get("first").isBlank()) {
             throw new InvalidCommandException(
                     "Your event needs a name, doesn't it?", MyneFace.MYNE_CONFUSED, User.MYNE);

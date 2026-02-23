@@ -50,7 +50,6 @@ public class AddDeadlineCommand implements Command {
      */
     @Override
     public Response execute() throws MyneException {
-        // Add task and save.
         Deadline deadline = parseCommand(parameters);
         taskList.add(deadline);
         storage.saveTasks(taskList);
@@ -69,13 +68,11 @@ public class AddDeadlineCommand implements Command {
 
         HashMap<String, String> parameterValues = CommandParser.extractParameters(parameters);
 
-        // Checks for missing /by
         if (!parameterValues.containsKey("/by")) {
             throw new InvalidCommandException(
                     "Provide the due date with /by.\n\n" + USAGE, MyneFace.FERDINAND_DEFAULT, User.FERDINAND);
         }
 
-        // Checks for blank name or due date.
         if (parameterValues.get("first").isBlank()) {
             throw new InvalidCommandException(
                     "You are missing the task name.", MyneFace.FERDINAND_EXASPERATED, User.FERDINAND);

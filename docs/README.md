@@ -108,9 +108,32 @@ Here.
 2. ✔ Buy books (by: 5 Apr 2026)
 ```
 
+### 6. Delete Tasks
+
+Deletes the specified task. Just like mark/unmark, this command
+accepts either a task number or a task name.
+
+Usage:
+- `delete <task_number>`
+- `delete <task_name>`
+
+Example:
+- `delete 1`
+- `delete read books`
+
+Result: The selected tasks will be deleted and the following message
+will be shown:
+
+```
+Let me give this task to someone else...
+
+read books
+```
+
+
+
 - `help`
 - `bye`
-- `delete`
 - `find`
 
 I will update this user guide soon. But for other commands, you can type `help` to show the list of commands you can enter.

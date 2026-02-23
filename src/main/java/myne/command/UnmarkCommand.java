@@ -16,7 +16,11 @@ public class UnmarkCommand implements Command {
     private static final String USAGE = """
             Usage:
             unmark <task_number>
-            unmark <task_name>""";
+            unmark <task_name>
+            
+            Example:
+            unmark 1
+            unmark Read books""";
 
     private final TaskList taskList;
     private final TaskStorage storage;

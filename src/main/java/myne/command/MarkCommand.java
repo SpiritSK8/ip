@@ -16,7 +16,11 @@ public class MarkCommand implements Command {
     private static final String USAGE = """
             Usage:
             mark <task_number>
-            mark <task_name>""";
+            mark <task_name>
+            
+            Example:
+            mark 1
+            mark Read books""";
 
     private final TaskList taskList;
     private final TaskStorage storage;

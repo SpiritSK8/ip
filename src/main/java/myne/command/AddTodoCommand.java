@@ -13,7 +13,10 @@ import myne.task.Todo;
 public class AddTodoCommand implements Command {
     private static final String USAGE = """
             Usage:
-            todo <task_name>""";
+            todo <task_name>
+            
+            Example:
+            todo Read books""";
 
     private final TaskList taskList;
     private final TaskStorage storage;

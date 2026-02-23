@@ -16,7 +16,11 @@ public class DeleteCommand implements Command {
     private static final String USAGE = """
             Usage:
             delete <task_number>
-            delete <task_name>""";
+            delete <task_name>
+            
+            Example:
+            delete 1
+            delete Read books""";
 
     private final TaskList taskList;
     private final TaskStorage storage;

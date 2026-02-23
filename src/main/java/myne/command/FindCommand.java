@@ -12,7 +12,10 @@ import myne.User;
 public class FindCommand implements Command {
     private final static String USAGE = """
             Usage:
-            find <task_name>""";
+            find <task_name>
+            
+            Example:
+            find Read""";
 
     private final MyneUi ui;
     private final TaskList taskList;

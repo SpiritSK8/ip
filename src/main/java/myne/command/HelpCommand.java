@@ -11,8 +11,6 @@ public class HelpCommand implements Command {
             For efficient communication, we will be using the following commands. \
             Anything else will be ignored, so memorize them well.
             
-            help
-            bye
             todo
             deadline
             event
@@ -21,8 +19,13 @@ public class HelpCommand implements Command {
             unmark
             delete
             find
+            help
+            bye
             
-            Type "help <command_name>" to learn more about a command.""";
+            Type "help <command_name>" to learn more about a command.
+            
+            Example:
+            help todo""";
 
     private final String parameters;
 

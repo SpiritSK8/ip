@@ -98,7 +98,7 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
 
-        // Flips the tail.
+        // Flips the chat bubble tail.
         bubbleTail.setScaleX(-1.0);
         bubbleTail.setTranslateX(1.0);
 

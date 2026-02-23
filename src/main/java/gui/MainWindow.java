@@ -263,7 +263,7 @@ public class MainWindow extends AnchorPane {
         double deltaY = event.getDeltaY();
         double multiplier = 4.0; // Moderate scroll speed.
 
-        // Calculate scrollable pixels.
+        // Calculate scrollable height in pixels.
         double contentHeight = dialogContainer.getHeight();
         double viewportHeight = scrollPane.getViewportBounds().getHeight();
         double scrollableHeight = contentHeight - viewportHeight;

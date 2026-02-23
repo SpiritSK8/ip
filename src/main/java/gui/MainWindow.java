@@ -4,13 +4,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -41,7 +46,9 @@ public class MainWindow extends AnchorPane {
 
     private Myne myne;
     private Stage stage;
-    private CommandHistory commandHistory = new CommandHistory();
+    private final CommandHistory commandHistory = new CommandHistory();
+
+    private Timeline scrollAnimation;
 
     private final Image userImage =
             new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
@@ -55,31 +62,17 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         setImages();
 
-        // Automatically scroll to the bottom when a chat is sent.
-        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-
         // Taken from ChatGPT: How to disable button when input text is empty.
         // https://chatgpt.com/share/6998b63e-85a8-800d-a1e3-7d7031147a98
         sendButton.disableProperty().bind(
                 userInput.textProperty().isEmpty()
         );
 
+        // Automatically scroll to the bottom when a chat is sent and adds scroll animation.
+        setScrollAnimation();
+
         // Add up/down arrow listener for command history.
-        userInput.setOnKeyPressed(event -> {
-            if (!myne.isAlive()) {
-                return;
-            }
-            switch (event.getCode()) {
-                case UP:
-                    showPrevCommand();
-                    break;
-                case DOWN:
-                    showNextCommand();
-                    break;
-                default:
-                    break;
-            }
-        });
+        setArrowListener();
     }
 
     /** Injects the Myne instance */
@@ -222,6 +215,74 @@ public class MainWindow extends AnchorPane {
         if (response.getStatus() == Status.FAIL) {
             addMyneDialog(response);
         }
+    }
+
+    private void setScrollAnimation() {
+        // Automatically scroll to bottom when chat is sent.
+        dialogContainer.heightProperty().addListener((observable) -> {
+            if (scrollAnimation != null) {
+                scrollAnimation.stop();
+            }
+            scrollAnimation = new Timeline(
+                    new KeyFrame(
+                            Duration.millis(100),
+                            new KeyValue(scrollPane.vvalueProperty(), 1.0, Interpolator.EASE_BOTH)
+                    )
+            );
+            scrollAnimation.play();
+        });
+
+        // Sets scroll animation.
+        scrollPane.addEventFilter(ScrollEvent.SCROLL, event -> {
+            event.consume();
+
+            double deltaY = event.getDeltaY();
+            double multiplier = 10.0; // Moderate scroll speed.
+
+            double currentScrollHeight = scrollPane.getVvalue() * dialogContainer.getHeight(); // Current scroll height.
+            double target = currentScrollHeight - deltaY * multiplier;
+            target = Math.max(0, Math.min(target, dialogContainer.getHeight())); // Clamp between 0-container's height.
+            target = target / dialogContainer.getHeight(); // Scale to 0-1 for vvalue.
+
+            if (scrollAnimation == null) {
+                // If starting a new scroll animation, use ease both.
+                scrollAnimation = new Timeline(
+                        new KeyFrame(
+                                Duration.millis(120),
+                                new KeyValue(scrollPane.vvalueProperty(), target, Interpolator.EASE_BOTH)
+                        )
+                );
+            } else {
+                // If a scroll animation is already playing, use ease out to maintain current speed.
+                scrollAnimation.stop();
+                scrollAnimation = new Timeline(
+                        new KeyFrame(
+                                Duration.millis(60),
+                                new KeyValue(scrollPane.vvalueProperty(), target, Interpolator.EASE_OUT)
+                        )
+                );
+            }
+
+            scrollAnimation.play();
+        });
+    }
+
+    private void setArrowListener() {
+        userInput.setOnKeyPressed(event -> {
+            if (!myne.isAlive()) {
+                return;
+            }
+            switch (event.getCode()) {
+                case UP:
+                    showPrevCommand();
+                    break;
+                case DOWN:
+                    showNextCommand();
+                    break;
+                default:
+                    break;
+            }
+        });
     }
 
     private void showPrevCommand() {

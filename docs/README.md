@@ -22,6 +22,7 @@ Basically, it's a to-do app, but with some cool features and an even cooler pers
 This app is meant to be learnable even without this user guide, but
 a command list is included in this user guide for easy reference.
 
+
 | Command    | Usage                                                  | Example                                                                      | Notes                                      |
 |------------|--------------------------------------------------------|------------------------------------------------------------------------------|--------------------------------------------|
 | `help`     | `help`<br/>`help <command_name>`                       | `help todo`                                                                  |                                            |

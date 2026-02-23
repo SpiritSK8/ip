@@ -19,6 +19,23 @@ Basically, it's a to-do app, but with some cool features and an even cooler pers
 
 ## Command List
 
+This app is meant to be learnable even without this user guide, but
+a command list is included in this user guide for easy reference.
+
+| Command    | Usage                                                  | Example                                                                      | Notes                                      |
+|------------|--------------------------------------------------------|------------------------------------------------------------------------------|--------------------------------------------|
+| `help`     | `help`<br/>`help <command_name>`                       | `help todo`                                                                  |                                            |
+| `todo`     | `todo <task_name>`                                     | `todo read books`                                                            |                                            |
+| `deadline` | `deadline <task_name> /by <due_date>`                  | `deadline buy books /by 14-3-2026`<br/>`deadline get books /by 14 Mar 2026`  | Dates must be in DD-MM-YYYY or DD MMM YYYY |
+| `event`    | `event <task_name> /from <start_date> /to <end_date>   | `event write books /from 9-3-2026 /to 9 Mar 2027`                            | Dates must be in DD-MM-YYYY or DD MMM YYYY |
+| `mark`     | `mark <task_number>`<br/>`mark <task_name>`            | `mark 1`<br/>`mark read books`                                               | Partial match only works with 1 match      |
+| `unmark`   | `unmark <task_number>`<br/>`unmark <task_name>`        | `unmark 1`<br/>`unmark read books`                                           | Partial match only works with 1 match      |
+| `list`     | `list`                                                 | `list`                                                                       |                                            |
+| `delete`   | `delete <task_number>`<br/>`delete <task_name>`        | `delete 1`<br/>`delete read books`                                           | Partial match only works with 1 match      |
+| `find`     | `find <task_name>`                                     | `find read`                                                                  |                                            |
+| `bye`      | `bye`                                                  | `bye`                                                                        |                                            |
+
+
 ### 1. Adding Todos
 Todo is a type of task without any deadline.
 
@@ -148,9 +165,21 @@ Here.
 2. Admin stuff (by: 27 Feb 2026)
 ```
 
+### 8. Help Command
+
+This command can be used on its own to display all the available
+commands, or followed by a valid command name to show more details
+about the command.
+
+Usage:
 - `help`
-- `bye`
+- `help <command_name>`
 
-I will update this user guide soon. But for other commands, you can type `help` to show the list of commands you can enter.
+Example:
+- `help todo`
 
-You can also type `help <command_name>` to learn more about each command.
+### 9. Bye!
+
+If you wish to depart, use this command.
+
+Usage: `bye`

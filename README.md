@@ -1,26 +1,69 @@
-# Duke project template
+# Myne User Guide
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+<img width="300" height="540" alt="Ui" src="https://github.com/user-attachments/assets/42c47414-4345-490f-924e-6ab41545c80d" />
 
-## Setting up in Intellij
+_May our meeting be blessed on this fruitful day..._
 
-Prerequisites: JDK 17, update Intellij to the most recent version.
+You just got transported into a new world, and you will be working under **Myne** and **Ferdinand**, two high-ranking nobles.
+However, you have the leeway to choose your own tasks! Myne and Ferdinand will record down the tasks you wrote down.
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 17** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-1. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+Basically, it's a to-do app, but with some cool features and an even cooler personality!
 
-**Warning:** Keep the `src\main\java` folder as the root folder for Java files (i.e., don't rename those folders or move Java files to another folder outside of this folder path), as this is the default location some tools (e.g., Gradle) expect to find Java files.
+## Adding todos
+
+Todo is a type of task without any deadline.
+
+Syntax: `todo <task_name>`
+
+Example: `todo read books`
+
+Result: A new todo task will be added to the list and the following message will be shown:
+
+```
+I entrust this task to you.
+read books
+```
+
+## Adding deadlines
+
+Deadline is a type of task with a single due date. The due date format follows DD-MM-YYYY (e.g. 14-4-2026) or DD MMM YYYY (e.g. 14 Apr 2026).
+
+Syntax: `deadline <task_name> /by <due_date>`
+
+Example: `deadline read books /by 14-4-2026`
+
+Result: A new deadline task will be added to the list and the following message will be shown:
+
+```
+Carry this out.
+read books (by: 14 Apr 2026)
+```
+
+## Adding events
+
+Event is a type of task with a start and end date. The date format follows DD-MM-YYYY (e.g. 14-4-2026) or DD MMM YYYY (e.g. 14 Apr 2026).
+
+Syntax: `event <task_name> /from <start_date> /to <end_date>`
+
+Example: `event read books /from 14-4-2026 /ti 15-4-2026`
+
+Result: A new event task will be added to the list and the following message will be shown:
+
+```
+I entrust this task to you.
+read books (from: 14 Apr 2026 to: 15 Apr 2026)
+```
+
+## Other commands
+
+- `help`
+- `bye`
+- `list`
+- `mark`
+- `unmark`
+- `delete`
+- `find`
+
+I will update this user guide soon. But for other commands, you can type `help` to show the list of commands you can enter.
+
+You can also type `help <command_name>` to learn more about each command.

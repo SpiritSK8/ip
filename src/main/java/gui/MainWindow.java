@@ -9,7 +9,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
+
+import java.util.Objects;
 
 /**
  * Controller for the main GUI.
@@ -28,6 +31,14 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image emuImage = new Image(this.getClass().getResourceAsStream("/images/DaEmu.png"));
+
+    private AudioClip[] wonderhoys = new AudioClip[] {
+            new AudioClip(Objects.requireNonNull(
+                    this.getClass().getResource("/audio/wonderhoy.mp3")).toExternalForm()),
+            new AudioClip(Objects.requireNonNull(
+                    this.getClass().getResource("/audio/wakuwakuwashoy.mp3")).toExternalForm())
+    };
+    private int wonderhoyIndex = 0;
 
     /**
      * Initialises the Emu instance and gets the greeting message,
@@ -64,6 +75,7 @@ public class MainWindow extends AnchorPane {
         assert response != null : "response should not be null";
         assert !response.isEmpty() : "response should not be empty";
 
+        playWonderhoy();
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getEmuDialog(response, emuImage)
@@ -77,5 +89,11 @@ public class MainWindow extends AnchorPane {
         }
 
         userInput.clear();
+    }
+
+    private void playWonderhoy() {
+        AudioClip sound = wonderhoys[wonderhoyIndex];
+        sound.play();
+        wonderhoyIndex = (wonderhoyIndex + 1) % wonderhoys.length;
     }
 }

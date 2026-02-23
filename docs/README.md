@@ -9,8 +9,17 @@ However, you have the leeway to choose your own tasks! Myne and Ferdinand will r
 
 Basically, it's a to-do app, but with some cool features and an even cooler personality!
 
-## Adding todos
+## Features
+- Todo app with **3 types of tasks**
+- Clean UI with **micro animations** for the premium feel
+- CLI-first interaction. The faster you type, the faster you use this app
+- **Command history** with up/down arrow keys
+- Smart task selection. **Mark/unmark/delete tasks by partial name matching**
+- In-app **help message** for each command
 
+## Command List
+
+### 1. Adding Todos
 Todo is a type of task without any deadline.
 
 Syntax: `todo <task_name>`

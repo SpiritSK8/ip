@@ -24,6 +24,7 @@ import myne.command.Command;
 import myne.command.CommandParser;
 import myne.command.Response;
 import myne.command.Status;
+import utility.CommandHistory;
 
 /**
  * Controller for the main GUI.
@@ -40,6 +41,7 @@ public class MainWindow extends AnchorPane {
 
     private Myne myne;
     private Stage stage;
+    private CommandHistory commandHistory = new CommandHistory();
 
     private final Image userImage =
             new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
@@ -60,6 +62,20 @@ public class MainWindow extends AnchorPane {
         sendButton.disableProperty().bind(
                 userInput.textProperty().isEmpty()
         );
+
+        // Add up/down arrow listener for command history.
+        userInput.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case UP:
+                    showPrevCommand();
+                    break;
+                case DOWN:
+                    showNextCommand();
+                    break;
+                default:
+                    break;
+            }
+        });
     }
 
     /** Injects the Myne instance */
@@ -75,8 +91,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Myne's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates two dialog boxes, one echoing the user input and the other containing Myne's reply and then
+     * appends them to the dialog container. Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() {
@@ -85,6 +101,8 @@ public class MainWindow extends AnchorPane {
         if (input.isBlank()) {
             return;
         }
+
+        commandHistory.add(input);
 
         try {
             Command command = CommandParser.parse(input, myne);
@@ -197,5 +215,17 @@ public class MainWindow extends AnchorPane {
         if (response.getStatus() == Status.FAIL) {
             addMyneDialog(response);
         }
+    }
+
+    private void showPrevCommand() {
+        String prevCommand = commandHistory.prevCommand(userInput.getText());
+        userInput.setText(prevCommand);
+        userInput.end(); // Sets the editing position to the end of text.
+    }
+
+    private void showNextCommand() {
+        String nextCommand = commandHistory.nextCommand(userInput.getText());
+        userInput.setText(nextCommand);
+        userInput.end(); // Sets the editing position to the end of text.
     }
 }

@@ -2,6 +2,7 @@ package myne.command;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 
@@ -22,8 +23,12 @@ public class AddDeadlineCommand implements Command {
             deadline <task_name> /by <due_date>
             (DD-MM-YYYY)""";
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(
-            "[yyyy-M[M]-d[d]][d[d]-M[M]-yyyy][d MMM yyyy]");
+    private static final DateTimeFormatter FORMATTER = new DateTimeFormatterBuilder()
+            .parseCaseInsensitive()
+            .appendPattern("[yyyy-M[M]-d[d]]" +
+                    "[d[d]-M[M]-yyyy]" +
+                    "[d[d] MMM yyyy]")
+            .toFormatter();
 
     private final TaskList taskList;
     private final TaskStorage storage;

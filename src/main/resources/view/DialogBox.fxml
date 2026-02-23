@@ -40,8 +40,8 @@
                  translateX="-1"
                  fill="#ccd4e5f2" />
         <ImageView fx:id="displayPicture"
-                   fitHeight="74.0"
-                   fitWidth="74.0"
+                   fitHeight="70.0"
+                   fitWidth="70.0"
                    pickOnBounds="true"
                    preserveRatio="true">
             <HBox.margin>

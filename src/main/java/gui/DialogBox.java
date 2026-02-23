@@ -29,7 +29,7 @@ public class DialogBox extends HBox {
      * Chat bubble margin for the opposite side.
      * For example, the user's chat bubbles are on the left, so extra margin on the right is needed.
      */
-    private static final double oppositeMargin = 88.0;
+    private static final double oppositeMargin = 84.0;
 
     @FXML
     private VBox dialogBubble;

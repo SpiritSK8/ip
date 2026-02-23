@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -223,12 +224,10 @@ public class MainWindow extends AnchorPane {
             if (scrollAnimation != null) {
                 scrollAnimation.stop();
             }
-            scrollAnimation = new Timeline(
-                    new KeyFrame(
-                            Duration.millis(100),
-                            new KeyValue(scrollPane.vvalueProperty(), 1.0, Interpolator.EASE_BOTH)
-                    )
-            );
+            scrollAnimation = new Timeline(new KeyFrame(
+                    Duration.millis(100),
+                    new KeyValue(scrollPane.vvalueProperty(), 1.0, Interpolator.EASE_BOTH)
+            ));
             scrollAnimation.play();
         });
 
@@ -236,35 +235,46 @@ public class MainWindow extends AnchorPane {
         scrollPane.addEventFilter(ScrollEvent.SCROLL, event -> {
             event.consume();
 
-            double deltaY = event.getDeltaY();
-            double multiplier = 10.0; // Moderate scroll speed.
-
-            double currentScrollHeight = scrollPane.getVvalue() * dialogContainer.getHeight(); // Current scroll height.
-            double target = currentScrollHeight - deltaY * multiplier;
-            target = Math.max(0, Math.min(target, dialogContainer.getHeight())); // Clamp between 0-container's height.
-            target = target / dialogContainer.getHeight(); // Scale to 0-1 for vvalue.
-
+            double scrollTarget = getScrollTarget(event);
             if (scrollAnimation == null) {
                 // If starting a new scroll animation, use ease both.
-                scrollAnimation = new Timeline(
-                        new KeyFrame(
-                                Duration.millis(120),
-                                new KeyValue(scrollPane.vvalueProperty(), target, Interpolator.EASE_BOTH)
-                        )
-                );
+                scrollAnimation = new Timeline(new KeyFrame(
+                        Duration.millis(120),
+                        new KeyValue(scrollPane.vvalueProperty(), scrollTarget, Interpolator.EASE_BOTH)
+                ));
             } else {
                 // If a scroll animation is already playing, use ease out to maintain current speed.
-                scrollAnimation.stop();
-                scrollAnimation = new Timeline(
-                        new KeyFrame(
-                                Duration.millis(60),
-                                new KeyValue(scrollPane.vvalueProperty(), target, Interpolator.EASE_OUT)
-                        )
-                );
+                scrollAnimation = new Timeline(new KeyFrame(
+                        Duration.millis(60),
+                        new KeyValue(scrollPane.vvalueProperty(), scrollTarget, Interpolator.EASE_OUT)
+                ));
             }
 
             scrollAnimation.play();
         });
+    }
+
+    /**
+     * Determines where to scroll to when the user scrolls using mouse/touchpad.
+     * @param event the scroll event.
+     * @return the vvalue [0.0-1.0] to scroll to .
+     */
+    private double getScrollTarget(ScrollEvent event) {
+        double deltaY = event.getDeltaY();
+        double multiplier = 4.0; // Moderate scroll speed.
+
+        // Calculate scrollable pixels.
+        double contentHeight = dialogContainer.getHeight();
+        double viewportHeight = scrollPane.getViewportBounds().getHeight();
+        double scrollableHeight = contentHeight - viewportHeight;
+
+        // Calculate the target to scroll to.
+        double currentScrollHeight = scrollPane.getVvalue() * scrollableHeight;
+        double target = currentScrollHeight - deltaY * multiplier;
+        target = Math.max(0, Math.min(target, scrollableHeight)); // Clamp between 0-scrollable height.
+        target = target / scrollableHeight; // Scale to 0-1 for vvalue.
+
+        return target;
     }
 
     private void setArrowListener() {

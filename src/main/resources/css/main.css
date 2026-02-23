@@ -1,6 +1,7 @@
 .root {
     main-color: #0f3e78;
-    -fx-background-color: main-color;
+    background-color: linear-gradient(to bottom, #0f3e78, #062e5c);
+    -fx-background-color: background-color;
     -fx-background-image: url("../images/Background.png");
     -fx-background-repeat: no-repeat;
     -fx-background-size: 300px;
@@ -37,7 +38,7 @@
 
 .scroll-bar {
     -fx-font-size: 10px;  /* Change width of scroll bar. */
-    -fx-background-color: main-color;
+    -fx-background-color: background-color;
 }
 
 .scroll-bar .thumb {

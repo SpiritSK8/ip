@@ -97,7 +97,8 @@ public class HelpCommand implements Command {
 
     private Response getDeadlineHelp() {
         String help = """
-                This command adds a new task with a due date.
+                This command adds a new task with a due date. Only three date formats are accepted: \
+                DD-MM-YYYY (e.g. 23-2-2026), YYYY-MM-DD, and DD MMM YYYY (e.g. 5 May 2026).
                 
                 Usage:
                 deadline <task_name> /by <due_date>
@@ -111,7 +112,8 @@ public class HelpCommand implements Command {
 
     private Response getEventHelp() {
         String help = """
-                Use this command to add a new event with a start and end date.
+                Use this command to add a new event with a start and end date. Three date formats are accepted: \
+                DD-MM-YYYY (e.g. 23-2-2026), YYYY-MM-DD, and DD MMM YYYY (e.g. 5 May 2026).
                 How exciting!
                 
                 Usage:

@@ -130,11 +130,26 @@ Let me give this task to someone else...
 read books
 ```
 
+### 7. Find Tasks
 
+This command finds the tasks whose name contains the keyword.
+
+Usage: `find <task_name>`
+
+Example: `find ad`
+
+Result: A list of tasks that match the keyword will be shown
+with the following message:
+
+```
+Here.
+
+1. Read books
+2. Admin stuff (by: 27 Feb 2026)
+```
 
 - `help`
 - `bye`
-- `find`
 
 I will update this user guide soon. But for other commands, you can type `help` to show the list of commands you can enter.
 

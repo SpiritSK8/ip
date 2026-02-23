@@ -66,7 +66,7 @@ public class MainWindow extends AnchorPane {
 
         // Add up/down arrow listener for command history.
         userInput.setOnKeyPressed(event -> {
-            if (myne.isAlive()) {
+            if (!myne.isAlive()) {
                 return;
             }
             switch (event.getCode()) {
